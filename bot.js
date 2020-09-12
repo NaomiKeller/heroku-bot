@@ -24,8 +24,11 @@ client.on("message", async message => {
         return message.channel.send("pong");
     }
 
-    // this will just simply print the current date/time with pretty raw formatting. just wanted to see how bots handle outputting variables. 
-    // be sure to use back ticks (`) when doing this
+    /*
+    this will just simply print the current date/time with pretty raw formatting. 
+    just wanted to see how bots handle outputting variables. 
+    be sure to use back ticks (`) when doing this
+    */
     if (cmd === `${prefix}date`) {
         return message.channel.send(`${d}`);
     }
@@ -35,4 +38,6 @@ client.on("message", async message => {
     }
 });
 
+// do not touch this. this is how our bot links to our code from discord. 
+// the TOKEN variable is set in Heroku so the key is not on GitHub
 client.login(process.env.TOKEN);
