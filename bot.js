@@ -18,13 +18,20 @@ client.on("message", async message => {
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
     let d = new Date();
+    let helpArray = ["!ping","!date"];
 
     if (cmd === `${prefix}ping`) {
         return message.channel.send("pong");
     }
 
+    // this will just simply print the current date/time with pretty raw formatting. just wanted to see how bots handle outputting variables. 
+    // be sure to use back ticks (`) when doing this
     if (cmd === `${prefix}date`) {
         return message.channel.send(`${d}`);
+    }
+
+    if (cmd === `${prefix}help`) {
+        return message.channel.send("Available commands: " + `${helpArray}`);
     }
 });
 
