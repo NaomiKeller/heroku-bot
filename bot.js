@@ -8,10 +8,12 @@ client.on('ready', () => {
 });
 
 client.on("message", async message => {
+    // not really sure what these do, don't think they affect enything
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
 
-    let prefix = config.prefix; // prefix is '!' for executing commands (prefix is set in config.json)
+    // prefix is '!' for executing commands (prefix is set in config.json)
+    let prefix = config.prefix; 
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
