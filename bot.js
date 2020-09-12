@@ -18,7 +18,7 @@ client.on("message", async message => {
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
     let d = new Date();
-    let helpArray = ["!ping","!date"];
+    let helpArray = ["!ping"," !date"]; // any command we add should be added to this array
 
     if (cmd === `${prefix}ping`) {
         return message.channel.send("pong");
