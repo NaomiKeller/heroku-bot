@@ -4,10 +4,13 @@
     "version": "1.0.0",
     "main": "bot.js",
     "scripts": {
-        "start": "node bot.js"
+        "start": "node bot.js index.js"
     },
     "license": "ISC",
     "dependencies": {
         "discord.js": "^12.3.1"
+    },
+    "engines": {
+        "node": "10.x"
     }
 }
