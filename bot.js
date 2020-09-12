@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const config = require("./config.json");
 const client = new Discord.Client();
 
 client.on('ready', () => {
@@ -10,7 +11,7 @@ client.on("message", async message => {
     if (message.author.client) return;
     if (message.channel.type === "dm") return;
 
-    let prefix = config.prefix; // prefix is '!' for executing commands
+    let prefix = config.prefix; // prefix is '!' for executing commands (prefix is set in config.json)
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
