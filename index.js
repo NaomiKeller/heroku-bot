@@ -1,6 +1,24 @@
+const {Client} = require('discord.js')
+const WS = require('./ws/ws')
+
+var client = new Client()
+
+var ws = new ws('123456', 5665, client)
+
+client.on('ready', () => {
+    console.log(`Bot logged in as ${client.user.tag}`)
+})
+
+client.login(process.env.TOKEN);
+
+
+
+/* FROM OLD BOT
+
 const Discord = require('discord.js');
 const config = require("./config.json");
 const client = new Discord.Client();
+
 
 client.on('ready', () => {
     console.log('I am ready!');
@@ -28,7 +46,7 @@ client.on("message", async message => {
     this will just simply print the current date/time with pretty raw formatting. 
     just wanted to see how bots handle outputting variables. 
     be sure to use back ticks (`) when doing this
-    */
+
     if (cmd === `${prefix}date`) {
         return message.channel.send(`${d}`);
     }
@@ -37,7 +55,6 @@ client.on("message", async message => {
         return message.channel.send("Available commands: " + `${helpArray}`);
     }
 });
-
+*/
 // do not touch this. this is how our bot links to our code from discord. 
 // the TOKEN variable is set in Heroku so the key is not on GitHub
-client.login(process.env.TOKEN);
