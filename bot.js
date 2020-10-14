@@ -2,6 +2,16 @@ const Discord = require('discord.js');
 const config = require("./config.json");
 const client = new Discord.Client();
 
+var express = require("express");
+
+var app = express();
+
+app.get("/", function (request, response){
+    response.sendFile(__dirname+"/views/index.html");
+});
+
+app.listen(8080);
+
 client.on('ready', () => {
     console.log('I am ready!');
     client.user.setActivity("test"); // "Playing <>" status message for bot
