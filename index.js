@@ -29,6 +29,9 @@ el = document.getElementById('server-time');
 el.innerHTML = 'Server time: ' + event.data;
 };
   
+app.get("/", (request, response) => {
+    response.sendFile(`${__dirname}/views/index.html`);
+  });
 
 // -------------------------------------------------------------------------- //
 const {Client} = require('discord.js')
