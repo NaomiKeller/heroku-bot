@@ -24,6 +24,10 @@ client.on("message", async message => {
         return message.channel.send("pong");
     }
 
+    if (cmd === `${prefix}blip`) {
+        return message.channel.send("blap");
+    }
+
     /*
     this will just simply print the current date/time with pretty raw formatting. 
     just wanted to see how bots handle outputting variables. 
