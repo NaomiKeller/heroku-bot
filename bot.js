@@ -4,12 +4,7 @@ const config = require("./config.json");
 const client = new Discord.Client();
 
 /*
-const database = new Database({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
+
 */
 
 client.on('ready', () => {
@@ -39,9 +34,16 @@ client.on("message", async message => {
     if (cmd === `${prefix}help`) {
         return message.channel.send("Available commands: " + `${helpArray}`);
     }
-    /*
+    
     if (cmd === `${prefix}datatbase`)
     {
+        const database = new Database({
+            connectionString: process.env.DATABASE_URL,
+            ssl: {
+            rejectUnauthorized: false
+            }
+        });
+
         database.connect();
 
         database.query('SELECT * FROM events;', (err, res) => {
@@ -52,7 +54,7 @@ client.on("message", async message => {
             database.end();
         });
     }
-    */
+   
 });
 
 // do not touch this. this is how our bot links to our code from discord. 
