@@ -15,13 +15,10 @@ client.on("message", async message => {
     const parse = require("pg-connection-string");
     const { Pool } = require ('pg');    
     const pool = new Pool({
-        connectionString: process.env.DATABASE_URL.parse,
-        port: 5432,
-        host: process.env.dbhost,
-        database: process.env.db,
-        user: process.env.user,
-       password: process.env.password,
-        ssl: true,
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+            rejectUnauthorized: false
+        }
     });
 
     let prefix = config.prefix; // prefix is '!'. Set in config.json
