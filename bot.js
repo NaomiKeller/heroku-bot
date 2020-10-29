@@ -46,7 +46,7 @@ client.on("message", async message => {
             database: process.env.DATABASE_DATABASE,
             password: process.env.DATABASE_PASSWORD,
             port: process.env.DATABASE_PORT,
-        });
+        })
 
         message.channel.send("Connection successful.");
 
