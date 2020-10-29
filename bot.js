@@ -45,7 +45,15 @@ client.on("message", async message => {
     
     if (cmd === `${prefix}database`)
     {
-        
+        client.connect();
+
+        client.query('SELECT * FROM events;', (err, res) => {
+          if (err) throw err;
+          for (let row of res.rows) {
+            console.log(JSON.stringify(row));
+          }
+          client.end();
+        });
 
         
     }
