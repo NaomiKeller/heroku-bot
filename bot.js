@@ -1,16 +1,16 @@
-//const { Client } = require('pg');
+const { Database } = require('pg');
 const Discord = require('discord.js');
 const config = require("./config.json");
 const client = new Discord.Client();
 
-/*
-const database = new Client({
+
+const database = new Database({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
   }
 });
-*/
+
 
 client.on('ready', () => {
     console.log('I am ready!');
