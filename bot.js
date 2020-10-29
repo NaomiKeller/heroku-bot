@@ -1,4 +1,4 @@
-const { Database } = require('pg');
+const Pool = require('pg');
 const Discord = require('discord.js');
 const config = require("./config.json");
 const client = new Discord.Client();
@@ -34,7 +34,7 @@ client.on("message", async message => {
     if (cmd === `${prefix}database`)
     {
         message.channel.send(`${process.env.DATABASE_URL}`);
-     /*   const database = new Database({
+        const database = new Pool({
             connectionString: process.env.DATABASE_URL,
             ssl: {
             rejectUnauthorized: false
@@ -42,7 +42,7 @@ client.on("message", async message => {
         });
 
         message.channel.send("2");
-
+        /*
         database.connect();
 
         database.query('SELECT * FROM events;', (err, res) => {
