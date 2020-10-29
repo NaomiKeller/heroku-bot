@@ -37,7 +37,7 @@ client.on("message", async message => {
         const database = new Pool();
 
         message.channel.send("2");
-        /*
+        
         database.connect();
 
         database.query('SELECT * FROM events;', (err, res) => {
@@ -48,7 +48,7 @@ client.on("message", async message => {
             database.end();
         });
 
-        return message.channel.send("3");*/
+        return message.channel.send("3");
     }
    
 });
