@@ -1,6 +1,15 @@
 
 const Discord = require('discord.js');
 const config = require("./config.json");
+
+const { Pool } = require ('pg');    
+    const pool = new Pool({
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+            rejectUnauthorized: false
+        }
+    });
+
 const client = new Discord.Client();
 
 client.on('ready', () => {
@@ -8,17 +17,13 @@ client.on('ready', () => {
     client.user.setActivity("Don't forget!"); // "Playing <>" status message for bot
 });
 
+
+
 client.on("message", async message => {
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
 
-    const { Pool } = require ('pg');    
-    const pool = new Pool({
-        connectionString: process.env.DATABASE_URL,
-        ssl: {
-            rejectUnauthorized: false
-        }
-    });
+    
 
     let prefix = config.prefix; // prefix is '!'. Set in config.json
     let messageArray = message.content.split(" ");
