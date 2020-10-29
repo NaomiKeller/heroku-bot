@@ -3,13 +3,13 @@ const Discord = require('discord.js');
 const config = require("./config.json");
 const client = new Discord.Client();
 
-/*const database = new Database({
+const database = new Database({
     user: process.env.DATABASE_USER,
     host: process.env.DATABASE_HOST,
     database: process.env.DATABASE_DATABASE,
     password: process.env.DATABASE_PASSWORD,
     port: process.env.DATABASE_PORT,
-});*/
+});
 
 /*
 
@@ -36,7 +36,6 @@ client.on("message", async message => {
     }
 
     if (cmd === `${prefix}date`) {
-        message.channel.send("Test");
         return message.channel.send(`${d}`);
     }
 
