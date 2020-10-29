@@ -53,6 +53,8 @@ client.on("message", async message => {
             }
             database.end();
         });
+
+        return message.channel.send("Successful");
     }
    
 });
