@@ -36,6 +36,7 @@ client.on("message", async message => {
     }
 
     if (cmd === `${prefix}date`) {
+        message.channel.send("Test");
         return message.channel.send(`${d}`);
     }
 
