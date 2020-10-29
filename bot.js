@@ -1,6 +1,15 @@
+const { Client } = require('pg');
 const Discord = require('discord.js');
 const config = require("./config.json");
 const client = new Discord.Client();
+
+const databse = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
 
 client.on('ready', () => {
     console.log('I am ready!');
@@ -29,8 +38,37 @@ client.on("message", async message => {
     if (cmd === `${prefix}help`) {
         return message.channel.send("Available commands: " + `${helpArray}`);
     }
+
+    if (cmd === `${prefix}datatbase`)
+    {
+        client.connect();
+
+        client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+            if (err) throw err;
+            for (let row of res.rows) {
+            message.channel.send(JSON.stringify(row));
+            }
+            client.end();
+        });
+    }
 });
 
 // do not touch this. this is how our bot links to our code from discord. 
 // the TOKEN variable is set in Heroku so the key is not on GitHub
 client.login(process.env.TOKEN);
+
+
+
+const { Client } = require('pg');
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
+
+
+
+
