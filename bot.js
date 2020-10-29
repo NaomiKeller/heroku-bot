@@ -18,19 +18,17 @@ client.on('ready', () => {
 });
 
 
-
 client.on("message", async message => {
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
 
-    
 
     let prefix = config.prefix; // prefix is '!'. Set in config.json
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
     let d = new Date();
-    let helpArray = ["!blip"," !date"]; // List of available commands
+    let helpArray = ["!blip"," !date", " !database"]; // List of available commands
 
     if (cmd === `${prefix}blip`) {
         return message.channel.send("blap");
