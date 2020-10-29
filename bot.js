@@ -47,7 +47,7 @@ client.on("message", async message => {
         pool.query('SELECT * FROM events;', (err, res) => {
           if (err) throw err;
           for (let row of res.rows) {
-            console.log(JSON.stringify(row));
+            message.channel.send(JSON.stringify(row));
           }
           pool.end();
         });
