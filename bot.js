@@ -4,53 +4,30 @@ const client = new Discord.Client();
 
 client.on('ready', () => {
     console.log('I am ready!');
-    client.user.setActivity("test"); // "Playing <>" status message for bot
+    client.user.setActivity("Don't forget!"); // "Playing <>" status message for bot
 });
 
 client.on("message", async message => {
-    // not really sure what these do, don't think they affect enything
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
 
-    // prefix is '!' for executing commands (prefix is set in config.json)
-    let prefix = config.prefix; 
+    let prefix = config.prefix; // prefix is '!'. Set in config.json
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
     let d = new Date();
-    let helpArray = ["!ping"," !date"]; // any command we add should be added to this array
+    let helpArray = ["!blip"," !date"]; // List of available commands
 
-    if (cmd === `${prefix}ping`) {
-        return message.channel.send("pong");
+    if (cmd === `${prefix}blip`) {
+        return message.channel.send("blap");
     }
 
-    /*
-    this will just simply print the current date/time with pretty raw formatting. 
-    just wanted to see how bots handle outputting variables. 
-    be sure to use back ticks (`) when doing this
-    */
     if (cmd === `${prefix}date`) {
         return message.channel.send(`${d}`);
     }
 
     if (cmd === `${prefix}help`) {
         return message.channel.send("Available commands: " + `${helpArray}`);
-    }
-});
-
-client.on("message", async message => {
-    if (message.author.bot) return;
-    if (message.channel.type === "dm") return;
-
-    let prefix = config.prefix; 
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
-    let d = new Date();
-    let helpArray = ["!ping"," !date"]; // any command we add should be added to this array
-
-    if (cmd === `${prefix}difFunc`) {
-        return message.channel.send(`yes`);
     }
 });
 
