@@ -34,10 +34,7 @@ client.on("message", async message => {
     if (cmd === `${prefix}database`)
     {
         message.channel.send(`${process.env.DATABASE_URL}`);
-        const database = new Pool({
-            connectionString: process.env.DATABASE_URL,
-            ssl: true
-        });
+        const database = new Pool();
 
         message.channel.send("2");
         /*
