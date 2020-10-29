@@ -36,6 +36,7 @@ client.on("message", async message => {
     }
 
     if (cmd === `${prefix}date`) {
+        message.channel.send("Test");
         return message.channel.send(`${d}`);
     }
 
@@ -45,10 +46,6 @@ client.on("message", async message => {
     
     if (cmd === `${prefix}database`)
     {
-        
-        message.channel.send("1");
-
-        message.channel.send("Connection successful.");
 
         /* old
         const database = new Database({
