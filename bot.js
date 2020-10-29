@@ -36,7 +36,7 @@ client.on("message", async message => {
         message.channel.send(`${process.env.DATABASE_URL}`);
         const database = new Pool({
             connectionString: process.env.DATABASE_URL,
-            ssl: false
+            ssl: true
         });
 
         message.channel.send("2");
