@@ -3,18 +3,6 @@ const Discord = require('discord.js');
 const config = require("./config.json");
 const client = new Discord.Client();
 
-const database = new Database({
-    user: process.env.DATABASE_USER,
-    host: process.env.DATABASE_HOST,
-    database: process.env.DATABASE_DATABASE,
-    password: process.env.DATABASE_PASSWORD,
-    port: process.env.DATABASE_PORT,
-});
-
-/*
-
-*/
-
 client.on('ready', () => {
     console.log('I am ready!');
     client.user.setActivity("Don't forget!"); // "Playing <>" status message for bot
@@ -45,15 +33,14 @@ client.on("message", async message => {
     
     if (cmd === `${prefix}database`)
     {
-
-        /* old
+        
         const database = new Database({
             connectionString: process.env.DATABASE_URL,
             ssl: {
             rejectUnauthorized: false
             }
         });
-        */
+
         message.channel.send("2");
 
         database.connect();
