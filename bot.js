@@ -49,7 +49,7 @@ client.on("message", async message => {
         database.query('SELECT * FROM events;', (err, res) => {
             if (err) throw err;
             for (let row of res.rows) {
-            message.channel.send(JSON.stringify(row));
+            message.channel.send(row);
             }
             database.end();
         });
