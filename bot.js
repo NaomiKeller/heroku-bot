@@ -1,15 +1,16 @@
-const { Client } = require('pg');
+//const { Client } = require('pg');
 const Discord = require('discord.js');
 const config = require("./config.json");
 const client = new Discord.Client();
 
+/*
 const database = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
   }
 });
-
+*/
 
 client.on('ready', () => {
     console.log('I am ready!');
@@ -38,12 +39,12 @@ client.on("message", async message => {
     if (cmd === `${prefix}help`) {
         return message.channel.send("Available commands: " + `${helpArray}`);
     }
-
+    /*
     if (cmd === `${prefix}datatbase`)
     {
         database.connect();
 
-        database.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+        database.query('SELECT * FROM events;', (err, res) => {
             if (err) throw err;
             for (let row of res.rows) {
             message.channel.send(JSON.stringify(row));
@@ -51,6 +52,7 @@ client.on("message", async message => {
             database.end();
         });
     }
+    */
 });
 
 // do not touch this. this is how our bot links to our code from discord. 
