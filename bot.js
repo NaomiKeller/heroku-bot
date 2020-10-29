@@ -41,14 +41,14 @@ client.on("message", async message => {
 
     if (cmd === `${prefix}datatbase`)
     {
-        client.connect();
+        database.connect();
 
-        client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+        database.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
             if (err) throw err;
             for (let row of res.rows) {
             message.channel.send(JSON.stringify(row));
             }
-            client.end();
+            database.end();
         });
     }
 });
@@ -59,14 +59,6 @@ client.login(process.env.TOKEN);
 
 
 
-const { Client } = require('pg');
-
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
 
 
 
