@@ -1,4 +1,4 @@
-const { Pool } = require('pg');
+
 const Discord = require('discord.js');
 const config = require("./config.json");
 const client = new Discord.Client();
@@ -11,6 +11,18 @@ client.on('ready', () => {
 client.on("message", async message => {
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
+
+    const parse = require("pg-connection-string");
+    const { Pool } = require ('pg');    
+    const pool = new Pool({
+        connectionString: process.env.DATABASE_URL.parse,
+        port: 5432,
+        host: process.env.dbhost,
+        database: process.env.db,
+        user: process.env.user,
+       password: process.env.password,
+        ssl: true,
+    });
 
     let prefix = config.prefix; // prefix is '!'. Set in config.json
     let messageArray = message.content.split(" ");
@@ -33,22 +45,9 @@ client.on("message", async message => {
     
     if (cmd === `${prefix}database`)
     {
-        message.channel.send(`${process.env.DATABASE_URL}`);
-        const database = new Pool();
-
-        message.channel.send("2");
         
-        database.connect();
 
-        database.query('SELECT * FROM events;', (err, res) => {
-            if (err) throw err;
-            for (let row of res.rows) {
-            message.channel.send(row);
-            }
-            database.end();
-        });
-
-        return message.channel.send("3");
+        
     }
    
 });
