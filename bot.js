@@ -12,7 +12,6 @@ client.on("message", async message => {
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
 
-    const parse = require("pg-connection-string");
     const { Pool } = require ('pg');    
     const pool = new Pool({
         connectionString: process.env.DATABASE_URL,
