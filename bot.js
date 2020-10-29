@@ -37,12 +37,14 @@ client.on("message", async message => {
     
     if (cmd === `${prefix}database`)
     {
+        message.channel.send("1");
         const database = new Database({
             connectionString: process.env.DATABASE_URL,
             ssl: {
             rejectUnauthorized: false
             }
         });
+        message.channel.send("2");
 
         database.connect();
 
@@ -54,7 +56,7 @@ client.on("message", async message => {
             database.end();
         });
 
-        return message.channel.send("Successful");
+        return message.channel.send("3");
     }
    
 });
