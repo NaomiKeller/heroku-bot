@@ -35,7 +35,7 @@ client.on("message", async message => {
         return message.channel.send("Available commands: " + `${helpArray}`);
     }
     
-    if (cmd === `${prefix}datatbase`)
+    if (cmd === `${prefix}database`)
     {
         const database = new Database({
             connectionString: process.env.DATABASE_URL,
