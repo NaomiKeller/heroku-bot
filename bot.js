@@ -3,12 +3,12 @@ const Discord = require('discord.js');
 const config = require("./config.json");
 
 const { Pool } = require ('pg');    
-    const pool = new Pool({
-        connectionString: process.env.DATABASE_URL,
-        ssl: {
-            rejectUnauthorized: false
-        }
-    });
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+    }
+});
 
 const client = new Discord.Client();
 
@@ -46,15 +46,14 @@ client.on("message", async message => {
     {
         pool.connect();
 
-        pool.query('SELECT * FROM events;', (err, res) => {
+        pool.query('SELECT * FROM event;', (err, res) => {
           if (err) throw err;
           for (let row of res.rows) {
             message.channel.send(JSON.stringify(row));
           }
-          pool.end();
+          
         });
-
-        
+        pool.end();  
     }
    
 });
