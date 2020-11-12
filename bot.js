@@ -41,6 +41,10 @@ client.on("message", async message => {
     if (cmd === `${prefix}help`) {
         return message.channel.send("Available commands: " + `${helpArray}`);
     }
+
+    if (cmd === `${prefix}site`) {
+        return message.channel.send("https://testing-dis-bot.herokuapp.com");
+    }
     
     if (cmd === `${prefix}database`)
     {
