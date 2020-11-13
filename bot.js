@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const config = require("./config.json");
-require('heroku-self-ping').default("https://testing-dis-bot.herokuapp.com/")
 const { Pool } = require ('pg');    
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
