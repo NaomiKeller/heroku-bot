@@ -99,7 +99,7 @@ client.on("message", async message => {
     if(cmd === `${prefix}ListEvents`){
         pool.connect();
 
-        pool.query('SELECT * FROM event;', (err, res) => {
+        pool.query('SELECT * FROM TEST_EVENT;', (err, res) => {
           if (err) throw err;
           for (let row of res.rows) {
             message.channel.send(JSON.stringify(row));
