@@ -14,6 +14,7 @@ client.on('ready', () => {
     console.log('I am ready!');
     client.user.setActivity("Don't forget!"); // "Playing <>" status message for bot
 
+    //This should be opened as soon as the bot is ready! Do not close the connection to the pool later. :)
     pool.connect();
 });
 
@@ -46,12 +47,12 @@ client.on("message", async message => {
         return message.channel.send("https://testing-dis-bot.herokuapp.com");
     }
 
-    //testing below...
+    //testing database features below...
 
+    //Here, I created a couple of test tables because I did not know what program to use to access our database (Will ask)
     if (cmd === `${prefix}cTestDatabase`){
         
-
-        pool.query('CREATE TABLE TEST_EVENT (EVENT_ID SERIAL NOT NULL PRIMARY KEY, EVENT_NAME VARCHAR(100) NOT NULL); CREATE TABLE TEST_USER (USER_TAG TEXT PRIMARY KEY); CREATE TABLE TEST_SUBSCRIPTION (EVENT_ID INTEGER REFERENCES TEST_EVENT(EVENT_ID), USER_TAG TEXT REFERENCES TEST_USER(USER_TAG), PRIMARY KEY(EVENT_ID, USER_TAG));', (err, res) => {
+        pool.query('CREATE TABLE TEST_EVENT (EVENT_ID SERIAL NOT NULL PRIMARY KEY, EVENT_NAME VARCHAR(100) NOT NULL, EVENT_ADSNOWFLAKE TEXT); CREATE TABLE TEST_USER (USER_TAG TEXT PRIMARY KEY); CREATE TABLE TEST_SUBSCRIPTION (EVENT_ID INTEGER REFERENCES TEST_EVENT(EVENT_ID), USER_TAG TEXT REFERENCES TEST_USER(USER_TAG), PRIMARY KEY(EVENT_ID, USER_TAG));', (err, res) => {
             //does this work?
             if(err) {
                 throw err;
@@ -62,6 +63,12 @@ client.on("message", async message => {
         });
     }
 
+    //This is a very very preliminary "create event" type of function.
+    //We will eventually need more information in events, but this was just for testing.
+    //There were some issues, hence all the text that is sent. Works now.
+
+    //TODO: Pack this up into its clean method, validate input in terms of name (and other variables, as necessary),
+    //Maybe hand over information to a database object we create?
     if (cmd === `${prefix}CreateEvent`){
         let name = args[0];
 
@@ -81,6 +88,8 @@ client.on("message", async message => {
 
     }
 
+    //This was also made for my testing purposes, just to make sure that the surrogate primary key was working, mostly.
+    //Was basically just the old database code fitted to my test tables.
     if(cmd === `${prefix}ListEvents`){
 
         pool.query('SELECT * FROM TEST_EVENT;', (err, res) => {
@@ -91,6 +100,20 @@ client.on("message", async message => {
             message.channel.send(JSON.stringify(row));
           }
           
+        });
+    }
+
+    if(cmd === `${prefix}AdvertiseEvent`){
+        let eventID = args[0];
+        let eventName;
+
+        pool.query(`SELECT EVENT_NAME FROM TEST_EVENT WHERE EVENT_ID = ${eventID};`, (err, res) => {
+            if(err) throw err;
+
+            //see if this works...
+            for(let field of res.fields){
+                message.channel.send(field);
+            }
         });
     }
    
