@@ -13,6 +13,8 @@ const client = new Discord.Client();
 client.on('ready', () => {
     console.log('I am ready!');
     client.user.setActivity("Don't forget!"); // "Playing <>" status message for bot
+
+    pool.connect();
 });
 
 
@@ -43,50 +45,29 @@ client.on("message", async message => {
     if (cmd === `${prefix}site`) {
         return message.channel.send("https://testing-dis-bot.herokuapp.com");
     }
-    
-    if (cmd === `${prefix}database`)
-    {
-        pool.connect();
-
-        pool.query('SELECT * FROM event;', (err, res) => {
-            if(err) {
-                message.channel.send(err.message);
-                pool.end();
-                throw err;
-            }
-          for (let row of res.rows) {
-            message.channel.send(JSON.stringify(row));
-          }
-          
-        });
-        pool.end();  
-    }
 
     //testing below...
 
     if (cmd === `${prefix}cTestDatabase`){
-        pool.connect();
+        
 
         pool.query('CREATE TABLE TEST_EVENT (EVENT_ID SERIAL NOT NULL PRIMARY KEY, EVENT_NAME VARCHAR(100) NOT NULL); CREATE TABLE TEST_USER (USER_TAG TEXT PRIMARY KEY); CREATE TABLE TEST_SUBSCRIPTION (EVENT_ID INTEGER REFERENCES TEST_EVENT(EVENT_ID), USER_TAG TEXT REFERENCES TEST_USER(USER_TAG), PRIMARY KEY(EVENT_ID, USER_TAG));', (err, res) => {
             //does this work?
             if(err) {
-                message.channel.send(err.message);
-                pool.end();
                 throw err;
             }
             else{
                 message.channel.send("Test Tables created");
             }
         });
-
-        pool.end();
     }
 
     if (cmd === `${prefix}CreateEvent`){
         let name = args[0];
 
+        message.channel.send(name);
         message.channel.send("Pre-attempt");
-        pool.connect();
+        
         message.channel.send("Attempting...");
 
         pool.query(`INSERT INTO TEST_EVENT VALUES (DEFAULT, ${name});`, (err, res) => {
@@ -109,15 +90,12 @@ client.on("message", async message => {
             }
         });
 
-        pool.end();
     }
 
     if(cmd === `${prefix}ListEvents`){
-        pool.connect();
 
         pool.query('SELECT * FROM TEST_EVENT;', (err, res) => {
             if(err) {
-                pool.end();
                 throw err;
             }
           for (let row of res.rows) {
@@ -125,7 +103,6 @@ client.on("message", async message => {
           }
           
         });
-        pool.end();  
     }
    
 });
