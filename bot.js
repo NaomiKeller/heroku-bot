@@ -70,16 +70,16 @@ client.on("message", async message => {
         
         message.channel.send("Attempting...");
 
-        pool.query(`INSERT INTO TEST_EVENT VALUES (DEFAULT, ${name});`, (err, res) => {
+        pool.query(`INSERT INTO TEST_EVENT (EVENT_NAME) VALUES (${name});`, (err, res) => {
             if(err) {
-                message.channel.send(err.message.toString);
+                throw err;
             }
             else{
                 message.channel.send("No error creating");
                 message.channel.send("Event created with values: ");
                 pool.query(`SELECT * FROM TEST_EVENT WHERE EVENT_NAME = \'${name}\'`, (err, res) => {
                     if(err) {
-                        message.channel.send(err.message.toString);
+                        throw err;
                     }
                     else{
                         for(let row of res.rows){
