@@ -110,10 +110,7 @@ client.on("message", async message => {
         pool.query(`SELECT EVENT_NAME FROM TEST_EVENT WHERE EVENT_ID = ${eventID};`, (err, res) => {
             if(err) throw err;
 
-            //see if this works...
-            for(let field of res.fields){
-                message.channel.send(field);
-            }
+            message.channel.send(res.rows[0]);
         });
     }
    
