@@ -70,23 +70,12 @@ client.on("message", async message => {
         
         message.channel.send("Attempting...");
 
-        pool.query(`INSERT INTO TEST_EVENT (EVENT_NAME) VALUES (${name});`, (err, res) => {
+        pool.query(`INSERT INTO TEST_EVENT (EVENT_NAME) VALUES (\'${name}\');`, (err, res) => {
             if(err) {
                 throw err;
             }
             else{
                 message.channel.send("No error creating");
-                message.channel.send("Event created with values: ");
-                pool.query(`SELECT * FROM TEST_EVENT WHERE EVENT_NAME = \'${name}\'`, (err, res) => {
-                    if(err) {
-                        throw err;
-                    }
-                    else{
-                        for(let row of res.rows){
-                            message.channel.send(JSON.stringify(row));
-                        }
-                    }
-                });
             }
         });
 
