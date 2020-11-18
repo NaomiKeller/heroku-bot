@@ -83,16 +83,20 @@ client.on("message", async message => {
     }
 
     if (cmd === `${prefix}CreateEvent`){
+        message.client.send(name);
         let name = args[0];
 
         pool.connect();
+        message.client.send("Attempting...");
         pool.query(`INSERT INTO TEST_EVENT VALUES (DEFAULT, ${name});`, (err, res) => {
             if(err) {
+                message.client.send("Error creating");
                 message.client.send(err.message);
                 pool.end();
                 throw err;
             }
             else{
+                message.client.send("No error creating");
                 message.channel.send("Event created with values: ");
                 pool.query(`SELECT * FROM TEST_EVENT WHERE EVENT_NAME = \'${name}\'`, (err, res) => {
                     if(err) {
