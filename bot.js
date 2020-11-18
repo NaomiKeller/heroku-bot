@@ -50,7 +50,7 @@ client.on("message", async message => {
 
         pool.query('SELECT * FROM event;', (err, res) => {
             if(err) {
-                message.client.send(err.message);
+                message.channel.send(err.message);
                 pool.end();
                 throw err;
             }
@@ -70,7 +70,7 @@ client.on("message", async message => {
         pool.query('CREATE TABLE TEST_EVENT (EVENT_ID SERIAL NOT NULL PRIMARY KEY, EVENT_NAME VARCHAR(100) NOT NULL); CREATE TABLE TEST_USER (USER_TAG TEXT PRIMARY KEY); CREATE TABLE TEST_SUBSCRIPTION (EVENT_ID INTEGER REFERENCES TEST_EVENT(EVENT_ID), USER_TAG TEXT REFERENCES TEST_USER(USER_TAG), PRIMARY KEY(EVENT_ID, USER_TAG));', (err, res) => {
             //does this work?
             if(err) {
-                message.client.send(err.message);
+                message.channel.send(err.message);
                 pool.end();
                 throw err;
             }
@@ -85,20 +85,20 @@ client.on("message", async message => {
     if (cmd === `${prefix}CreateEvent`){
         let name = args[0];
 
-        message.client.send("Pre-attempt");
+        message.channel.send("Pre-attempt");
         pool.connect();
-        message.client.send("Attempting...");
+        message.channel.send("Attempting...");
 
         pool.query(`INSERT INTO TEST_EVENT VALUES (DEFAULT, ${name});`, (err, res) => {
             if(err) {
-                message.client.send(err.message.toString)
+                message.channel.send(err.message.toString);
             }
             else{
-                message.client.send("No error creating");
+                message.channel.send("No error creating");
                 message.channel.send("Event created with values: ");
                 pool.query(`SELECT * FROM TEST_EVENT WHERE EVENT_NAME = \'${name}\'`, (err, res) => {
                     if(err) {
-                        message.client.send(err.message.toString);
+                        message.channel.send(err.message.toString);
                     }
                     else{
                         for(let row of res.rows){
