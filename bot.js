@@ -86,8 +86,10 @@ client.on("message", async message => {
         message.client.send(name);
         let name = args[0];
 
+        message.client.send("Pre-attempt");
         pool.connect();
         message.client.send("Attempting...");
+        
         pool.query(`INSERT INTO TEST_EVENT VALUES (DEFAULT, ${name});`, (err, res) => {
             if(err) {
                 message.client.send("Error creating");
