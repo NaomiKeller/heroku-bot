@@ -91,19 +91,14 @@ client.on("message", async message => {
 
         pool.query(`INSERT INTO TEST_EVENT VALUES (DEFAULT, ${name});`, (err, res) => {
             if(err) {
-                message.client.send("Error creating");
-                message.client.send(err.message);
-                pool.end();
-                throw err;
+                message.client.send(err.message.toString)
             }
             else{
                 message.client.send("No error creating");
                 message.channel.send("Event created with values: ");
                 pool.query(`SELECT * FROM TEST_EVENT WHERE EVENT_NAME = \'${name}\'`, (err, res) => {
                     if(err) {
-                        message.client.send(err.message);
-                        pool.end();
-                        throw err;
+                        message.client.send(err.message.toString);
                     }
                     else{
                         for(let row of res.rows){
@@ -122,7 +117,6 @@ client.on("message", async message => {
 
         pool.query('SELECT * FROM TEST_EVENT;', (err, res) => {
             if(err) {
-                message.client.send(err.message);
                 pool.end();
                 throw err;
             }
