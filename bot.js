@@ -103,6 +103,13 @@ client.on("message", async message => {
         });
     }
 
+    //In progress. I learned how to read the returned Javascript object in order to actually get values, which is dope.
+    //From here, I plan to have the bot send a message, note that message's ID (as a string), and alter the
+    //TEST_EVENT table's ADSNOWFLAKE field to the message's ID. From there, I will have to set up an event
+    //listener that looks for reactions, performs a query in the TEST_EVENT for the event's snowflake,
+    //and if it finds a match will create a subscription for that user.
+
+    //A lot of my time spent tonight has been figuring out how these libraries work, but so far things are looking great!
     if(cmd === `${prefix}AdvertiseEvent`){
         let eventID = args[0];
         let eventName;
@@ -110,7 +117,7 @@ client.on("message", async message => {
         pool.query(`SELECT EVENT_NAME FROM TEST_EVENT WHERE EVENT_ID = ${Number(eventID)};`, (err, res) => {
             if(err) throw err;
 
-            console.log(Object.values(res.rows[0])[0]);
+            eventName = Object.values(res.rows[0])[0];
         });
     }
    
