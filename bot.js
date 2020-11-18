@@ -59,7 +59,7 @@ client.on("message", async message => {
     }
 
     //testing below...
-    
+
     if (cmd === `${prefix}cTestDatabase`){
         pool.connect();
 
@@ -70,6 +70,8 @@ client.on("message", async message => {
                 message.channel.send("Test Tables created");
             }
         });
+
+        pool.end();
     }
 
     if (cmd === `${prefix}CreateEvent`){
@@ -90,6 +92,21 @@ client.on("message", async message => {
                 });
             }
         });
+
+        pool.end();
+    }
+
+    if(cmd === `${prefix}ListEvents`){
+        pool.connect();
+
+        pool.query('SELECT * FROM event;', (err, res) => {
+          if (err) throw err;
+          for (let row of res.rows) {
+            message.channel.send(JSON.stringify(row));
+          }
+          
+        });
+        pool.end();  
     }
    
 });
