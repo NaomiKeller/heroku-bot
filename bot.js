@@ -13,19 +13,6 @@ const Database = require('./database.js');
 const Database = new database();
 
 
-class Event
-{
-    constructor(name, description, startTime, duration, url)
-    {
-        this.name = name;
-        this.description = description;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.url = url;
-    }
-}
-
-
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 
 client.on('ready', () => {
