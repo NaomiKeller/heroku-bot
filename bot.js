@@ -53,7 +53,7 @@ client.on("message", async message => {
     }
 
     if (cmd === `${prefix}CreateEvent`) {
-        let newEvent = new Event(args[0], args[1], args[2], args[3], args[4];
+        let newEvent = new Event(args[0], args[1], args[2], args[3], args[4]);
         
         database.createEvent(newEvent); 
         return message.channel.send(`${database.test()}`);
