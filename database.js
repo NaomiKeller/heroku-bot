@@ -24,7 +24,7 @@ class Database
                 rejectUnauthorized: false
             }
         });
-        pool.connect();
+        this.pool.connect();
     }
 
     // create a event in the database
