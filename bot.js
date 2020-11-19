@@ -127,15 +127,11 @@ client.on("message", async message => {
             //originally, I planned to break all of this up. However, there's some kind of scope issue? I might be able to resolve this if I knew more javascript, but alas...
             message.channel.send(eventName).then(value => {
                 messageID = value.id;
+                value.react('🤔')
                 serverID = message.guild.id
    
                 pool.query(`INSERT INTO TEST_ADVERTISEMENT VALUES (${eventID}, \'${serverID}\', \'${messageID}\');`, (err, res) => {
-                    if(err) message.channel.send("Query error");
-                    else message.channel.send("No query error");
-
-                    message.channel.send("Advertisement Logged");
-                    message.channel.send(messageID);
-                    message.channel.send(serverID);
+                    if(err) throw err;
                 });
             });
         });
@@ -154,6 +150,13 @@ client.on("message", async message => {
         });
     }
    
+});
+
+client.on('messageReactionAdd', (reaction, user) => {
+    if(!(user.bot) && reaction.emoji == '🤔'){
+        //check to see if this matters...
+        message.channel.send(user.name);
+    }
 });
 
 // do not touch this. this is how our bot links to our code from discord. 
