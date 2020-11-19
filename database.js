@@ -2,7 +2,7 @@
 // Database file test version
 
 
-export class Database
+export default class Database
 {
     constructor(databaseHandle)
     {
