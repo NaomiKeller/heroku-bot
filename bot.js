@@ -11,6 +11,8 @@ const pool = new Pool({
 const Database = require('./database.js');
 console.log(Database);
 
+const mydatabase = new Database(pool);
+
 class Event
 {
     constructor(name, description, startTime, duration, url)
