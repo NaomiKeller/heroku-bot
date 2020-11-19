@@ -1,3 +1,5 @@
+require('heroku-self-ping').default("https://forgetmebot.herokuapp.com/home.html");
+
 (function($) {
 
 	"use strict";
