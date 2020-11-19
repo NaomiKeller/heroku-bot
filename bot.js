@@ -129,12 +129,16 @@ client.on("message", async message => {
              messageID = value.id;
              serverID = message.guild.id
 
-            pool.query(`INSERT INTO TEST_ADVERTISEMENT VALUES (${eventID}, \'${serverID}\', \'${messageID}\');`, (err, res) => {
+            /*pool.query(`INSERT INTO TEST_ADVERTISEMENT VALUES (${eventID}, \'${serverID}\', \'${messageID}\');`, (err, res) => {
                 if(err) message.channel.send("Query error");
                 else message.channel.send("No query error");
             });
 
             message.channel.send("Advertisement Logged");
+            */
+
+            message.channel.send(messageID);
+            message.channel.send(serverID);
         });
     }
 
