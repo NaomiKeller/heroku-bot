@@ -39,9 +39,9 @@ class Database
     {
         if (newEvent instanceof Event)
         {
-            //let query = `INSERT INTO event (event_name, event_description, event_start, event_end, event_url)
-              //          VALUES (${newEvent.name}, ${newEvent.description}, ${newEvent.startTime}, ${newEvent.endTime}, ${newEvent.url});`;
-            let query = `INSERT INTO TEST_EVENT (EVENT_NAME) VALUES (\'${Event.name}\');`;
+            let query = `INSERT INTO EVENT (event_name, event_description, event_start, event_end, event_url) 
+                      VALUES (${newEvent.name}, ${newEvent.description}, ${newEvent.startTime}, ${newEvent.endTime}, ${newEvent.url});`;
+            
             
             this.pool.query(query, (err, res) => {
                 if(err) 
