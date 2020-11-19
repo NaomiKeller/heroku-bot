@@ -129,7 +129,7 @@ client.on("message", async message => {
              messageID = value.id;
              serverID = message.guild.id
 
-            pool.query(`INSERT INTO TEST_ADVERTISEMENT VALUES (${eventID}, \'${serverID}\', \'${messageID}'\);`, (err, res) => {
+            pool.query(`INSERT INTO TEST_ADVERTISEMENT VALUES (${eventID}, \'${serverID}\', \'${messageID}\');`, (err, res) => {
                 if(err) throw err;
             });
 
