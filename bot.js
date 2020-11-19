@@ -12,7 +12,7 @@ const pool = new Pool({
 const Database = require('./database.js');
 
 
-//const mydatabase = new Database(pool);
+const mydatabase = new Database(pool);
 
 class Event
 {
