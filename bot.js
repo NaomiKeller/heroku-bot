@@ -13,6 +13,7 @@ const Database = require('./database.js');
 const database = new Database.Database();
 
 
+
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 
 client.on('ready', () => {
@@ -53,7 +54,7 @@ client.on("message", async message => {
     }
 
     if (cmd === `${prefix}CreateEvent`) {
-        let newEvent = new Event(args[0], args[1], args[2], args[3], args[4]);
+        let newEvent = new Database.Event(args[0], args[1], args[2], args[3], args[4]);
         
         database.createEvent(newEvent); 
         return message.channel.send(`${database.test()}`);
