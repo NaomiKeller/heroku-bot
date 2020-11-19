@@ -8,7 +8,7 @@ const pool = new Pool({
     }
 });
 
-const client = new Discord.Client();
+const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 
 client.on('ready', () => {
     console.log('I am ready!');
@@ -152,10 +152,20 @@ client.on("message", async message => {
    
 });
 
-client.on('messageReactionAdd', (reaction, user) => {
+client.on('messageReactionAdd', async (reaction, user) => {
+
+if(reaction.partial){
+    try{
+        await reaction.fetch();
+    }catch(error){
+        console.error("Error fetching message: ", error);
+        return;
+    }
+}
+
     if(!(user.bot)){
         //check to see if this matters...
-        console.log(user.name);
+        console.log(user.username);
     }
 });
 
