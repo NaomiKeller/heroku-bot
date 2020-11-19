@@ -107,24 +107,20 @@ client.on("message", async message => {
         });
     }
 
-    //In progress. I learned how to read the returned Javascript object in order to actually get values, which is dope.
-    //From here, I plan to have the bot send a message, note that message's ID (as a string), and alter the
-    //TEST_EVENT table's ADSNOWFLAKE field to the message's ID. From there, I will have to set up an event
-    //listener that looks for reactions, performs a query in the TEST_EVENT for the event's snowflake,
-    //and if it finds a match will create a subscription for that user.
-
-    //A lot of my time spent tonight has been figuring out how these libraries work, but so far things are looking great!
+    //This creates an advertisement for an event in the TEST_ADVERTISEMENT table.
+    //This also creates the initial reaction for said event.
     if(cmd === `${prefix}AdvertiseEvent`){
         let eventID = args[0];
         let eventName;
         let messageID;
         let serverID;
 
+        //originally, I planned to break all of this up. However, there's some kind of scope issue? I might be able to resolve this if I knew more javascript, but alas...
         pool.query(`SELECT EVENT_NAME FROM TEST_EVENT WHERE EVENT_ID = ${Number(eventID)};`, (err, res) => {
             if(err) throw err;
             eventName = Object.values(res.rows[0])[0];
 
-            //originally, I planned to break all of this up. However, there's some kind of scope issue? I might be able to resolve this if I knew more javascript, but alas...
+            //This sends our initial advertisement message (which should eventually be a lot more!), and then does a bunch of stuff when it has been sent.
             message.channel.send(eventName).then(value => {
                 messageID = value.id;
                 value.react('🤔')
@@ -137,6 +133,7 @@ client.on("message", async message => {
         });
     }
 
+    //Used to debug the TEST_ADVERTISEMENT table.
     if(cmd === `${prefix}ShowAdverts`){
 
         pool.query('SELECT * FROM TEST_ADVERTISEMENT;', (err, res) => {
@@ -154,18 +151,21 @@ client.on("message", async message => {
 
 client.on('messageReactionAdd', async (reaction, user) => {
 
-if(reaction.partial){
-    try{
-        await reaction.fetch();
-    }catch(error){
-        console.error("Error fetching message: ", error);
-        return;
+    //The proceeding block will determine whether the message has been cached, and if not, will cache it.
+    //Otherwise, reactions won't be properly responded to!
+    if(reaction.partial){
+        try{
+            await reaction.fetch();
+        }catch(error){
+            console.error("Error fetching message: ", error);
+            return;
+        }
     }
-}
 
+    //This determines whether a bot is making the call, and whether the correct emoji is being used. (We can change that later)
     if(!(user.bot) && (reaction.emoji.name == '🤔')){
-        //check to see if this matters...
-        console.log(user.username);
+
+        //TODO: figure out if the message being reacted to corresponds to an advertised event via query.
     }
 });
 
