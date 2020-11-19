@@ -9,8 +9,8 @@ const pool = new Pool({
 });
 
 
-const testfile = require('./database.js');
-const file = new testfile();
+const Database = require('./database.js');
+const Database = new database();
 
 
 class Event
@@ -66,7 +66,7 @@ client.on("message", async message => {
     }
 
     if (cmd === `${prefix}file`) {
-        return message.channel.send(`${file.test()}`);
+        return message.channel.send(`${database.test()}`);
     }
     //testing database features below...
 
