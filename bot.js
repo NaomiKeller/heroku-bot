@@ -125,8 +125,9 @@ client.on("message", async message => {
 
             //lets see if this works...
             let m = message
-            message.channel.send(eventName);
-            message.channel.send(message.channel.lastMessageID);
+            message.channel.send(eventName).then(value => {
+                message.channel.send(message.channel.lastMessageID);
+            });
             message.channel.send(message.id);
         });
     }
