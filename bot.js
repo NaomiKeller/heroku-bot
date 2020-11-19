@@ -52,7 +52,10 @@ client.on("message", async message => {
         return message.channel.send("https://testing-dis-bot.herokuapp.com");
     }
 
-    if (cmd === `${prefix}file`) {
+    if (cmd === `${prefix}CreateEvent`) {
+        let newEvent = new Event(args[0], args[1], args[2], args[3], args[4];
+        
+        database.createEvent(newEvent); 
         return message.channel.send(`${database.test()}`);
     }
     //testing database features below...
