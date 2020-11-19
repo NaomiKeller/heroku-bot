@@ -40,7 +40,7 @@ class Database
         if (newEvent instanceof Event)
         {
             let query = `INSERT INTO TEVENT (event_name, event_description, event_start, event_end, event_url) 
-                      VALUES (\'${newEvent.name}\', \'${newEvent.description}\', \'${newEvent.startTime}\', \'${newEvent.endTime}\', \'${newEvent.url})\';`;
+                      VALUES (\'${newEvent.name}\', \'${newEvent.description}\', ${newEvent.startTime}, ${newEvent.endTime}, \'${newEvent.url}\');`;
             
             console.log(query);
             this.pool.query(query, (err, res) => {
