@@ -1,40 +1,35 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Database file test version
 
-class Database
+
+
+// create a event in the database
+// prcondition: an Event object 
+// postcondition: true for success and false for error
+function createEvent (newEvent) 
 {
-    constructor(databaseHandle)
+    if (newEvent instanceof Event)
     {
-        this.databaseHandle = databaseHandle;
-    }
-
-    // create a event in the database
-    // prcondition: an Event object 
-    // postcondition: true for success and false for error
-    createEvent (newEvent) 
-    {
-        if (newEvent instanceof Event)
-        {
-            let query = `INSERT INTO event (event_name, event_description, event_start, event_end, event_url)
-                        VALUES (${newEvent.name}, ${newEvent.description}, ${newEvent.startTime}, ${newEvent.endTime}, ${newEvent.name});`;
+        let query = `INSERT INTO event (event_name, event_description, event_start, event_end, event_url)
+                    VALUES (${newEvent.name}, ${newEvent.description}, ${newEvent.startTime}, ${newEvent.endTime}, ${newEvent.name});`;
             
-            databaseHandle.query(query, (err, res) => {
-                    if(err) throw err;
-            });
+        databaseHandle.query(query, (err, res) => {
+                if(err) throw err;
+        });
 
             
-            return true;
-        }
-        else 
-            return false;
+        return true;
     }
-
-    test()
-    {
-        return "file";
-    }
+    else 
+        return false;
 }
 
-module.export.d = Database;
+test()
+{
+    return "file";
+}
+
+module.export.createEvent = createEvent;
+module.export.test = test;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

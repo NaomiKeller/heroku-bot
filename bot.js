@@ -64,7 +64,7 @@ client.on("message", async message => {
     }
 
      if (cmd === `${prefix}file`) {
-        return message.channel.send(`${mydatabase.test()}`);
+        return message.channel.send(`${Database.test()}`);
     }
     //testing database features below...
 
