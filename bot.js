@@ -51,8 +51,12 @@ client.on("message", async message => {
 
     //Here, I created a couple of test tables because I did not know what program to use to access our database (Will ask)
     if (cmd === `${prefix}cTestDatabase`){
+
+        let q = 'CREATE TABLE TEST_EVENT (EVENT_ID SERIAL NOT NULL PRIMARY KEY, EVENT_NAME VARCHAR(100) NOT NULL);'
+        q += ' CREATE TABLE TEST_USER (USER_TAG TEXT PRIMARY KEY); CREATE TABLE TEST_SUBSCRIPTION (EVENT_ID INTEGER REFERENCES TEST_EVENT(EVENT_ID), USER_TAG TEXT REFERENCES TEST_USER(USER_TAG), PRIMARY KEY (EVENT_ID, USER_TAG));'
+        q += ' CREATE TABLE TEST_ADVERTISEMENT (EVENT_ID INTEGER REFERENCES TEST_EVENT(EVENT_ID), ADVERT_SERVER TEXT NOT NULL, ADVERT_MESSAGE TEXT, PRIMARY KEY (EVENT_ID));'
         
-        pool.query('CREATE TABLE TEST_EVENT (EVENT_ID SERIAL NOT NULL PRIMARY KEY, EVENT_NAME VARCHAR(100) NOT NULL, EVENT_ADSNOWFLAKE TEXT); CREATE TABLE TEST_USER (USER_TAG TEXT PRIMARY KEY); CREATE TABLE TEST_SUBSCRIPTION (EVENT_ID INTEGER REFERENCES TEST_EVENT(EVENT_ID), USER_TAG TEXT REFERENCES TEST_USER(USER_TAG), PRIMARY KEY(EVENT_ID, USER_TAG));', (err, res) => {
+        pool.query(, (err, res) => {
             //does this work?
             if(err) {
                 throw err;
@@ -118,6 +122,12 @@ client.on("message", async message => {
             if(err) throw err;
 
             eventName = Object.values(res.rows[0])[0];
+
+            //lets see if this works...
+            let m = message
+            message.channel.send(eventName);
+            message.channel.send(message.channel.lastMessageID);
+            message.channel.send(message.id);
         });
     }
    
