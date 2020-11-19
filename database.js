@@ -52,8 +52,11 @@ class Database
             
             return true;
         }
-        else 
+        else
+        {
             return false;
+        }
+            
     }
 
     test()
