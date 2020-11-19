@@ -9,10 +9,10 @@ const pool = new Pool({
 });
 
 
-import Database from './database.js';
+const Database = require('./database.js');
 
 
-const mydatabase = new Database(pool);
+const mydatabase = new Database.default(pool);
 
 class Event
 {
