@@ -10,7 +10,7 @@ const pool = new Pool({
 
 
 const testfile = require('./database.js');
-console.log(testfile);
+new testfile();
 
 
 class Event
