@@ -35,7 +35,7 @@ client.on("message", async message => {
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
     let d = new Date();
-    let helpArray = ["!blip"," !date", " !database", " !site"]; // List of available commands
+    let helpArray = ["!blip"," !date", " !site"]; // List of available commands
 
     if (cmd === `${prefix}blip`) {
         return message.channel.send("blap");

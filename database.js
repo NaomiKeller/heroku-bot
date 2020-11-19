@@ -1,6 +1,9 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Database file test version
+// Database.js V1.0
 
+
+// Event class 
+// only used as a struct without any methods
 class Event
 {
     constructor(name, description, startTime, endTime, url)
@@ -13,6 +16,9 @@ class Event
     }
 }
 
+
+// Database class
+// 
 class Database
 {
     constructor()
@@ -37,7 +43,7 @@ class Database
     // postcondition: true for success and false for error
     createEvent (newEvent) 
     {
-        if (newEvent instanceof Event)
+        if (newEvent instanceof Event || Object.keys(newEvent).length === 5)
         {
             
             let query = `INSERT INTO EVENT (event_name, event_description, event_start, event_end, event_url) 
@@ -46,11 +52,13 @@ class Database
             console.log(query);
             this.pool.query(query, (err, res) => {
                 if(err) 
+                {
                     throw err;
-                
+                    return false;
+                }
+     
             });
-            
-            
+
             return true;
         }
         else
@@ -58,6 +66,23 @@ class Database
             return false;
         }
             
+    }
+
+    // list all events in the database
+    // precondition: none
+    // postcondition: an array of Event objects
+    listEvent()
+    {
+        let query = 'SELECT * FROM EVENT;';
+        this.pool.query(query, (err, res) => {
+            if(err) {
+                throw err;
+            }
+            for (let row of res.rows) {
+                console.log(row);
+            }
+          
+        });
     }
 
     test()
