@@ -54,8 +54,7 @@ client.on("message", async message => {
     }
 
     if (cmd === `${prefix}CreateEvent`) {
-        for (let i in args)
-            console.log(args[i]);
+      
         let newEvent = new Database.Event(args[0], args[1], args[2], args[3], args[4]);
         
         database.createEvent(newEvent); 

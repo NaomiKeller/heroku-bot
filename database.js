@@ -24,7 +24,10 @@ class Database
                 rejectUnauthorized: false
             }
         });
-        this.pool.connect();
+        this.pool.connect((err, client, release) => {
+          if (err) {
+            return console.error('Error acquiring client', err.stack)
+          }
     }
 
     // create a event in the database
@@ -38,9 +41,9 @@ class Database
                         VALUES (${newEvent.name}, ${newEvent.description}, ${newEvent.startTime}, ${newEvent.endTime}, ${newEvent.url});`;
             
             this.pool.query(query, (err, res) => {
-                if(err) throw err;
-                console.log(err);
-                console.log(res);
+                if(err) 
+                    throw err;
+                
             });
             
             
