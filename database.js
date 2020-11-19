@@ -81,7 +81,7 @@ class Database
             for (let row of res.rows) {
                 console.log(row);
             }
-          
+        
         });
     }
 
