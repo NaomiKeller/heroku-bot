@@ -53,19 +53,29 @@ client.on("message", async message => {
         return message.channel.send("https://testing-dis-bot.herokuapp.com");
     }
 
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // a (no very here) preliminary version of database functions
+
     if (cmd === `${prefix}CreateEvent`) {
       
         let newEvent = new Database.Event(args[0], args[1], args[2], args[3], args[4]);
-        console.log(typeof newEvent.name);
-        console.log(typeof newEvent.description);
-        console.log(typeof newEvent.startTime);
-        console.log(typeof newEvent.endTime);
-        console.log(typeof newEvent.url);
-
+        // TODO: make sure args[2] and args[3] are integers
         
         database.createEvent(newEvent); 
-        return message.channel.send(`${database.test()}`);
+        return message.channel.send(`Create an event`);
     }
+
+    if (cmd === `${prefix}ListEvent`)
+    {
+        let eventArray = database.listEvent();
+        message.channel.send(`list`);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
     //testing database features below...
 
     //Here, I created a couple of test tables because I did not know what program to use to access our database (Will ask)
