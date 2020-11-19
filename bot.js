@@ -125,7 +125,7 @@ client.on("message", async message => {
             eventName = Object.values(res.rows[0])[0];
         });
 
-        message.channel.send(eventName);
+        console.log(eventName);
 
         /*message.channel.send(eventName).then(value => {
              messageID = value.id;
