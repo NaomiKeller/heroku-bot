@@ -8,6 +8,21 @@ const pool = new Pool({
     }
 });
 
+const database = require('database.js');
+
+class Event
+{
+    constructor(name, description, startTime, duration, url)
+    {
+        this.name = name;
+        this.description = description;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.url = url;
+    }
+}
+
+
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 
 client.on('ready', () => {
@@ -47,6 +62,9 @@ client.on("message", async message => {
         return message.channel.send("https://testing-dis-bot.herokuapp.com");
     }
 
+     if (cmd === `${prefix}file`) {
+        return message.channel.send(`${database.test()}`);
+    }
     //testing database features below...
 
     //Here, I created a couple of test tables because I did not know what program to use to access our database (Will ask)
@@ -168,6 +186,8 @@ client.on('messageReactionAdd', async (reaction, user) => {
         //TODO: figure out if the message being reacted to corresponds to an advertised event via query.
     }
 });
+
+
 
 // do not touch this. this is how our bot links to our code from discord. 
 // the TOKEN variable is set in Heroku so the key is not on GitHub
