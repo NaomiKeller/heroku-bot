@@ -24,7 +24,7 @@ function createEvent (newEvent)
         return false;
 }
 
-test()
+function test()
 {
     return "file";
 }
