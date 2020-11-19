@@ -163,7 +163,7 @@ if(reaction.partial){
     }
 }
 
-    if(!(user.bot)){
+    if(!(user.bot && reaction.emoji.name == '🤔')){
         //check to see if this matters...
         console.log(user.username);
         console.log(reaction.emoji.name);
