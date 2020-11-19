@@ -9,7 +9,7 @@ const pool = new Pool({
 });
 
 const Database = require('./database.js');
-
+console.log(Database);
 
 class Event
 {
@@ -63,7 +63,7 @@ client.on("message", async message => {
         return message.channel.send("https://testing-dis-bot.herokuapp.com");
     }
 
-     if (cmd === `${prefix}file`) {
+    if (cmd === `${prefix}file`) {
         //return message.channel.send(`${Database.test()}`);
     }
     //testing database features below...
