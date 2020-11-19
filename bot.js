@@ -116,32 +116,29 @@ client.on("message", async message => {
     //A lot of my time spent tonight has been figuring out how these libraries work, but so far things are looking great!
     if(cmd === `${prefix}AdvertiseEvent`){
         let eventID = args[0];
-        var eventName;
+        let eventName;
         let messageID;
         let serverID;
 
         pool.query(`SELECT EVENT_NAME FROM TEST_EVENT WHERE EVENT_ID = ${Number(eventID)};`, (err, res) => {
             if(err) throw err;
             eventName = Object.values(res.rows[0])[0];
-        });
 
-        console.log(eventName);
+            //originally, I planned to break all of this up. However, there's some kind of scope issue? I might be able to resolve this if I knew more javascript, but alas...
+            message.channel.send(eventName).then(value => {
+                messageID = value.id;
+                serverID = message.guild.id
+   
+                pool.query(`INSERT INTO TEST_ADVERTISEMENT VALUES (${eventID}, \'${serverID}\', \'${messageID}\');`, (err, res) => {
+                    if(err) message.channel.send("Query error");
+                    else message.channel.send("No query error");
 
-        /*message.channel.send(eventName).then(value => {
-             messageID = value.id;
-             serverID = message.guild.id
-
-            /*pool.query(`INSERT INTO TEST_ADVERTISEMENT VALUES (${eventID}, \'${serverID}\', \'${messageID}\');`, (err, res) => {
-                if(err) message.channel.send("Query error");
-                else message.channel.send("No query error");
+                    message.channel.send("Advertisement Logged");
+                    message.channel.send(messageID);
+                    message.channel.send(serverID);
+                });
             });
-
-            message.channel.send("Advertisement Logged");
-            
-
-            message.channel.send(messageID);
-            message.channel.send(serverID);*/
-        //});
+        });
     }
 
     if(cmd === `${prefix}ShowAdverts`){
