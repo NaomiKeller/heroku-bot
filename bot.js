@@ -10,7 +10,7 @@ const pool = new Pool({
 
 
 const Database = require('./database.js');
-const Database = new database();
+const database = new Database.Database();
 
 
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
