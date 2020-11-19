@@ -56,6 +56,12 @@ client.on("message", async message => {
     if (cmd === `${prefix}CreateEvent`) {
       
         let newEvent = new Database.Event(args[0], args[1], args[2], args[3], args[4]);
+        console.log(typeof newEvent.name);
+        console.log(typeof newEvent.description);
+        console.log(typeof newEvent.startTime);
+        console.log(typeof newEvent.endTime);
+        console.log(typeof newEvent.url);
+
         
         database.createEvent(newEvent); 
         return message.channel.send(`${database.test()}`);
