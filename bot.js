@@ -116,7 +116,7 @@ client.on("message", async message => {
     //A lot of my time spent tonight has been figuring out how these libraries work, but so far things are looking great!
     if(cmd === `${prefix}AdvertiseEvent`){
         let eventID = args[0];
-        let eventName;
+        var eventName;
         let messageID;
         let serverID;
 
