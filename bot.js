@@ -125,10 +125,9 @@ client.on("message", async message => {
             eventName = Object.values(res.rows[0])[0];
 
             message.channel.send(eventName);
-            message.channel.send("Why?");
         });
 
-        message.channel.send(eventName).then(value => {
+        /*message.channel.send(eventName).then(value => {
              messageID = value.id;
              serverID = message.guild.id
 
@@ -138,10 +137,10 @@ client.on("message", async message => {
             });
 
             message.channel.send("Advertisement Logged");
-            */
+            
 
             message.channel.send(messageID);
-            message.channel.send(serverID);
+            message.channel.send(serverID);*/
         });
     }
 
