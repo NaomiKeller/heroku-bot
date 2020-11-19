@@ -155,7 +155,7 @@ client.on("message", async message => {
 client.on('messageReactionAdd', (reaction, user) => {
     if(!(user.bot)){
         //check to see if this matters...
-        message.channel.send(user.name);
+        console.log(user.name);
     }
 });
 
