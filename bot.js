@@ -166,7 +166,7 @@ if(reaction.partial){
     if(!(user.bot)){
         //check to see if this matters...
         console.log(user.username);
-        console.log(reaction.name);
+        console.log(reaction.toString());
     }
 });
 
