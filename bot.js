@@ -117,17 +117,37 @@ client.on("message", async message => {
     if(cmd === `${prefix}AdvertiseEvent`){
         let eventID = args[0];
         let eventName;
+        let messageID;
+        let serverID;
 
         pool.query(`SELECT EVENT_NAME FROM TEST_EVENT WHERE EVENT_ID = ${Number(eventID)};`, (err, res) => {
             if(err) throw err;
-
             eventName = Object.values(res.rows[0])[0];
+        });
 
-            //lets see if this works...
-            let m = message
-            message.channel.send(eventName).then(value => {
-                message.channel.send(value.id);
-            });
+        message.channel.send(eventName).then(value => {
+             messageID = value.id;
+        });
+
+        serverID = message.guild.id
+
+        pool.query(`INSERT INTO TEST_ADVERTISEMENT VALUES (${eventID}, \'${serverID}\', \'${messageID}'\);`, (err, res) => {
+            if(err) throw err;
+        });
+
+        message.channel.send("Advertisement Logged");
+    }
+
+    if(cmd === `${prefix}ShowAdverts`){
+
+        pool.query('SELECT * FROM TEST_ADVERTISEMENT;', (err, res) => {
+            if(err) {
+                throw err;
+            }
+          for (let row of res.rows) {
+            message.channel.send(JSON.stringify(row));
+          }
+          
         });
     }
    
