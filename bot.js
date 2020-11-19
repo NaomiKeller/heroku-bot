@@ -69,7 +69,12 @@ client.on("message", async message => {
     if (cmd === `${prefix}ListEvent`)
     {
         let eventArray = database.listEvent();
-        message.channel.send(`list`);
+        for (let i in eventArray)
+        {
+            message.channel.send(`${i}`);
+        
+        }
+        
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -73,16 +73,20 @@ class Database
     // postcondition: an array of Event objects
     listEvent()
     {
+        let array;
         let query = 'SELECT * FROM EVENT;';
         this.pool.query(query, (err, res) => {
             if(err) {
                 throw err;
             }
+            array = res;
             for (let row of res.rows) {
                 console.log(row);
             }
         
         });
+
+        return array;
     }
 
     test()
