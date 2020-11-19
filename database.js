@@ -3,7 +3,7 @@
 
 class Event
 {
-    constructor(name, description, startTime, duration, url)
+    constructor(name, description, startTime, endTime, url)
     {
         this.name = name;
         this.description = description;
