@@ -37,7 +37,7 @@ class Database
             let query = `INSERT INTO event (event_name, event_description, event_start, event_end, event_url)
                         VALUES (${newEvent.name}, ${newEvent.description}, ${newEvent.startTime}, ${newEvent.endTime}, ${newEvent.url});`;
             
-            databaseHandle.query(query, (err, res) => {
+            pool.query(query, (err, res) => {
                     if(err) throw err;
             });
 
