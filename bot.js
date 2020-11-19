@@ -56,7 +56,7 @@ client.on("message", async message => {
         q += ' CREATE TABLE TEST_USER (USER_TAG TEXT PRIMARY KEY); CREATE TABLE TEST_SUBSCRIPTION (EVENT_ID INTEGER REFERENCES TEST_EVENT(EVENT_ID), USER_TAG TEXT REFERENCES TEST_USER(USER_TAG), PRIMARY KEY (EVENT_ID, USER_TAG));'
         q += ' CREATE TABLE TEST_ADVERTISEMENT (EVENT_ID INTEGER REFERENCES TEST_EVENT(EVENT_ID), ADVERT_SERVER TEXT NOT NULL, ADVERT_MESSAGE TEXT, PRIMARY KEY (EVENT_ID));'
         
-        pool.query(, (err, res) => {
+        pool.query(q, (err, res) => {
             //does this work?
             if(err) {
                 throw err;
