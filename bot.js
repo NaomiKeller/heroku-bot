@@ -8,7 +8,7 @@ const pool = new Pool({
     }
 });
 
-const database = require('database.js');
+const database = require('./database.js');
 
 class Event
 {
