@@ -9,7 +9,7 @@ const pool = new Pool({
 });
 
 
-const aaa = require('./database.js');
+const { aaa } = require('./database.js');
 const stuff = new aaa();
 
 
