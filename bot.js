@@ -9,10 +9,9 @@ const pool = new Pool({
 });
 
 
-const Database = require('./database.js');
+const aaa = require('./database.js');
 
 
-const mydatabase = new Database();
 
 class Event
 {
