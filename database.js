@@ -1,12 +1,9 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Database file test version
 
-module.export = class Database
+export class Database
 {
-    constructor(databaseHandle)
-    {
-        this.databaseHandle = databaseHandle;
-    }
+   
 
     // create a event in the database
     // prcondition: an Event object 
