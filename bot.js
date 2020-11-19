@@ -130,7 +130,8 @@ client.on("message", async message => {
              serverID = message.guild.id
 
             pool.query(`INSERT INTO TEST_ADVERTISEMENT VALUES (${eventID}, \'${serverID}\', \'${messageID}\');`, (err, res) => {
-                if(err) throw err;
+                if(err) message.channel.send("Query error");
+                else message.channel.send("No query error");
             });
 
             message.channel.send("Advertisement Logged");
