@@ -141,7 +141,7 @@ client.on("message", async message => {
 
             message.channel.send(messageID);
             message.channel.send(serverID);*/
-        });
+        //});
     }
 
     if(cmd === `${prefix}ShowAdverts`){
