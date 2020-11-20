@@ -90,9 +90,11 @@ client.on("message", async message => {
                 break;
 
             case "confirm":
-                if (tempEvent.name === undefined || tempEvent.start === undefined || tempEvent.end === undefined)
+                console.log(tempEvent);
+                if (tempEvent.name === undefined || tempEvent.startTime === undefined || tempEvent.endTime === undefined)
                 {
                     message.channel.send(`Event name, start time and end time must be provided!`);
+                    break;
                 }
                 else 
                 {
@@ -201,7 +203,7 @@ client.on("message", async message => {
         let messageID;
         let serverID;
         
-        /*
+        
         //originally, I planned to break all of this up. However, there's some kind of scope issue? I might be able to resolve this if I knew more javascript, but alas...
         pool.query(`SELECT EVENT_NAME FROM TEST_EVENT WHERE EVENT_ID = ${Number(eventID)};`, (err, res) => {
             if(err) throw err;
@@ -219,11 +221,12 @@ client.on("message", async message => {
             });
         });
         
-        */
+       
         
+        /*
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //second version 
-        eventName = await database.getEvent(eventID).name;
+        eventName = (await database.getEvent(eventID)).name;
         console.log(eventName);     
         
         message.channel.send(eventName).then(value => {
@@ -233,7 +236,7 @@ client.on("message", async message => {
    
             database.createAdervt(new Advertisement(message.ID, eventID, serverID));
         });
-       
+        */
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
