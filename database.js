@@ -79,8 +79,8 @@ class Database
             if(err) {
                 throw err;
             }
-            array = res;
-            
+            array = res.rows;
+        console.log(array);    
         
         });
 
