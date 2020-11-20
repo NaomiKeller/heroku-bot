@@ -266,9 +266,12 @@ client.on('messageReactionAdd', async (reaction, user) => {
     if(!(user.bot) && (reaction.emoji.name == '🤔')){
         
         //TODO: figure out if the message being reacted to corresponds to an advertised event via query.
+        let advert = await database.getAdvert(reaction.message.id);
         console.log(user);
+        console.log(advert);
+        
+        
 
-        console.log(reaction.message.id);
 
 
         //database.createSub()
