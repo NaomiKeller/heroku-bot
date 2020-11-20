@@ -190,13 +190,11 @@ class Database
         let query = `SELECT * FROM EVENT
                         where event_id = ${eventId};`;
             
-        await this.pool.query(query, async (err, res) => {
-            if(err) {
-                throw err;
-            }      
-            event = res.rows[0];
-            console.log("inside query");
-        });
+        event = await this.pool.query(query);
+            
+        console.log("inside query");
+        console.log(event);
+      
         console.log("inside func");    
 
         return event;
