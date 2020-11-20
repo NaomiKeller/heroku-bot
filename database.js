@@ -166,7 +166,7 @@ class Database
         {
             
             let query = `INSERT INTO Advertisement (advert_messageid, advert_eventid, advert_serverid) 
-                      VALUES (\'${newAdvert.messageId}\', ${newAdvert.eventId}, ${newAdvert.serverId} );`;
+                      VALUES (${newAdvert.messageId}, ${newAdvert.eventId}, ${newAdvert.serverId} );`;
             
             console.log(query);
             this.pool.query(query, (err, res) => {
