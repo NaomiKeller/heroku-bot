@@ -68,16 +68,14 @@ client.on("message", async message => {
 
     if (cmd === `${prefix}ListEvent`)
     {
-            Promise.resolve(database.listEvent()).then(value => {
-            console.log("outside");
-            console.log(value);
-            for (let i in value)
-                {
-                    message.channel.send(`${i}`);
-        
-                }
-        });
-        
+        const resolve = await database.listEvent();
+        console.log("outside");
+        console.log(value);
+        for (let i in value)
+        {
+            message.channel.send(`${i}`);
+
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
