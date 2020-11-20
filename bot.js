@@ -57,7 +57,7 @@ client.on("message", async message => {
     }
 
     if (cmd === `${prefix}test`) {
-        const event = database.getEvent2(1);
+        const event = await database.getEvent2(1);
         console.log(event);
     }
     
