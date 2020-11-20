@@ -4,6 +4,7 @@
 
 // Event class 
 // only used as a struct without any methods
+
 class Event
 {
     constructor(name, description, startTime, endTime, url)
@@ -71,7 +72,7 @@ class Database
     // list all events in the database
     // precondition: none
     // postcondition: an array of Event objects
-    listEvent() = async () => 
+    async listEvent()
     {
 
         let array;
