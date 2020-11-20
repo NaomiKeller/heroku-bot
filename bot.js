@@ -247,6 +247,8 @@ client.on('messageReactionAdd', async (reaction, user) => {
         //TODO: figure out if the message being reacted to corresponds to an advertised event via query.
         console.log(user);
         console.log(reaction);
+
+        console.log(reaction.message.id);
         //database.createSub()
     }
 });
