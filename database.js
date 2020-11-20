@@ -184,7 +184,7 @@ class Database
         });     
     };
 
-    getEvent2(eventId)
+    async getEvent2(eventId)
     {
         let event;
         let result;
