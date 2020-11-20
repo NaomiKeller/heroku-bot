@@ -80,9 +80,7 @@ class Database
                 throw err;
             }
             array = res;
-            for (let row of res.rows) {
-                console.log(row);
-            }
+            
         
         });
 
