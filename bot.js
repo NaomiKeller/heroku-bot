@@ -72,8 +72,8 @@ client.on("message", async message => {
         console.log(resolvedArray);
         for (let i of resolvedArray)
         {
-            console.log(i);
-            //message.channel.send(`${i}`);
+            
+            message.channel.send(`${i}`);
 
 
         }
