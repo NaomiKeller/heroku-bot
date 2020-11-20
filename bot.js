@@ -68,8 +68,9 @@ client.on("message", async message => {
 
     if (cmd === `${prefix}ListEvent`)
     {
-        const resolvedArray = await database.listEvent();
+        const resolvedArray = await database.listEvent2();
         console.log("outside");
+        console.log(resolvedArray);
         for (let i in resolvedArray)
         {
             message.channel.send(`${i}`);
