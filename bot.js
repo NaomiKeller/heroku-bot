@@ -240,9 +240,9 @@ client.on("message", async message => {
             if(err) {
                 throw err;
             }
-          for (let row of res.rows) {
-            message.channel.send(JSON.stringify(row));
-          }
+            for (let row of res.rows) {
+                message.channel.send(JSON.stringify(row));
+            }
           
         });
     }
@@ -266,7 +266,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
     if(!(user.bot) && (reaction.emoji.name == '🤔')){
         
         //TODO: figure out if the message being reacted to corresponds to an advertised event via query.
-        let advert = await database.getAdvert(reaction.message.id);
+        //let advert = await database.getAdvert(reaction.message.id);
         console.log(user);
         console.log(advert);
         
