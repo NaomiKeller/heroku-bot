@@ -12,13 +12,15 @@ const pool = new Pool({
 const Database = require('./database.js');
 const database = new Database.Database();
 
-
+const tempEvent = new Database.Event();
 
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 
 client.on('ready', () => {
     console.log('I am ready!');
     client.user.setActivity("Don't forget!"); // "Playing <>" status message for bot
+
+    
 
     //This should be opened as soon as the bot is ready! Do not close the connection to the pool later. :)
     pool.connect();
@@ -57,13 +59,28 @@ client.on("message", async message => {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // a (no very here) preliminary version of database functions
 
-    if (cmd === `${prefix}CreateEvent`) {
-      
+    if (cmd === `${prefix}event`) {
+        
+        
+        switch (args[0])
+        {
+            case "create":
+                let name = args.subArray(1).join(' ');
+                message.channel.send(`${name}`);
+                break;
+
+            default:
+                break;
+        }
+
+        /*
         let newEvent = new Database.Event(args[0], args[1], args[2], args[3], args[4]);
         // TODO: make sure args[2] and args[3] are integers
         
         database.createEvent(newEvent); 
         return message.channel.send(`Create an event`);
+
+        */
     }
 
     if (cmd === `${prefix}ListEvent`)
@@ -212,11 +229,4 @@ client.on('messageReactionAdd', async (reaction, user) => {
 // do not touch this. this is how our bot links to our code from discord. 
 // the TOKEN variable is set in Heroku so the key is not on GitHub
 client.login(process.env.TOKEN);
-
-
-
-
-
-
-
 
