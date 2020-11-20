@@ -61,6 +61,7 @@ client.on("message", async message => {
 
     if (cmd === `${prefix}event`) {
         
+        console.log(args);
         
         switch (args[0])
         {
