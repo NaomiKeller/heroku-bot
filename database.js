@@ -82,18 +82,18 @@ class Database
                 
             })
             .catch(e => console.error(e.stack));
-  /*      this.pool.query(query, (err, res) => {
+        this.pool.query(query, (err, res) => {
             if(err) {
                 throw err;
             }
             array = res.rows;
             console.log("inside query");
             console.log(array);    
+            return array;
+        });
+       // console.log("inside func");
+        //console.log(array);   
         
-        });*/
-        console.log("inside func");
-        console.log(array);   
-        return array;
     }
 
     test()
