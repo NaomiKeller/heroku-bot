@@ -190,7 +190,7 @@ class Database
         let query = `SELECT * FROM EVENT
                         where event_id = ${eventId};`;
             
-        await this.pool.query(query, await (err, res) => {
+        await this.pool.query(query, (err, res) => {
             if(err) {
                 throw err;
             }      
