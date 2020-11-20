@@ -76,12 +76,11 @@ client.on("message", async message => {
 
         for (let i of resolvedArray)
         {
-            
+            console.log(i);
             result += (i.id + '\t' + i.name + '\t');
-            message.channel.send(`${result}`);
-
 
         }
+        message.channel.send(`${result}`);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
