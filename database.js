@@ -177,10 +177,10 @@ class Database
                 if(err) {
                     throw err;
                 }
-                console.log(res.rows);  
-                console.log(`row ` + res.rows[0]);   
-                event = res.rows;
-                console.log(`inside ` + event);   
+                console.log(res.rows[0]);  
+                 
+                event = res.rows[0];
+                
                 resolve(event);
             });
         });     
