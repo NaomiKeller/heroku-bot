@@ -107,8 +107,8 @@ class Database
                 resolve(array);
             });
         });
-        // console.log("inside func");
-        //console.log(array);   
+        console.log("inside func");
+        console.log(array);   
     };
 
     test()

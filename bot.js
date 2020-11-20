@@ -68,7 +68,7 @@ client.on("message", async message => {
 
     if (cmd === `${prefix}ListEvent`)
     {
-        const resolvedArray = await database.listEvent2();
+        const resolvedArray = await database.listEvent();
         console.log("outside");
         console.log(resolvedArray);
         for (let i in resolvedArray)
