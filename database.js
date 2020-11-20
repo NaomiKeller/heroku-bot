@@ -166,7 +166,7 @@ class Database
         {
             
             let query = `INSERT INTO Advertisement (advert_messageid, advert_eventid, advert_serverid) 
-                      VALUES (\"${newAdvert.messageId}\", ${newAdvert.eventId}, \"${newAdvert.serverId}\" );`;
+                      VALUES (${newAdvert.messageId}, ${newAdvert.eventId}, ${newAdvert.serverId});`;
             
             console.log(query);
             this.pool.query(query, (err, res) => {
@@ -190,7 +190,7 @@ class Database
         let result;
         let advertisement;
         let query = `SELECT * FROM ADVERTISEMENT
-                        where advert_messageid = \"${advertId}\";`;
+                        where advert_messageid = ${advertId};`;
             
         result = await this.pool.query(query);
         console.log(result);
@@ -230,7 +230,6 @@ class Database
         
     }
 }
-
 
 module.exports.Database = Database;
 module.exports.Event = Event;
