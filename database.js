@@ -26,7 +26,7 @@ class Event
 
     toString()
     {
-        let string = `Event ID: ${this.id}\nEvent name:${this.name}\nEvent description:${this.description}\nEvent start time:${this.startTime}\nEvent end time:${this.endTime}\nEvent url:${this.url}\n`;
+        let string = `Event ID: ${this.id}\nEvent name:${this.name}\nEvent description:${this.description}\nEvent start time:${new Date(this.startTime).toString()}\nEvent end time:${this.endTime}\nEvent url:${this.url}\n`;
         return string;
     }
 
