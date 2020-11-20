@@ -220,13 +220,8 @@ client.on("message", async message => {
         });
         */
        
-        
-        
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //second version 
-       
-        eventName = (await database.getEvent(Number(eventID))).name;
-        console.log(eventName);     
+        //second version       
+        eventName = (await database.getEvent(Number(eventID))).name; 
         
         message.channel.send(eventName).then(value => {
             messageID = value.id;
@@ -235,9 +230,6 @@ client.on("message", async message => {
    
             database.createAdvert(new Database.Advertisement(messageID, eventID, serverID));
         });
-        
-
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
     }
 

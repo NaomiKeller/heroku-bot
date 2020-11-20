@@ -157,7 +157,9 @@ class Database
         return event;
     };
 
-
+    // create an advertisement in the database
+    // prcondition: an advertisement object 
+    // postcondition: true for success and false for error
     createAdvert(newAdvert)
     {
         if (newAdvert instanceof Advertisement)
@@ -182,6 +184,20 @@ class Database
             return false;
 
     }
+
+    async getAdvert(advertId)
+    {
+        let result;
+        let advertisement;
+        let query = `SELECT * FROM ADVERTISEMENT
+                        where advert_messageid = ${advertId};`;
+            
+        result = await this.pool.query(query);
+
+        advertisement = new Advertisement(result.rows[0].advert_messageid, result.rows[0].advert_eventid, result.rows[0].advert_advert_serverid);
+        console.log(advertisement);
+        return advertisement;
+    };
 
     createSub(newSub)
     {   
