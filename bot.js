@@ -91,7 +91,7 @@ client.on("message", async message => {
 
             case "confirm":
                 console.log(tempEvent);
-                if (tempEvent.name === undefined || tempEvent.startTime === undefined || tempEvent.endTime === undefined)
+                if (tempEvent.name === undefined || tempEvent.startTime === undefined || tempEvent.end === undefined)
                 {
                     message.channel.send(`Event name, start time and end time must be provided!`);
                     break;
@@ -117,15 +117,13 @@ client.on("message", async message => {
     // a temp version for list events
     if (cmd === `${prefix}ListEvent`)
     {
-        const resolvedArray = await database.listEvent();
+        const eventArray = await database.listEvent();
+        let result;
 
-        let result = `Event Table\nID\tName\tDescription\tStart Time\tEnd Time\tUrl\n`;
-
-        for (let i of resolvedArray)
+        for (let element of eventArray)
         {
-            console.log(i);
-            result += (i.event_id + '\t' + i.event_name + '\t' + i.event_description + '\t' + i.event_start + '\t' + i.event_end + '\t' + i.event_url + '\n');
-
+            result += element.toString();
+            result += '\n';
         }
         message.channel.send(`${result}`);
     }
