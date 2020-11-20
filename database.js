@@ -191,7 +191,7 @@ class Database
         let advertisement;
         let query = `SELECT * FROM ADVERTISEMENT
                         where advert_messageid = ${advertId};`;
-        console.log(adverId);
+        console.log(advertId);
         console.log(query);
         /*
         result = await this.pool.query(query);
