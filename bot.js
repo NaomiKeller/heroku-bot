@@ -193,7 +193,7 @@ client.on("message", async message => {
         let eventName;
         let messageID;
         let serverID;
-
+        /*
         //originally, I planned to break all of this up. However, there's some kind of scope issue? I might be able to resolve this if I knew more javascript, but alas...
         pool.query(`SELECT EVENT_NAME FROM TEST_EVENT WHERE EVENT_ID = ${Number(eventID)};`, (err, res) => {
             if(err) throw err;
@@ -210,6 +210,22 @@ client.on("message", async message => {
                 });
             });
         });
+        */
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //second version 
+        eventName = await database.getEvent(eventID).name;
+        console.log(eventName);     
+        
+        message.channel.send(eventName).then(value => {
+            messageID = value.id;
+            value.react('🤔')
+            serverID = message.guild.id
+   
+            database.createAdervt(new Advertisement(message.ID, eventID, serverID);
+        });
+       
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
     //Used to debug the TEST_ADVERTISEMENT table.
@@ -246,9 +262,10 @@ client.on('messageReactionAdd', async (reaction, user) => {
         
         //TODO: figure out if the message being reacted to corresponds to an advertised event via query.
         console.log(user);
-        console.log(reaction);
 
         console.log(reaction.message.id);
+
+
         //database.createSub()
     }
 });

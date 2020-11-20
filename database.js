@@ -59,7 +59,17 @@ class Subscription
 
 }
 
+class Advertisement
+{
+    constructor(eventId, serverId, messageId)
+    {
+        this.eventId = eventId;
+        this.serverId = serverId;
+        this.messageId = messageId;
+        
+    }
 
+}
 
 // Database class
 // 
@@ -153,6 +163,52 @@ class Database
         });     
     };
 
+    // to get a single event 
+    // precondition: event ID 
+    // postcondition: event object
+    getEvent(eventId)
+    {
+        return new Promise(resolve => {
+            let event;
+            let query = `SELECT * FROM EVENT
+                         where event_id = ${Number(eventId)}`;
+ 
+            this.pool.query(query, (err, res) => {
+                if(err) {
+                    throw err;
+                }
+                event = res.rows;
+                    
+                resolve(event);
+            });
+        });     
+    };
+
+    createAdvert(newAdvert)
+    {
+        if (newAdvert instanceof Advertisement)
+        {
+            
+            let query = `INSERT INTO Advertisement (advert_messageid, advert_eventid, advert_serverid) 
+                      VALUES (\'${advert_messageid}\', ${advert_eventid}, ${advert_serverid} );`;
+            
+            console.log(query);
+            this.pool.query(query, (err, res) => {
+                if(err) 
+                {
+                    console.error(err);
+                    return false;
+                }
+     
+            });
+
+            return true;
+        }
+        else    
+            return false;
+
+    }
+
     createSub(newSub)
     {   
         if (newSub instanceof Subscription)
@@ -189,6 +245,6 @@ class Database
 module.exports.Database = Database;
 module.exports.Event = Event;
 module.exports.Subscription = Subscription;
-
+module.exports.Advertisement = Advertisement;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
