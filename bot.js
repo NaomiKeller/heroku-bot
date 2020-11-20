@@ -272,7 +272,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
         console.log(user.id);
         console.log(advert);
   
-        database.createSub(new Subscription(user.id, advert.eventId));
+        database.createSub(new Database.Subscription(user.id, advert.eventId));
     }
 });
 
