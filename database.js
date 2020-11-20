@@ -7,12 +7,21 @@ class Event
 {
     constructor(name, description, startTime, endTime, url, id = null)
     {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.url = url;
+        if (typeof name === undefined)
+        {
+            for (element in this)
+                element = null;
+        }
+        else 
+        {
+            this.id = id;
+            this.name = name;
+            this.description = description;
+            this.startTime = startTime;
+            this.endTime = endTime;
+            this.url = url;
+        }
+        
     }
 
     toString()
@@ -21,10 +30,7 @@ class Event
         return string;
     }
 
-    purge()
-    {
-        
-    }
+   
 }
 
 class Reminder

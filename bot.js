@@ -90,7 +90,7 @@ client.on("message", async message => {
                 
             case "cancel":
                 Object.keys(tempEvent).forEach(function(index) {
-                    obj[index] = null;
+                    tempEvent[index] = null;
                 });
                 break;
 
