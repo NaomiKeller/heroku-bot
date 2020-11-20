@@ -51,7 +51,7 @@ class Event
 
 class Subscription
 {
-    constructor(eventId, userId)
+    constructor(userId, eventId)
     {
         this.eventId = eventId;
         this.userId = userId;
@@ -196,8 +196,7 @@ class Database
         
         result = await this.pool.query(query);
         advertisement = new Advertisement(result.rows[0].advert_messageid, result.rows[0].advert_eventid, result.rows[0].advert_serverid);    
-        console.log(advertisement);
-        console.log('inside');
+
         return advertisement; 
         
     };
@@ -207,8 +206,8 @@ class Database
         if (newSub instanceof Subscription)
         {
             
-            let query = `INSERT INTO SUBSCRIPTION (sub_eventId, sub_userId) 
-                      VALUES (${newSub.eventId}, \'${newSub.userId}\');`;
+            let query = `INSERT INTO SUBSCRIPTION (sub_userId, sub_eventId) 
+                      VALUES (\'${newSub.userId}\', ${newSub.eventId}, );`;
             
             console.log(query);
             this.pool.query(query, (err, res) => {
