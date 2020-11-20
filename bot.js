@@ -77,7 +77,7 @@ client.on("message", async message => {
         for (let i of resolvedArray)
         {
             console.log(i);
-            result += (i.id + '\t' + i.name + '\t');
+            result += (i.event_id + '\t' + i.event_name + '\t' + i.event_description + '\t' + i.event_start + '\t' + i.event_end + '\t' + i.event_url);
 
         }
         message.channel.send(`${result}`);
