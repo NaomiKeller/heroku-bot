@@ -66,7 +66,7 @@ client.on("message", async message => {
         switch (args[0])
         {
             case "create":
-                let name = args.subArray(1).join(' ');
+                let name = args.subarray(1).join(' ');
                 message.channel.send(`${name}`);
                 break;
 
