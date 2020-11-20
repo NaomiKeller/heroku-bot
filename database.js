@@ -153,7 +153,7 @@ class Database
         });     
     };
 
-    createSubsription(newSub)
+    createSub(newSub)
     {   
         if (newSub instanceof Subscription)
         {
@@ -179,7 +179,7 @@ class Database
         } 
     }
 
-    removeSubsription(existingSub)
+    removeSub(existingSub)
     {
         
     }

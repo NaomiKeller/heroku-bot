@@ -243,8 +243,11 @@ client.on('messageReactionAdd', async (reaction, user) => {
 
     //This determines whether a bot is making the call, and whether the correct emoji is being used. (We can change that later)
     if(!(user.bot) && (reaction.emoji.name == '🤔')){
-        console.log(user);
+        
         //TODO: figure out if the message being reacted to corresponds to an advertised event via query.
+        console.log(user);
+        console.log(reaction);
+        //database.createSub()
     }
 });
 
