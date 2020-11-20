@@ -75,13 +75,13 @@ class Database
     {
         let array;
         let query = 'SELECT * FROM EVENT;';
-        this.pool
+   /*     this.pool
             .query(query)
             .then(res => {
                 array = res.rows;
                 
             })
-            .catch(e => console.error(e.stack));
+            .catch(e => console.error(e.stack));*/
         this.pool.query(query, (err, res) => {
             if(err) {
                 throw err;
@@ -91,7 +91,7 @@ class Database
             console.log(array);    
             return array;
         });
-       // console.log("inside func");
+        // console.log("inside func");
         //console.log(array);   
         
     }
