@@ -71,13 +71,12 @@ client.on("message", async message => {
         const resolvedArray = await database.listEvent();
         console.log(resolvedArray);
 
-        let result = `Event Table
-                      ID\tName\tDescription\tStart Time\tEnd Time\tUrl\n`;
+        let result = `Event Table\nID\tName\tDescription\tStart Time\tEnd Time\tUrl\n`;
 
         for (let i of resolvedArray)
         {
             console.log(i);
-            result += (i.event_id + '\t' + i.event_name + '\t' + i.event_description + '\t' + i.event_start + '\t' + i.event_end + '\t' + i.event_url);
+            result += (i.event_id + '\t' + i.event_name + '\t' + i.event_description + '\t' + i.event_start + '\t' + i.event_end + '\t' + i.event_url + '\n');
 
         }
         message.channel.send(`${result}`);
