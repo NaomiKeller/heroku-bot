@@ -5,10 +5,9 @@
 // Event class 
 class Event
 {
-    constructor(name, description, startTime, endTime, url, id)
+    constructor(name, description, startTime, endTime, url, id = null)
     {
-        console.log(this.name);
-        console.log(typeof this.name);
+       
         this.id = id;
         this.name = name;
         this.description = description;
@@ -20,13 +19,34 @@ class Event
 
     toString()
     {
+        let name = this.name;
+        let description = this.description;
+        let startTime = this.startTime;
+        let endTime = this.endTime;
+        let url = this.url;
+
+        if (name === undefined)
+            name = "";
+        if (description === undefined)
+            description = "";
+        if (startTime === undefined || isNaN(startTime))
+            startTime = "";
+        else 
+            startTime = new Date(this.startTime).toString();
+       
+        if (endTime === undefined || isNaN(endTime))
+            endTime = "";
+        else 
+            startTime = new Date(this.startTime).toString();
+       
+        if (url === undefined)
+            url = "";
         
-        
-        let string = `Event ID: ${this.id}\nEvent name: ${this.name}\nEvent description: ${this.description}\nEvent start time: ${new Date(this.startTime).toString()}\nEvent end time: ${this.endTime}\nEvent url: ${this.url}\n`;
+        let string = `Event ID: ${this.id}\nEvent name: ${name}\nEvent description: ${description}\nEvent start time: ${startTime}\nEvent end time: ${endTime}\nEvent url: ${url}\n`;
         return string;
     }
 
-   
+    
 }
 
 class Reminder

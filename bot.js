@@ -13,6 +13,7 @@ const Database = require('./database.js');
 const database = new Database.Database();
 
 const tempEvent = new Database.Event();
+console.log(tempEvent.toString());
 
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 
