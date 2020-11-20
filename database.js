@@ -61,7 +61,7 @@ class Subscription
 
 class Advertisement
 {
-    constructor(eventId, serverId, messageId)
+    constructor(messageId, eventId, serverId, )
     {
         this.eventId = eventId;
         this.serverId = serverId;
@@ -153,6 +153,7 @@ class Database
         result = await this.pool.query(query);
 
         event = new Event(result.rows[0].event_name, result.rows[0].event_description, result.rows[0].event_start, result.rows[0].event_end, result.rows[0].event_url, result.rows[0].event_id);
+    
         return event;
     };
 
@@ -163,7 +164,7 @@ class Database
         {
             
             let query = `INSERT INTO Advertisement (advert_messageid, advert_eventid, advert_serverid) 
-                      VALUES (\'${advert_messageid}\', ${advert_eventid}, ${advert_serverid} );`;
+                      VALUES (\'${newAdvert.messageId}\', ${newAdvert.eventId}, ${newAdvert.serverId} );`;
             
             console.log(query);
             this.pool.query(query, (err, res) => {
