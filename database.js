@@ -72,30 +72,30 @@ class Database
     // list all events in the database
     // precondition: none
     // postcondition: an array of Event objects
-    async listEvent()
+    listEvent()
     {
-
-        let array;
-        let query = 'SELECT * FROM EVENT;';
-   /*     this.pool
+        return new Promise(resolve => {
+            let array;
+            let query = 'SELECT * FROM EVENT;';
+   /*       this.pool
             .query(query)
             .then(res => {
                 array = res.rows;
                 
             })
             .catch(e => console.error(e.stack));*/
-        this.pool.query(query, (err, res) => {
-            if(err) {
-                throw err;
-            }
-            array = res.rows;
-            console.log("inside query");
-            console.log(array);    
-            return array;
+            this.pool.query(query, (err, res) => {
+                if(err) {
+                    throw err;
+                }
+                array = res.rows;
+                console.log("inside query");
+                console.log(array);    
+                resolve(array);
+            });
         });
         // console.log("inside func");
         //console.log(array);   
-        
     };
 
     test()
