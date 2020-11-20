@@ -37,7 +37,7 @@ class Event
         if (endTime === undefined || isNaN(endTime))
             endTime = "";
         else 
-            startTime = new Date(this.endTime).toString();
+            endTime = new Date(this.endTime).toString();
        
         if (url === undefined)
             url = "";
