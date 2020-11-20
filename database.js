@@ -3,16 +3,27 @@
 
 
 // Event class 
-// only used as a struct without any methods
 class Event
 {
-    constructor(name, description, startTime, endTime, url)
+    constructor(name, description, startTime, endTime, url, id = null)
     {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.startTime = startTime;
         this.endTime = endTime;
         this.url = url;
+    }
+
+    toString()
+    {
+        let string = `Event ID: ${this.id}\nEvent name:${this.name}\nEvent description:${this.description}\nEvent start time:${this.startTime}\nEvent end time:${this.endTime}\nEvent url:${this.url}\n`;
+        return string;
+    }
+
+    purge()
+    {
+        
     }
 }
 

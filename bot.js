@@ -66,13 +66,39 @@ client.on("message", async message => {
         switch (args[0])
         {
             case "create":
-                let name = args.slice(1).join(' ');
-                message.channel.send(`${name}`);
+                let newName = args.slice(1).join(' ');
+                tempEvent.name = newName;
+                break;
+
+            case "start":
+                let start = new Date(args[1]);
+                tempEvent.startTime = start.getTime();
+                break;
+
+            case "end":
+                let end = new Date(args[1]);
+                tempEvent.endTime = end.getTime();
+                break;
+
+            case "review":
+                message.channel.send(tempEvent.toString());
+                break;
+
+            case "confirm":
+                database.createEvent(tempEvent); 
+                console.log("Create an Event");
+                
+            case "cancel":
+                Object.keys(tempEvent).forEach(function(index) {
+                    obj[index] = null;
+                });
                 break;
 
             default:
                 break;
         }
+
+
 
         /*
         let newEvent = new Database.Event(args[0], args[1], args[2], args[3], args[4]);
