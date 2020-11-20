@@ -100,7 +100,7 @@ class Database
         if (newEvent instanceof Event)
         {
             let query = `INSERT INTO EVENT (event_name, event_description, event_start, event_end, event_url) 
-                      VALUES (\'${newEvent.name}\', \'${newEvent.description}\', ${Number(newEvent.startTime)}, ${Number(newEvent.endTime)}, \'${newEvent.url}\');`;
+                      VALUES (\'${newEvent.name}\', \'${newEvent.description}\', ${newEvent.startTime}, ${newEvent.endTime}, \'${newEvent.url}\');`;
             
             this.pool.query(query, (err, res) => {
                 if(err) 
@@ -133,7 +133,7 @@ class Database
         result = await this.pool.query(query);
         for (let element of result.rows)
         {
-            temp = new Event(element.event_name, element.event_description, element.event_start, element.event_end, element.event_url, element.event_id);
+            temp = new Event(element.event_name, element.event_description, Number(element.event_start), Number(element.event_end), element.event_url, element.event_id);
             console.log(temp);
             eventArray.push(temp);
         }
