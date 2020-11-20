@@ -13,7 +13,6 @@ const Database = require('./database.js');
 const database = new Database.Database();
 
 const tempEvent = new Database.Event();
-console.log(tempEvent.toString());
 
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 
@@ -86,8 +85,15 @@ client.on("message", async message => {
                 break;
 
             case "confirm":
-                database.createEvent(tempEvent); 
-                console.log("Create an Event");
+                if (tempEvent.name === undefined || tempEvent.start === undefined || tempEvent.end === undefined)
+                {
+                    message.channel.send(`Event name, start time and end time must be provided!`);
+                }
+                else 
+                {
+                    database.createEvent(tempEvent); 
+                    console.log("Create an Event");
+                }
                 
             case "cancel":
                 Object.keys(tempEvent).forEach(function(index) {
