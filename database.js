@@ -5,27 +5,23 @@
 // Event class 
 class Event
 {
-    constructor(name, description, startTime, endTime, url, id = null)
+    constructor(name, description, startTime, endTime, url, id)
     {
-        if (typeof name === undefined)
-        {
-            for (element in this)
-                this.element = null;
-        }
-        else 
-        {
-            this.id = id;
-            this.name = name;
-            this.description = description;
-            this.startTime = startTime;
-            this.endTime = endTime;
-            this.url = url;
-        }
+        console.log(this.name);
+        console.log(typeof this.name);
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.url = url;
         
     }
 
     toString()
     {
+        
+        
         let string = `Event ID: ${this.id}\nEvent name: ${this.name}\nEvent description: ${this.description}\nEvent start time: ${new Date(this.startTime).toString()}\nEvent end time: ${this.endTime}\nEvent url: ${this.url}\n`;
         return string;
     }
