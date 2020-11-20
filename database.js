@@ -171,7 +171,7 @@ class Database
         return new Promise(resolve => {
             let event;
             let query = `SELECT * FROM EVENT
-                         where event_id = ${Number(eventId)}`;
+                         where event_id = ${eventId};`;
             console.log(query);
             this.pool.query(query, (err, res) => {
                 if(err) {
@@ -183,6 +183,8 @@ class Database
             });
         });     
     };
+
+
 
     createAdvert(newAdvert)
     {
