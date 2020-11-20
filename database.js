@@ -177,6 +177,7 @@ class Database
                 if(err) {
                     throw err;
                 }
+                console.log(`row ` + res.rows[0]);   
                 event = res.rows;
                 console.log(`inside ` + event);   
                 resolve(event);
