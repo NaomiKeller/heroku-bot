@@ -63,10 +63,10 @@ class Advertisement
 {
     constructor(messageId, eventId, serverId, )
     {
+        this.messageId = messageId;
         this.eventId = eventId;
         this.serverId = serverId;
-        this.messageId = messageId;
-        
+
     }
 
 }
@@ -166,7 +166,7 @@ class Database
         {
             
             let query = `INSERT INTO Advertisement (advert_messageid, advert_eventid, advert_serverid) 
-                      VALUES (${newAdvert.messageId}, ${newAdvert.eventId}, ${newAdvert.serverId});`;
+                      VALUES (\'${newAdvert.messageId}\', ${newAdvert.eventId}, \'${newAdvert.serverId}\');`;
             
             console.log(query);
             this.pool.query(query, (err, res) => {
@@ -193,7 +193,7 @@ class Database
                         where advert_messageid = ${advertId};`;
                
         result = await this.pool.query(query);
-        advertisement = new Advertisement(Number(result.rows[0].advert_messageid), Number(result.rows[0].advert_eventid), Number(result.rows[0].advert_serverid));    
+        advertisement = new Advertisement(result.rows[0].advert_messageid, result.rows[0].advert_eventid, result.rows[0].advert_serverid);    
         console.log(advertisement);
         console.log('inside');
         return advertisement;  
