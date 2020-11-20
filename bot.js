@@ -98,6 +98,7 @@ client.on("message", async message => {
                 }
                 else 
                 {
+                    
                     database.createEvent(tempEvent); 
                     console.log("Create an Event");
                 }
