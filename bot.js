@@ -44,8 +44,6 @@ client.on("message", async message => {
     }
 
     if (cmd === `${prefix}date`) {
-        let event = database.getEvent(1);
-        console.log(event);
         return message.channel.send(`${d}`);
 
     }
@@ -58,6 +56,11 @@ client.on("message", async message => {
         return message.channel.send("https://testing-dis-bot.herokuapp.com");
     }
 
+    if (cmd === `${prefix}test`) {
+        let event = database.getEvent(1);
+        console.log(event);
+    }
+    
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     

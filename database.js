@@ -172,13 +172,13 @@ class Database
             let event;
             let query = `SELECT * FROM EVENT
                          where event_id = ${Number(eventId)}`;
- 
+            console.log(query);
             this.pool.query(query, (err, res) => {
                 if(err) {
                     throw err;
                 }
                 event = res.rows;
-                    
+                console.log(`inside ` + event);   
                 resolve(event);
             });
         });     
