@@ -49,11 +49,17 @@ class Event
     
 }
 
-class Reminder
+class Subscription
 {
-    
+    constructor(eventId, userId)
+    {
+        this.eventId = eventId;
+        this.userId = userId;
+    }
 
 }
+
+
 
 // Database class
 // 
@@ -83,10 +89,7 @@ class Database
     {
         if (newEvent instanceof Event)
         {
-            /*for (i in newEvent)
-            {
-                if (newEvent.i === undefined)
-            }*/
+            
             let query = `INSERT INTO EVENT (event_name, event_description, event_start, event_end, event_url) 
                       VALUES (\'${newEvent.name}\', \'${newEvent.description}\', ${newEvent.startTime}, ${newEvent.endTime}, \'${newEvent.url}\');`;
             
@@ -150,16 +153,42 @@ class Database
         });     
     };
 
-    test()
-    {
-        return "file";
+    createSubsription(newSub)
+    {   
+        if (newSub instanceof Subscription)
+        {
+            
+            let query = `INSERT INTO SUBSCRIPTION (sub_eventId, sub_userId) 
+                      VALUES (\'${newSub.eventId}\', \'${newSub.userId}\');`;
+            
+            console.log(query);
+            this.pool.query(query, (err, res) => {
+                if(err) 
+                {
+                    throw err;
+                    return false;
+                }
+     
+            });
+
+            return true;
+        }
+        else
+        {
+            return false;
+        } 
     }
 
-
+    removeSubsription(existingSub)
+    {
+        
+    }
 }
 
 
 module.exports.Database = Database;
 module.exports.Event = Event;
+module.exports.Subscription = Subscription;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

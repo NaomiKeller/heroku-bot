@@ -57,12 +57,11 @@ client.on("message", async message => {
 
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // a (no very here) preliminary version of database functions
-
+    
+    // event editor:
+    // 
     if (cmd === `${prefix}event`) {
-        
-        console.log(args);
-        
+   
         switch (args[0])
         {
             case "create":
@@ -96,7 +95,7 @@ client.on("message", async message => {
                 }
                 
             case "cancel":
-                Object.keys(tempEvent).forEach(function(index) {
+                    Object.keys(tempEvent).forEach(function(index) {
                     tempEvent[index] = null;
                 });
                 break;
@@ -105,18 +104,9 @@ client.on("message", async message => {
                 break;
         }
 
-
-
-        /*
-        let newEvent = new Database.Event(args[0], args[1], args[2], args[3], args[4]);
-        // TODO: make sure args[2] and args[3] are integers
-        
-        database.createEvent(newEvent); 
-        return message.channel.send(`Create an event`);
-
-        */
     }
 
+    // a temp version for list events
     if (cmd === `${prefix}ListEvent`)
     {
         const resolvedArray = await database.listEvent();
@@ -146,7 +136,7 @@ client.on("message", async message => {
         q += ' CREATE TABLE TEST_ADVERTISEMENT (EVENT_ID INTEGER REFERENCES TEST_EVENT(EVENT_ID), ADVERT_SERVER TEXT NOT NULL, ADVERT_MESSAGE TEXT, PRIMARY KEY (EVENT_ID));'
         
         pool.query(q, (err, res) => {
-            //does this work?
+            //does this work? (yes)
             if(err) {
                 throw err;
             }
@@ -253,7 +243,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
 
     //This determines whether a bot is making the call, and whether the correct emoji is being used. (We can change that later)
     if(!(user.bot) && (reaction.emoji.name == '🤔')){
-
+        console.log(user);
         //TODO: figure out if the message being reacted to corresponds to an advertised event via query.
     }
 });
