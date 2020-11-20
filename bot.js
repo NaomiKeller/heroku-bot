@@ -69,7 +69,6 @@ client.on("message", async message => {
     if (cmd === `${prefix}ListEvent`)
     {
         const resolvedArray = await database.listEvent();
-        console.log(resolvedArray);
 
         let result = `Event Table\nID\tName\tDescription\tStart Time\tEnd Time\tUrl\n`;
 
