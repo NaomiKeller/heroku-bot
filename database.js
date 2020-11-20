@@ -80,11 +80,12 @@ class Database
                 throw err;
             }
             array = res.rows;
-            console.log("inside func");
+            console.log("inside query");
             console.log(array);    
         
         });
-
+        console.log("inside func");
+        console.log(array);   
         return array;
     }
 
