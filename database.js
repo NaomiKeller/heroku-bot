@@ -134,7 +134,7 @@ class Database
         result = await this.pool.query(query);
         for (let element of result.rows)
         {
-            temp = new Event(element.event_name, element.event_description, element.event_start, element.event_end, element.event_url, element.event.id);
+            temp = new Event(element.event_name, element.event_description, element.event_start, element.event_end, element.event_url, element.event_id);
             console.log(temp);
             eventArray.push(temp);
         }
