@@ -153,7 +153,6 @@ class Database
         result = await this.pool.query(query);
 
         event = new Event(result.rows[0].event_name, result.rows[0].event_description, result.rows[0].event_start, result.rows[0].event_end, result.rows[0].event_url, result.rows[0].event_id);
-        console.log(event);
         return event;
     };
 

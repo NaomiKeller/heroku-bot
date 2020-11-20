@@ -224,7 +224,7 @@ client.on("message", async message => {
         
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //second version 
-        console.log(eventID);
+       
         eventName = (await database.getEvent(Number(eventID))).name;
         console.log(eventName);     
         
@@ -233,7 +233,7 @@ client.on("message", async message => {
             value.react('🤔')
             serverID = message.guild.id
    
-            database.createAdervt(new Advertisement(message.ID, eventID, serverID));
+            database.createAdervt(new Advertisement(messageID, eventID, serverID));
         });
         
 
