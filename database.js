@@ -208,7 +208,7 @@ class Database
         {
             
             let query = `INSERT INTO SUBSCRIPTION (sub_eventId, sub_userId) 
-                      VALUES (\'${newSub.eventId}\', \'${newSub.userId}\');`;
+                      VALUES (${newSub.eventId}, \'${newSub.userId}\');`;
             
             console.log(query);
             this.pool.query(query, (err, res) => {
