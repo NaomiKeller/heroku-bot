@@ -57,7 +57,7 @@ client.on("message", async message => {
     }
 
     if (cmd === `${prefix}test`) {
-        let event = await database.getEvent(1);
+        const event = await database.getEvent(1);
         console.log('outside' + event);
     }
     
