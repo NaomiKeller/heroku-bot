@@ -270,13 +270,9 @@ client.on('messageReactionAdd', async (reaction, user) => {
         console.log(reaction.message.id);
         advert = database.getAdvert(reaction.message.id);
         console.log(user);
-        //console.log(advert);
-        
-        
-
-
-
-        //database.createSub()
+        console.log(advert);
+  
+        database.createSub(user.id, advert.eventId);
     }
 });
 
