@@ -176,9 +176,7 @@ class Database
             this.pool.query(query, (err, res) => {
                 if(err) {
                     throw err;
-                }
-                console.log(res.rows[0]);  
-                 
+                }      
                 event = res.rows[0];
                 
                 resolve(event);
@@ -186,6 +184,23 @@ class Database
         });     
     };
 
+    async getEvent2(eventId)
+    {
+        let event;
+        let query = `SELECT * FROM EVENT
+                        where event_id = ${eventId};`;
+            
+        await this.pool.query(query, await (err, res) => {
+            if(err) {
+                throw err;
+            }      
+            event = res.rows[0];
+            console.log("inside query");
+        });
+        console.log("inside func");    
+
+        return event;
+    };
 
 
     createAdvert(newAdvert)
