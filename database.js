@@ -71,8 +71,9 @@ class Database
     // list all events in the database
     // precondition: none
     // postcondition: an array of Event objects
-    listEvent()
+    listEvent() = async () => 
     {
+
         let array;
         let query = 'SELECT * FROM EVENT;';
    /*     this.pool
@@ -94,7 +95,7 @@ class Database
         // console.log("inside func");
         //console.log(array);   
         
-    }
+    };
 
     test()
     {
