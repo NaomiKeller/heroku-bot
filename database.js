@@ -127,13 +127,19 @@ class Database
     async listEvent()
     {
         let result;
-        let array;
+        let eventArray = [];
+        let temp;
         let query = 'SELECT * FROM EVENT;';
  
-        result = await this.pool.query(query);    
-        array = result.rows;
-        
-        return array;
+        result = await this.pool.query(query);
+        for (let element of result.rows)
+        {
+            temp = new Event(element.event_name, element.event_description, element.event_start, element.event_end, element.event_url, element.event.id);
+            console.log(temp);
+            eventArray.push(temp);
+        }
+
+        return eventArray;
     };
 
     // to get a single event 
