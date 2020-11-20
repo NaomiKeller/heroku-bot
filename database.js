@@ -184,14 +184,14 @@ class Database
         });     
     };
 
-    async getEvent2(eventId)
+    getEvent2(eventId)
     {
         let event;
         let result;
         let query = `SELECT * FROM EVENT
                         where event_id = ${eventId};`;
             
-        result = await this.pool.query(query);
+        result = this.pool.query(query);
         event = result.rows[0];
             
         console.log("inside query");
