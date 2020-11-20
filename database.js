@@ -103,7 +103,6 @@ class Database
             let query = `INSERT INTO EVENT (event_name, event_description, event_start, event_end, event_url) 
                       VALUES (\'${newEvent.name}\', \'${newEvent.description}\', ${newEvent.startTime}, ${newEvent.endTime}, \'${newEvent.url}\');`;
             
-            console.log(query);
             this.pool.query(query, (err, res) => {
                 if(err) 
                 {
@@ -121,83 +120,34 @@ class Database
         }
             
     }
-/*
-    async listEvent2()
-    {
-        let array;
-        let query = 'SELECT * FROM EVENT;';
- 
-        await this.pool.query(query, (err, res) => {
-            if(err) {
-                throw err;
-            }
-            array = res.rows;
-            console.log("inside query");
-            console.log(array);    
-               
-        });
-        console.log("inside func");
-        console.log(array);    
-        return array;
-    }
-    */
-
 
     // list all events in the database
     // precondition: none
     // postcondition: an array of Event objects
-    listEvent()
+    async listEvent()
     {
-        return new Promise(resolve => {
-            let array;
-            let query = 'SELECT * FROM EVENT;';
+        let result;
+        let array;
+        let query = 'SELECT * FROM EVENT;';
  
-            this.pool.query(query, (err, res) => {
-                if(err) {
-                    throw err;
-                }
-                array = res.rows;
-                    
-                resolve(array);
-            });
-        });     
+        result = await this.pool.query(query);    
+        array = result.rows;
+        
+        return array;
     };
 
     // to get a single event 
     // precondition: event ID 
     // postcondition: event object
-    getEvent(eventId)
+    async getEvent(eventId)
     {
-        return new Promise(resolve => {
-            let event;
-            let query = `SELECT * FROM EVENT
-                         where event_id = ${eventId};`;
-            console.log(query);
-            this.pool.query(query, (err, res) => {
-                if(err) {
-                    throw err;
-                }      
-                event = res.rows[0];
-                
-                resolve(event);
-            });
-        });     
-    };
-
-    async getEvent2(eventId)
-    {
-        let event;
         let result;
+        let event;
         let query = `SELECT * FROM EVENT
                         where event_id = ${eventId};`;
             
         result = await this.pool.query(query);
         event = result.rows[0];
-            
-        console.log("inside query");
-        console.log(event);
-      
-        console.log("inside func");    
 
         return event;
     };
