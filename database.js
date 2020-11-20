@@ -10,7 +10,7 @@ class Event
         if (typeof name === undefined)
         {
             for (element in this)
-                element = null;
+                this.element = null;
         }
         else 
         {
@@ -26,7 +26,7 @@ class Event
 
     toString()
     {
-        let string = `Event ID: ${this.id}\nEvent name:${this.name}\nEvent description:${this.description}\nEvent start time:${new Date(this.startTime).toString()}\nEvent end time:${this.endTime}\nEvent url:${this.url}\n`;
+        let string = `Event ID: ${this.id}\nEvent name: ${this.name}\nEvent description: ${this.description}\nEvent start time: ${new Date(this.startTime).toString()}\nEvent end time: ${this.endTime}\nEvent url: ${this.url}\n`;
         return string;
     }
 
@@ -65,9 +65,12 @@ class Database
     // postcondition: true for success and false for error
     createEvent (newEvent) 
     {
-        if (newEvent instanceof Event || Object.keys(newEvent).length === 5)
+        if (newEvent instanceof Event)
         {
-            
+            for (i in newEvent)
+            {
+                if (newEvent.i === undefined)
+            }
             let query = `INSERT INTO EVENT (event_name, event_description, event_start, event_end, event_url) 
                       VALUES (\'${newEvent.name}\', \'${newEvent.description}\', ${newEvent.startTime}, ${newEvent.endTime}, \'${newEvent.url}\');`;
             
