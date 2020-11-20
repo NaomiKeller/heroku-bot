@@ -193,7 +193,7 @@ class Database
                         where advert_messageid = ${advertId};`;
             
         result = await this.pool.query(query);
-         console.log(result);
+        console.log(result);
         advertisement = new Advertisement(result.rows[0].advert_messageid, result.rows[0].advert_eventid, result.rows[0].advert_serverid);
         console.log(advertisement);
         return advertisement;

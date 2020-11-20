@@ -268,7 +268,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
         
         //TODO: figure out if the message being reacted to corresponds to an advertised event via query.
         console.log(reaction.message.id);
-        advert = await database.getAdvert(reaction.message.id);
+        advert = database.getAdvert(reaction.message.id);
         console.log(user);
         //console.log(advert);
         
