@@ -221,7 +221,7 @@ client.on("message", async message => {
             value.react('🤔')
             serverID = message.guild.id
    
-            database.createAdervt(new Advertisement(message.ID, eventID, serverID);
+            database.createAdervt(new Advertisement(message.ID, eventID, serverID));
         });
        
 
