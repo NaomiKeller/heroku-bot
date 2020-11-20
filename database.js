@@ -190,7 +190,7 @@ class Database
         let result;
         let advertisement;
         let query = `SELECT * FROM ADVERTISEMENT
-                        where advert_messageid = ${advertId};`;
+                        where advert_messageid = ${advertId.toString()};`;
             
         result = await this.pool.query(query);
         console.log(result);
