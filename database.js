@@ -92,7 +92,7 @@ class Database
         });
     }
 
-    // create a event in the database
+    // create an event in the database
     // prcondition: an Event object 
     // postcondition: true for success and false for error
     createEvent (newEvent) 
@@ -185,6 +185,9 @@ class Database
 
     }
 
+    // to get a single advertisement 
+    // precondition: message ID (advertisement ID)
+    // postcondition: advertisement object
     async getAdvert(advertId)
     {
         let result;
@@ -201,6 +204,9 @@ class Database
         
     };
 
+    // create a subscription in the database
+    // prcondition: a subscription object 
+    // postcondition: true for success and false for error
     createSub(newSub)
     {   
         if (newSub instanceof Subscription)
