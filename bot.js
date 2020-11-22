@@ -100,7 +100,7 @@ client.on("message", async message => {
 
             case "confirm":
                 console.log(tempEvent);
-                if (tempEvent.name === undefined || tempEvent.startTime === undefined || tempEvent.end === undefined)
+                if (tempEvent.name === undefined || tempEvent.startTime === undefined || tempEvent.endTime === undefined)
                 {
                     message.channel.send(`Event name, start time and end time must be provided!`);
                     break;
