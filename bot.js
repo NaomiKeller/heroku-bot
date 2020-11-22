@@ -96,10 +96,9 @@ client.on("message", async message => {
                     break;
                 }
                 else 
-                {
-                    
+                {               
                     database.createEvent(tempEvent); 
-                    console.log("Create an Event");
+                    message.channel.send("Create an Event");
                 }
                 
             case "cancel":
