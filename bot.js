@@ -74,6 +74,11 @@ client.on("message", async message => {
                 tempEvent.name = newName;
                 break;
 
+            case "description":
+                let newDesc = args.slice(1).join(' ');
+                tempEvent.description = newDesc;
+                break;
+
             case "start":
                 let start = new Date(args[1]);
                 tempEvent.startTime = start.getTime();
@@ -82,6 +87,11 @@ client.on("message", async message => {
             case "end":
                 let end = new Date(args[1]);
                 tempEvent.endTime = end.getTime();
+                break;
+
+            case "url":
+                let newUrl = args.slice(1).join(' ');
+                tempEvent.url = newUrl;
                 break;
 
             case "review":
