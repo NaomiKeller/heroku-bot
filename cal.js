@@ -6,7 +6,7 @@ const app = express()
 const PORT = process.env.PORT || 5000;
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.render('cal.html')
 })
 
 app.listen(PORT, () => {
