@@ -19,6 +19,7 @@
 
   <!-- Custom font -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Noto Sans:300,400,500,600,700,800,900" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
@@ -32,7 +33,6 @@
       <div class="sidebar-heading text-white">Forget Me Bot </div>
       <div class="list-group list-group-flush shift">
         <a href="#" class="list-group-item list-group-item-action">Dashboard</a>
-        <a href="event.html" class="list-group-item list-group-item-action">Event Management</a>
         <a href="cal.html" class="list-group-item list-group-item-action">Calendar</a>
         <a href="about.html" class="list-group-item list-group-item-action">About</a>
         <a href="contact.html" class="list-group-item list-group-item-action">Contact</a>
@@ -44,30 +44,34 @@
 
       <nav class="navbar navbar-expand-lg">
         <button class="btn btn-primary" id="menu-toggle"><em class="fa fa-bars"></em></button>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
       </nav>
 
-      <div class="container mt-3 headerContainer">
+      <div class="container mt-5 headerContainer">
         <div><h2>Dashboard</h2></div>
       </div>
 
-      <div class="container dashContainer">
+      <div class="bodyBorder"></div>
+
+      <div class="container">
         <div class="row justify-content-sm-center">
           <div class="col-6 col-sm-3">
-            <div class="boxContainer"><h3>Create Event</h3></div>
+            <div class="boxContainer" onclick="location.href='create.html';"><h4>Create Event</h4></div>
           </div>
-          <div class="col-6 col-sm-3">
-            <div class="boxContainer"><h3>Edit Event</h3></div>
+          <div class="col-6 col-sm-3 ml-5">
+            <div class="boxContainer" onclick="location.href='edit.html';"><h4>Edit Event</h4></div>
+          </div>
+          <div class="col-6 col-sm-3 ml-5">
+            <div class="boxContainer" onclick="location.href='cal.html';"><h4>Help</h4></div>
           </div>
           <div class="w-100"></div>
-          <div class="col-6 col-sm-3">
-            <div class="boxContainer"><h3>Delete Event</h3></div>
+          <div class="col-6 col-sm-3 mt-3">
+            <div class="boxContainer" onclick="location.href='delete.html';"><h4>Delete Event</h4></div>
           </div>
-          <div class="col-6 col-sm-3">
-            <div class="boxContainer"><h3>Calendar</h3></div>
+          <div class="col-6 col-sm-3 ml-5 mt-3">
+            <div class="boxContainer" onclick="location.href='cal.html';"><h4>Calendar</h4></div>
+          </div>
+          <div class="col-6 col-sm-3 ml-5 mt-3">
+            <div class="boxContainer" onclick="location.href='cal.html';"><h4>Contact</h4></div>
           </div>
         </div>
       </div>
