@@ -1,3 +1,7 @@
 
+const express = require('express');
+const app = new express();
 
-console.log('Hello');
+app.get('/', function(request, response){
+    response.sendFile('cal.html');
+});
