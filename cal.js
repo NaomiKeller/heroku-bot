@@ -1,3 +1,3 @@
 
 
-console.write('Hello');
+console.log('Hello');
