@@ -10,8 +10,6 @@ function validated() {
     if (username.value === "admin" && password.value === "pass") {
         return true;
     } else {
-        username.style.border = "1px solid red";
-        password.style.border = "1px solid red";
         loginError.style.display = "block";
         username.focus();
         password.focus();
@@ -21,8 +19,6 @@ function validated() {
 
 function reset() {
     loginError.style.display = "none";
-    username.style.border = "none";
-    password.style.border = "none";
 }
 /*
 function userVerify() {

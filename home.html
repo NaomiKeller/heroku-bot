@@ -1,67 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Forget Me Bot - Home</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/style.css">
-	</head>
-	<body>
-		<div class="wrapper d-flex align-items-stretch">
-			<nav id="sidebar">
 
-				<div class="custom-menu">
-					<button type="button" id="sidebarCollapse" class="btn btn-primary">
-						<em class="fa fa-bars"></em>
-						<span class="sr-only">Toggle Menu</span>
-					</button>
-				</div>
+<head>
 
-				<div class="p-4 pt-5">
-					<h1><a href="home.html" class="logo">Forget Me Bot</a></h1>
-					<ul class="list-unstyled components mb-5">
-						<li>
-							<a href="#">Home</a>
-						</li>
-						<li>
-							<a href="#">Event Management</a>
-						</li>
-						<li>
-							<a href="#">Calendar</a>
-						</li>
-						<li>
-							<a href="#">About</a>
-						</li>
-						<li>
-							<a href="#">Contact</a>
-						</li>
-					</ul>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-					<div class="footer">
-						<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | 
-							This site was made with with Bootstrap and <a href="https://colorlib.com">Colorlib.com</a></p>
-					</div>
-				</div>
+  <title>Forget Me Bot - Dash</title>
 
-			</nav>
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-			<div id="content" class="p-1 pl-5 pt-5">
-				<h2 class="mb-4 text-white">One Bad Gloop</h2>
-				<p>One bad gloop, and she do what i yoinky<br>
-					Two big splurgs and a big ass gloopy<br>
-					Three more yoinks, then I buy me a smoothie<br>
-					Poured up a gloop, that's a gloop and a splurgy
-				</p>
-			</div>
-		</div>
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet">
 
-		<script src="js/jquery.min.js"></script>
-		<script src="js/popper.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/main.js"></script>
+  <!-- Custom font -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-	</body>
-	  
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <div class="sidebar-heading text-white">Forget Me Bot </div>
+      <div class="list-group list-group-flush shift">
+        <a href="#" class="list-group-item list-group-item-action">Dashboard</a>
+        <a href="event.html" class="list-group-item list-group-item-action">Event Management</a>
+        <a href="cal.html" class="list-group-item list-group-item-action">Calendar</a>
+        <a href="about.html" class="list-group-item list-group-item-action">About</a>
+        <a href="contact.html" class="list-group-item list-group-item-action">Contact</a>
+      </div>
+    </div>
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg">
+        <button class="btn btn-primary" id="menu-toggle"><em class="fa fa-bars"></em></button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </nav>
+
+      <div class="container mt-3 headerContainer">
+        <div><h2>Dashboard</h2></div>
+      </div>
+
+      <div class="container dashContainer">
+        <div class="row justify-content-sm-center">
+          <div class="col-6 col-sm-3">
+            <div class="boxContainer"><h3>Create Event</h3></div>
+          </div>
+          <div class="col-6 col-sm-3">
+            <div class="boxContainer"><h3>Edit Event</h3></div>
+          </div>
+          <div class="w-100"></div>
+          <div class="col-6 col-sm-3">
+            <div class="boxContainer"><h3>Delete Event</h3></div>
+          </div>
+          <div class="col-6 col-sm-3">
+            <div class="boxContainer"><h3>Calendar</h3></div>
+          </div>
+        </div>
+      </div>
+
+      
+
+        
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+</body>
+
 </html>
