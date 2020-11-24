@@ -5,13 +5,15 @@ const router = express.Router();
 const PORT = process.env.PORT || 5000;
 
 
-//res.render('index');
+app.use(express.static(__dirname));
+console.log(__dirname);
+
 router.get('/', (req, res) => {
-	res.send('<p>index.html</p>')
-	//res.sendFile(path.join(__dirname+'/index.html'));
+	
+	res.sendFile(path.join(__dirname+'/index.html'));
 });
 
-app.use('/', router);
+//app.use('/', router);
 
 
 
