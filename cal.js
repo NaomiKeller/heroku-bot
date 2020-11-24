@@ -4,6 +4,14 @@ const path = require('path');
 const router = express.Router();
 const PORT = process.env.PORT || 5000;
 
+//////////////////////////////////////////
+var username = document.forms['form']['username']
+var password = document.forms['form']['password']
+
+var loginError = document.getElementById('loginError');
+
+username.addEventListener('click', reset);
+///////////////////////////////////////////
 
 app.use(express.static(__dirname));
 console.log(__dirname);
@@ -18,12 +26,6 @@ app.get("/", (req, res) => {
 });
 */
 //////////////////////////////////////////////////
-var username = document.forms['form']['username']
-var password = document.forms['form']['password']
-
-var loginError = document.getElementById('loginError');
-
-username.addEventListener('click', reset);
 
 function validated() {
     if (username.value === "admin" && password.value === "pass") {
