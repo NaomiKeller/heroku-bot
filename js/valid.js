@@ -20,30 +20,3 @@ function validated() {
 function reset() {
     loginError.style.display = "none";
 }
-/*
-function userVerify() {
-    if (username === "administrator") {
-        userError.style.display = "none";
-        return true;
-    } else {
-        return false;
-    }
-}
-
-
-function userVerify() {
-    if (username.value.length >= 8) {
-        userError.style.display = "none";
-        if (username.value === 'administrator') {
-            return true;
-        }
-    }
-}
-
-function passVerify() {
-    if (password.value.length >= 5) {
-        passError.style.display = "none";
-        return true;
-    }
-}
-*/
