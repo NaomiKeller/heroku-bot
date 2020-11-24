@@ -12,9 +12,10 @@ router.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname+'/index.html'));
 });
 
-router.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname+'/home.html'));
+app.get("/", (req, res) => {
+  res.sendFile(`${__dirname}/home.html`);
 });
+
 
 
 //app.use('/', router);
