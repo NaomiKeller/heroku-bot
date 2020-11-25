@@ -182,6 +182,10 @@ margin-left: 0;
   margin: 4rem 19rem 5rem 19rem;
 }
 
+.bodyText {
+  margin: auto;
+}
+
 .boxContainer {
   height: 8rem; max-width: 18rem;
   background-color: #0F8174;
