@@ -8,21 +8,27 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/style.css">
 	</head>
+
 	<body class="loginWrapper mt-5">
 		<div class="loginContainer mt-5">
 			<h1 class="label text-white font-weight-bold">Forget Me Bot</h1>
 			<h4 class="label text-white">Admin Login</h4>
 			<form class="loginForm" action="/home" method="post" name="form" onsubmit="return validated()">
 				<div class="text">Username</div>
-				<input autocomplete="off" type="text" name="username">
+				<input autocomplete="off" type="text" name="username" value="this is brokey, just click login">
 				<div class="text">Password</div>
-				<input autocomplete="off" type="password" name="password">
+				<input autocomplete="off" type="password" name="password" value="just click login">
 				<button type="submit" class="mt-5 btn-primary">Login</button>
 				<div id="loginError">Your credentials are incorrect.</div>
 			</form>
 		</div>
 
-		<script src="../js/valid.js" type="application/javascript;charset=utf-8"></script>
+		<!-- 
+			now that node.js is what the web is running on, my implementation of login verfication no longer works,
+			because node cannot parse data from client side (browser). so i need to find some sort of workaround
+			to make the client side user input to interact with node.
+		-->
+		<!-- <script src="js/valid.js" type="application/javascript;charset=utf-8"></script> -->
 		<script src="../js/jquery.min.js" type="application/javascript;charset=utf-8"></script>
 		<script src="../js/popper.js" type="application/javascript;charset=utf-8"></script>
 		<script src="../js/bootstrap.min.js" type="application/javascript;charset=utf-8"></script>

@@ -51,8 +51,31 @@
       </div>
 
       <div class="bodyBorder"></div>
-
-      <div class="container"></div>
+      <div class="row justify-content-sm-center">
+        <div class="eventWrapper">
+          <div class="col-lg-8">
+            <form class="eventForm" action="" method="post" name="form" onsubmit="">
+              <div class="text">Event Name</div>
+              <input autocomplete="off" type="text" name="name" class="notTime">
+              <div class="text">Event Description</div>
+              <input autocomplete="off" type="text" name="description" class="notTime">
+              <div class="text">Date</div>
+              <input autocomplete="off" type="text" name="date" class="notTime" placeholder="e.g. 01/02/21">
+              <div class="text">Start Time</div>
+              <input autocomplete="off" type="text" name="startTime" placeholder="e.g. 11:30">
+              <input class="ampm" autocomplete="off" type="text" name="startTime" placeholder="AM">
+              <div class="text">End Time</div>
+              <input autocomplete="off" type="text" name="endTime" placeholder="e.g. 01:30">
+              <input class="ampm" autocomplete="off" type="text" name="endTime" placeholder="PM">
+              <div class="text">URL</div>
+              <input autocomplete="off" type="text" name="url" placeholder="optional" class="notTime">
+              <br>
+              <button type="submit" class="mt-5 btn btn-primary">Submit</button>
+              <!-- <div id="loginError">Your credentials are incorrect.</div> -->
+            </form>
+          </div>
+        </div>
+      </div>
 
     </div>
     <!-- /#page-content-wrapper -->
