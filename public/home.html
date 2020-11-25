@@ -32,10 +32,10 @@
     <div id="sidebar-wrapper">
       <div class="sidebar-heading text-white">Forget Me Bot </div>
       <div class="list-group list-group-flush shift">
-        <a href="#" class="list-group-item list-group-item-action">Dashboard</a>
-        <a href="cal.html" class="list-group-item list-group-item-action">Calendar</a>
-        <a href="about.html" class="list-group-item list-group-item-action">About</a>
-        <a href="contact.html" class="list-group-item list-group-item-action">Contact</a>
+        <a href="#" class="list-group-item list-group-item-action" action="/home" method="post">Dashboard</a>
+        <a href="cal.html" class="list-group-item list-group-item-action" action="/cal" method="post">Calendar</a>
+        <a href="about.html" class="list-group-item list-group-item-action" action="/about" method="post">About</a>
+        <a href="contact.html" class="list-group-item list-group-item-action" action="/contact" method="post">Contact</a>
       </div>
     </div>
 
@@ -55,23 +55,23 @@
       <div class="container">
         <div class="row justify-content-sm-center">
           <div class="col-6 col-sm-3">
-            <div class="boxContainer" onclick="location.href='create.html';"><h4>Create Event</h4></div>
+            <div class="boxContainer" onclick="location.href='create.html';" action="/create" method="post"><h4>Create Event</h4></div>
           </div>
           <div class="col-6 col-sm-3 ml-5">
-            <div class="boxContainer" onclick="location.href='edit.html';"><h4>Edit Event</h4></div>
+            <div class="boxContainer" onclick="location.href='edit.html';" action="/edit" method="post"><h4>Edit Event</h4></div>
           </div>
           <div class="col-6 col-sm-3 ml-5">
-            <div class="boxContainer" onclick="location.href='cal.html';"><h4>Help</h4></div>
+            <div class="boxContainer" onclick="location.href='cal.html';" action="/help" method="post"><h4>Help</h4></div>
           </div>
           <div class="w-100"></div>
           <div class="col-6 col-sm-3 mt-3">
-            <div class="boxContainer" onclick="location.href='delete.html';"><h4>Delete Event</h4></div>
+            <div class="boxContainer" onclick="location.href='delete.html';" action="/delete" method="post"><h4>Delete Event</h4></div>
           </div>
           <div class="col-6 col-sm-3 ml-5 mt-3">
-            <div class="boxContainer" onclick="location.href='cal.html';"><h4>Calendar</h4></div>
+            <div class="boxContainer" onclick="location.href='cal.html';" action="/cal" method="post"><h4>Calendar</h4></div>
           </div>
           <div class="col-6 col-sm-3 ml-5 mt-3">
-            <div class="boxContainer" onclick="location.href='cal.html';"><h4>Contact</h4></div>
+            <div class="boxContainer" onclick="location.href='cal.html';" action="/contact" method="post"><h4>Contact</h4></div>
           </div>
         </div>
       </div>
@@ -89,12 +89,12 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-  <script src="../js/valid.js"></script>
-  <script src="../js/jquery.min.js"></script>
-  <script src="../js/popper.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
-  <script src="../js/main.js"></script>
-  <script src="../cal.js"></script>
+  <script src="../js/valid.js" type="application/javascript;charset=utf-8"></script>
+  <script src="../js/jquery.min.js" type="application/javascript;charset=utf-8"></script>
+  <script src="../js/popper.js" type="application/javascript;charset=utf-8"></script>
+  <script src="../js/bootstrap.min.js" type="application/javascript;charset=utf-8"></script>
+  <script src="../js/main.js" type="application/javascript;charset=utf-8"></script>
+  <script src="../cal.js" type="application/javascript;charset=utf-8"></script>
 
   <!-- Menu Toggle Script -->
   <script>
