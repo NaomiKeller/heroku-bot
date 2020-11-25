@@ -11,7 +11,7 @@ app.use(express.static(__dirname));
 console.log(__dirname);
 
 router.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname+'public/index.html'));
+	res.sendFile(path.join(__dirname+'/index.html'));
 });
 /*
 app.get('/home', (req, res) => {
