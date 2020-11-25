@@ -13,7 +13,7 @@ console.log(__dirname);
 router.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname+'/index.html'));
 });
-/*
+
 app.get('/home', (req, res) => {
   res.sendFile(path.join(__dirname+'/home.html'));
 });
@@ -21,7 +21,7 @@ app.get('/home', (req, res) => {
 app.post('/home', (req, res) => {
   res.redirect("/home");
 });
-*/
+
 
 app.listen(PORT, () => {
   console.log(`${PORT}`)

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Forget Me Bot - Dash</title>
+
+  <!-- Bootstrap core CSS -->
+  <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+  <!-- Custom styles for this template -->
+  <link href="../css/style.css" rel="stylesheet">
+
+  <!-- Custom font -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Noto Sans:300,400,500,600,700,800,900" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <div class="sidebar-heading text-white">Forget Me Bot </div>
+      <div class="list-group list-group-flush shift">
+        <a href="#" class="list-group-item list-group-item-action">Dashboard</a>
+        <a href="cal.html" class="list-group-item list-group-item-action">Calendar</a>
+        <a href="about.html" class="list-group-item list-group-item-action">About</a>
+        <a href="contact.html" class="list-group-item list-group-item-action">Contact</a>
+      </div>
+    </div>
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg">
+        <button class="btn btn-primary" id="menu-toggle"><em class="fa fa-bars"></em></button>
+      </nav>
+
+      <div class="container mt-5 headerContainer">
+        <div><h2>Dashboard</h2></div>
+      </div>
+
+      <div class="bodyBorder"></div>
+
+      <div class="container">
+        <div class="row justify-content-sm-center">
+          <div class="col-6 col-sm-3">
+            <div class="boxContainer" onclick="location.href='create.html';"><h4>Create Event</h4></div>
+          </div>
+          <div class="col-6 col-sm-3 ml-5">
+            <div class="boxContainer" onclick="location.href='edit.html';"><h4>Edit Event</h4></div>
+          </div>
+          <div class="col-6 col-sm-3 ml-5">
+            <div class="boxContainer" onclick="location.href='cal.html';"><h4>Help</h4></div>
+          </div>
+          <div class="w-100"></div>
+          <div class="col-6 col-sm-3 mt-3">
+            <div class="boxContainer" onclick="location.href='delete.html';"><h4>Delete Event</h4></div>
+          </div>
+          <div class="col-6 col-sm-3 ml-5 mt-3">
+            <div class="boxContainer" onclick="location.href='cal.html';"><h4>Calendar</h4></div>
+          </div>
+          <div class="col-6 col-sm-3 ml-5 mt-3">
+            <div class="boxContainer" onclick="location.href='cal.html';"><h4>Contact</h4></div>
+          </div>
+        </div>
+      </div>
+
+      
+
+        
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <script src="../js/valid.js"></script>
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/popper.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../cal.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+</body>
+
+</html>
