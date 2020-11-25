@@ -7,15 +7,15 @@ const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static(__dirname));
+app.use(express.static(__dirname + "/public/arena.html"));
 console.log(__dirname);
 
 router.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname+'/public/index.html'));
+	res.sendFile(path.join(__dirname+'/index.html'));
 });
 
 app.get('/home', (req, res) => {
-  res.sendFile(path.join(__dirname+'/public/home.html'));
+  res.sendFile(path.join(__dirname+'/home.html'));
 });
 
 app.post('/home', (req, res) => {
