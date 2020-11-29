@@ -50,7 +50,7 @@ class Event
 }
 
 // reminder class
-class reminder
+class Reminder
 {
     constructor(eventId, time, info = null, id = null)
     {
