@@ -49,6 +49,20 @@ class Event
     
 }
 
+// reminder class
+class reminder
+{
+    constructor(eventId, time, info = null, id = null)
+    {
+        this.eventId = eventId;
+        this.time = time;
+        this.info = info;
+        this.id = id;
+    }
+
+}
+
+// subscription class
 class Subscription
 {
     constructor(userId, eventId)
@@ -59,6 +73,7 @@ class Subscription
 
 }
 
+// Advertisement class
 class Advertisement
 {
     constructor(messageId, eventId, serverId, )
@@ -93,8 +108,8 @@ class Database
     }
 
     // create an event in the database
-    // prcondition: an Event object 
-    // postcondition: true for success and false for error
+    // parameter 1: an Event object 
+    // return: true for success and false for error
     createEvent (newEvent) 
     {
         if (newEvent instanceof Event)
@@ -106,7 +121,7 @@ class Database
                 if(err) 
                 {
                     throw err;
-                    return false;
+                    
                 }
      
             });
@@ -121,8 +136,8 @@ class Database
     }
 
     // list all events in the database
-    // precondition: none
-    // postcondition: an array of Event objects
+    // parameter 1: none
+    // return: an array of Event objects
     async listEvent()
     {
         let result;
@@ -141,8 +156,8 @@ class Database
     };
 
     // to get a single event 
-    // precondition: event ID 
-    // postcondition: event object
+    // parameter 1: event ID 
+    // return: event object
     async getEvent(eventId)
     {
         let result;
@@ -157,9 +172,36 @@ class Database
         return event;
     };
 
+    // create a Reminder
+    // parameter 1: a reminder object
+    // return: true for success and false for Error
+    createReminder(newReminder)
+    {
+        if (newReminder instanceof Reminder)
+        {
+            
+            let query = `INSERT INTO REMINDER (rem_eventid, rem_time, rem_info) 
+                      VALUES (\'${newReminder.eventId}\', ${newReminder.time}, \'${newReminder.info}\');`;
+            
+            console.log(query);
+            this.pool.query(query, (err, res) => {
+                if(err) 
+                {
+                    console.error(err);
+                }
+     
+            });
+
+            return true;
+        }
+        else    
+            return false;
+    }
+
+
     // create an advertisement in the database
-    // prcondition: an advertisement object 
-    // postcondition: true for success and false for error
+    // parameter: an advertisement object 
+    // return: true for success and false for error
     createAdvert(newAdvert)
     {
         if (newAdvert instanceof Advertisement)
@@ -186,8 +228,8 @@ class Database
     }
 
     // to get a single advertisement 
-    // precondition: message ID (advertisement ID)
-    // postcondition: advertisement object
+    // parameter 1: message ID (advertisement ID)
+    // return: advertisement object
     async getAdvert(advertId)
     {
         let result;
@@ -205,8 +247,8 @@ class Database
     };
 
     // create a subscription in the database
-    // prcondition: a subscription object 
-    // postcondition: true for success and false for error
+    // parameter 1: a subscription object 
+    // return: true for success and false for error
     createSub(newSub)
     {   
         if (newSub instanceof Subscription)
@@ -243,5 +285,6 @@ module.exports.Database = Database;
 module.exports.Event = Event;
 module.exports.Subscription = Subscription;
 module.exports.Advertisement = Advertisement;
+module.exports.Reminder = Reminder;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -14,13 +14,16 @@ const database = new Database.Database();
 
 const tempEvent = new Database.Event();
 
+const { Worker, isMainThread, parentPort } = require('worker_threads');
+let remContrl;
+
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 
 client.on('ready', () => {
     console.log('I am ready!');
     client.user.setActivity("Don't forget!"); // "Playing <>" status message for bot
 
-    
+    remContrl = new Worker("reminderCtrl.js");
 
     //This should be opened as soon as the bot is ready! Do not close the connection to the pool later. :)
     pool.connect();
@@ -137,6 +140,32 @@ client.on("message", async message => {
         message.channel.send(`${result}`);
     }
 
+    // a temp version for create reminder
+    if (cmd === `${prefix}CreateReminder`)
+    {
+        let reminder = new Database.Reminder();
+
+        if (args[0] === undefined || args[1] === undefined) 
+        {
+            message.channel.send("command format error");
+        }
+        else 
+        {
+            // TODO:
+            // event id validation check
+
+            if (args[2] === undefined) // info is optional
+            {
+                reminder = new Database.Reminder(args[0], args[1]);
+            }
+            else 
+            {
+                reminder = new Database.Reminder(args[0], args[1], args[2]);  
+            }
+            database.CreateReminder(reminder);
+        }
+       
+    }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
