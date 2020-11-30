@@ -9,10 +9,9 @@ const pool = new Pool({
 });
 
 
-const Database = require('./database.js');
-const database = new Database.Database();
-
-const tempEvent = new Database.Event();
+const { Database, Event, Reminder, Advertisement, Subscription} = require('./database.js');
+const database = new Database();
+const tempEvent = new Event();
 
 const { Worker, isMainThread, parentPort } = require('worker_threads');
 let remContrl;
@@ -143,7 +142,7 @@ client.on("message", async message => {
     // a temp version for create reminder
     if (cmd === `${prefix}CreateReminder`)
     {
-        let reminder = new Database.Reminder();
+        let reminder;
 
         if (args[0] === undefined || args[1] === undefined) 
         {
@@ -156,11 +155,11 @@ client.on("message", async message => {
 
             if (args[2] === undefined) // info is optional
             {
-                reminder = new Database.Reminder(args[0], args[1]);
+                reminder = new Reminder(args[0], args[1]);
             }
             else 
             {
-                reminder = new Database.Reminder(args[0], args[1], args[2]);  
+                reminder = new Reminder(args[0], args[1], args[2]);  
             }
             database.CreateReminder(reminder);
         }
@@ -266,7 +265,7 @@ client.on("message", async message => {
             value.react('🤔')
             serverID = message.guild.id
    
-            database.createAdvert(new Database.Advertisement(messageID, eventID, serverID));
+            database.createAdvert(new Advertisement(messageID, eventID, serverID));
         });
         
     }
@@ -310,7 +309,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
         console.log(user.id);
         console.log(advert);
   
-        database.createSub(new Database.Subscription(user.id, advert.eventId));
+        database.createSub(new Subscription(user.id, advert.eventId));
     }
 });
 
