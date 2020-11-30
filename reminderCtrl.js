@@ -1,15 +1,18 @@
 
+// function timer
+const timer = ms => new Promise(res => setTimeout(res, ms));
 
 
-function remControl()
+// reminder control function
+async function remControl()
 {
-	console.log("reminder control looping");
+	while (1)
+	{
+		await timer(5000);
+		console.log("reminder control looping");
 
+		//TODO: check reminders in database
+	}
 
 }
 
-while (1)
-{
-	setTimeout(remControl, 5000);
-
-}
