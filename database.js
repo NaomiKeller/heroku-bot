@@ -5,7 +5,7 @@
 // Event class 
 class Event
 {
-    constructor(name, description, startTime, endTime, url, id = null)
+    constructor(name, description, startTime, endTime, url, userId, serverId, permission, id)
     {
        
         this.id = id;
@@ -14,35 +14,28 @@ class Event
         this.startTime = startTime;
         this.endTime = endTime;
         this.url = url;
-        
+        this.userId = userId;
+        this.serverId = serverId;
+        this.permission = permission;
     }
 
+    // this method only formats date/time
     toString()
-    {
-        let name = this.name;
-        let description = this.description;
-        let startTime = this.startTime;
-        let endTime = this.endTime;
-        let url = this.url;
+    {   
 
-        if (name === undefined)
-            name = "";
-        if (description === undefined)
-            description = "";
-        if (startTime === undefined || isNaN(startTime))
-            startTime = "";
-        else 
+        let startTime = this.startTime;
+        let endTime = this.endTime; 
+        
+        if (startTime !== undefined && !isNaN(startTime))
             startTime = new Date(this.startTime).toString();
        
-        if (endTime === undefined || isNaN(endTime))
-            endTime = "";
-        else 
-            endTime = new Date(this.endTime).toString();
        
-        if (url === undefined)
-            url = "";
-        
-        let string = `Event ID: ${this.id}\nEvent name: ${name}\nEvent description: ${description}\nEvent start time: ${startTime}\nEvent end time: ${endTime}\nEvent url: ${url}\n`;
+        if (endTime !== undefined && !isNaN(endTime))
+            endTime = new Date(this.endTime).toString();
+            
+    
+        let string = `Event ID: ${this.id}\nEvent name: ${this.name}\nEvent description: ${this.description}\nEvent start time: ${startTime}\nEvent end time: ${endTime}\nEvent url: ${url}\n` +
+                        `Event permission: ${this.permission}\nEvent owner: ${this.userId}\nEvent server: ${this.serverId}\n`;
         return string;
     }
 
@@ -114,8 +107,8 @@ class Database
     {
         if (newEvent instanceof Event)
         {
-            let query = `INSERT INTO EVENT (event_name, event_description, event_start, event_end, event_url) 
-                      VALUES (\'${newEvent.name}\', \'${newEvent.description}\', ${newEvent.startTime}, ${newEvent.endTime}, \'${newEvent.url}\');`;
+            let query = `INSERT INTO EVENT (event_name, event_description, event_start, event_end, event_url, event_userid, event_serverid, event_permission) 
+                      VALUES (\'${newEvent.name}\', \'${newEvent.description}\', ${newEvent.startTime}, ${newEvent.endTime}, \'${newEvent.url}\', \'${newEvent.userId}\', \'${newEvent.serverId}\', \'${newEvent.permission}\');`;
             
             this.pool.query(query, (err, res) => {
                 if(err) 
@@ -146,9 +139,9 @@ class Database
         let query = 'SELECT * FROM EVENT;';
  
         result = await this.pool.query(query);
-        for (let element of result.rows)
+        for (let i of result.rows)
         {
-            temp = new Event(element.event_name, element.event_description, Number(element.event_start), Number(element.event_end), element.event_url, element.event_id);
+            temp = new Event(i.event_name, i.event_description, Number(i.event_start), Number(i.event_end), i.event_url, i.event_userid, i.event_serverid, i.event_permission, i.event_id);
             eventArray.push(temp);
         }
 
@@ -166,8 +159,10 @@ class Database
                         where event_id = ${eventId};`;
             
         result = await this.pool.query(query);
+        result = result.rows[0];
+        console.log(result);
 
-        event = new Event(result.rows[0].event_name, result.rows[0].event_description, result.rows[0].event_start, result.rows[0].event_end, result.rows[0].event_url, result.rows[0].event_id);
+        event = new Event(result.event_name, result.event_description, result.event_start, result.event_end, result.event_url, result.event_userid, result.event_serverid, result.event_permission, result.event_id);
     
         return event;
     };

@@ -11,12 +11,39 @@ const pool = new Pool({
 
 const { Database, Event, Reminder, Advertisement, Subscription} = require('./database.js');
 const database = new Database();
-const tempEvent = new Event();
 
 const { Worker, isMainThread, parentPort } = require('worker_threads');
 let remContrl;
 
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+// a section for temporary event
+
+const tempEventsArray = Event[];
+
+// check if there is a temporary event being cached
+// parameter 1: user id
+// parameter 2: server id
+// parameter 3: temporary event array
+// return: object for existing, null for non-existing
+function checkTempEvent(userID, serverID, eventArray)
+{
+    for (element of eventArray)
+    {
+        if (element.userId === userID && element.serverId === serverID)
+        {
+            
+            return element;
+        }
+    }
+    return null;   
+}
+
+// section ends
+//////////////////////////////////////////////////////////////////////////////////////
+
 
 client.on('ready', () => {
     console.log('I am ready!');
@@ -47,7 +74,6 @@ client.on("message", async message => {
 
     if (cmd === `${prefix}date`) {
         return message.channel.send(`${d}`);
-
     }
 
     if (cmd === `${prefix}help`) {
@@ -63,65 +89,73 @@ client.on("message", async message => {
     }
     
     
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
     // event editor:
     // 
     if (cmd === `${prefix}event`) {
-   
-        switch (args[0])
+
+        let currentEvent = checkTempEvent(message.author.id, message.guild.id, tempEventsArray);
+        
+
+        if (args[0] !== "create" && currentEvent === null)
+            message.channel.send("Please use command \"!event create [event name]\" first");
+        else if (args[0] === "create" && currentEvent === null)
         {
-            case "create":
-                let newName = args.slice(1).join(' ');
-                tempEvent.name = newName;
-                break;
-
-            case "description":
-                let newDesc = args.slice(1).join(' ');
-                tempEvent.description = newDesc;
-                break;
-
-            case "start":
-                let start = new Date(args[1]);
-                tempEvent.startTime = start.getTime();
-                break;
-
-            case "end":
-                let end = new Date(args[1]);
-                tempEvent.endTime = end.getTime();
-                break;
-
-            case "url":
-                let newUrl = args.slice(1).join(' ');
-                tempEvent.url = newUrl;
-                break;
-
-            case "review":
-                message.channel.send(tempEvent.toString());
-                break;
-
-            case "confirm":
-                console.log(tempEvent);
-                if (tempEvent.name === undefined || tempEvent.startTime === undefined || tempEvent.endTime === undefined)
-                {
-                    message.channel.send(`Event name, start time and end time must be provided!`);
-                    break;
-                }
-                else 
-                {               
-                    database.createEvent(tempEvent); 
-                    message.channel.send("Create an Event");
-                }
-                
-            case "cancel":
-                    Object.keys(tempEvent).forEach(function(index) {
-                    tempEvent[index] = null;
-                });
-                break;
-
-            default:
-                break;
+            // create a temporary event in the array
+            tempEventsArray.push(new Event(args.slice(1).join(' ')));
+            currentEvent = checkTempEvent(message.author.id, message.guild.id, tempEventsArray);
+            currentEvent.userId = message.author.id;
+            currentEvent.serverId = message.guild.id;
         }
+        else
+        {
+            switch (args[0])
+            {
+
+                case "create":
+                    currentEvent.name = args.slice(1).join(' '));   // assign name
+                    break;
+
+                case "description":     
+                    currentEvent.description = args.slice(1).join(' '));    // assign description
+                    break;
+
+                case "start":
+                    currentEvent.startTime = (new Date(args[1])).getTime(); // assign starting time
+                    break;
+
+                case "end":
+                    currentEvent.endTime = (new Date(args[1])).getTime();   // assign ending time
+                    break;                
+
+                case "url":
+                    currentEvent.url = (args[1]);   // assign url
+                    break;
+
+                case "permission":
+                    currentEvent.permission = (Number(args[1]));   // assign permission
+                    break;
+
+                case "review":
+                    message.channel.send(currentEvent.toString());
+                    break;
+
+                case "confirm":
+                    database.createEvent(currentEvent); 
+                    message.channel.send("Create an Event");
+                    
+                case "cancel":
+                    // remove the temporary event entry
+                    tempEventsArray.splice(tempEventsArray.indexOf(currentEvent), 1);
+                    break;
+
+                default:
+                    break;
+            }
+        
+        }
+
+ 
 
     }
 
@@ -138,6 +172,9 @@ client.on("message", async message => {
         }
         message.channel.send(`${result}`);
     }
+ 
+    // event ends
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // a temp version for create reminder
     if (cmd === `${prefix}CreateReminder`)
@@ -165,9 +202,6 @@ client.on("message", async message => {
         }
        
     }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 
     //testing database features below...
