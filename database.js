@@ -34,7 +34,7 @@ class Event
             endTime = new Date(this.endTime).toString();
             
     
-        let string = `Event ID: ${this.id}\nEvent name: ${this.name}\nEvent description: ${this.description}\nEvent start time: ${startTime}\nEvent end time: ${endTime}\nEvent url: ${url}\n` +
+        let string = `Event ID: ${this.id}\nEvent name: ${this.name}\nEvent description: ${this.description}\nEvent start time: ${startTime}\nEvent end time: ${endTime}\nEvent url: ${this.url}\n` +
                         `Event permission: ${this.permission}\nEvent owner: ${this.userId}\nEvent server: ${this.serverId}\n`;
         return string;
     }
