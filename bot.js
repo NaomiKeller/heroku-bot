@@ -102,17 +102,13 @@ client.on("message", async message => {
         else if (args[0] === "create" && currentEvent === null)
         {
             // create a temporary event in the array
-            tempEventsArray.push(new Event());
-            currentEvent = checkTempEvent(message.author.id, message.guild.id, tempEventsArray);
-            
-            console.log(tempEventsArray);
-            console.log(currentEvent);
+            let newEvent = new Event();
+            newEvent.name = args.slice(1).join(' ');
+            newEvent.userId = message.author.id;
+            newEvent.serverId = message.guild.id;
 
-            currentEvent.name = args.slice(1).join(' ');
-            currentEvent.userId = message.author.id;
-            currentEvent.serverId = message.guild.id;
-            console.log(currentEvent);
-            console.log(tempEventsArray);
+            tempEventsArray.push(newEvent);
+            
         }
         else
         {
