@@ -113,11 +113,11 @@ client.on("message", async message => {
             {
 
                 case "create":
-                    currentEvent.name = args.slice(1).join(' '));   // assign name
+                    currentEvent.name = args.slice(1).join(' ');   // assign name
                     break;
 
                 case "description":     
-                    currentEvent.description = args.slice(1).join(' '));    // assign description
+                    currentEvent.description = args.slice(1).join(' ');    // assign description
                     break;
 
                 case "start":
