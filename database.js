@@ -39,6 +39,20 @@ class Event
         return string;
     }
 
+    fillBlank()
+    {
+        if (this.description === undefined)
+            this.description = null;
+        if (this.startTime === undefined)
+            this.startTime = null;
+        if (this.endTime === undefined)
+            this.endTime = null;
+        if (this.url === undefined)
+            this.url = null;
+        if (this.permission === undefined)
+            this.permission = 0;
+
+    }
     
 }
 

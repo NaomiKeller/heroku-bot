@@ -144,6 +144,9 @@ client.on("message", async message => {
                     break;
 
                 case "confirm":
+                    // final check before submitting to the Database
+                    currentEvent.fillBlank();
+                    
                     database.createEvent(currentEvent); 
                     message.channel.send("Create an Event");
                     
