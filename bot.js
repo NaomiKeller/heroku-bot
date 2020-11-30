@@ -33,8 +33,7 @@ function checkTempEvent(userID, serverID, eventArray)
     for (element of eventArray)
     {
         if (element.userId === userID && element.serverId === serverID)
-        {
-            
+        { 
             return element;
         }
     }
@@ -144,11 +143,19 @@ client.on("message", async message => {
                     break;
 
                 case "confirm":
-                    // final check before submitting to the Database
-                    currentEvent.fillBlank();
+                    // event must have a name
+                    if (currentEvent.name === undefined)
+                    {
+                        message.channel.send("Event must have a name");
+                    }
+                    else 
+                    {
+                        // fill in empty properties
+                        currentEvent.fillBlank();
+                        database.createEvent(currentEvent); 
+                        message.channel.send("Create an Event");
+                    }
                     
-                    database.createEvent(currentEvent); 
-                    message.channel.send("Create an Event");
                     
                 case "cancel":
                     // remove the temporary event entry
