@@ -105,6 +105,9 @@ client.on("message", async message => {
             tempEventsArray.push(new Event());
             currentEvent = checkTempEvent(message.author.id, message.guild.id, tempEventsArray);
             
+            console.log(tempEventsArray);
+            console.log(currentEvent);
+
             currentEvent.name = args.slice(1).join(' ');
             currentEvent.userId = message.author.id;
             currentEvent.serverId = message.guild.id;
