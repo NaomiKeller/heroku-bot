@@ -7,7 +7,7 @@ const pool = new Pool({
         rejectUnauthorized: false
     }
 });
-
+// bot user id = 754442070596386967
 
 const { Database, Event, Reminder, Advertisement, Subscription} = require('./database.js');
 const database = new Database();
@@ -161,7 +161,7 @@ client.on("message", async message => {
             {
                 reminder = new Reminder(args[0], args[1], args[2]);  
             }
-            database.CreateReminder(reminder);
+            database.createReminder(reminder);
         }
        
     }
@@ -264,7 +264,7 @@ client.on("message", async message => {
             messageID = value.id;
             value.react('🤔')
             serverID = message.guild.id
-            console.log(value);
+            
             database.createAdvert(new Advertisement(messageID, eventID, serverID));
         });
         
