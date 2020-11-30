@@ -14,7 +14,7 @@ const database = new Database.Database();
 
 const tempEvent = new Database.Event();
 
-const { Worker, isMainThread, parentPort } = require('./worker_threads');
+const { Worker, isMainThread, parentPort } = require('worker_threads');
 let remContrl;
 
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
