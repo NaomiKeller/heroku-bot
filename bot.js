@@ -23,7 +23,7 @@ client.on('ready', () => {
     console.log('I am ready!');
     client.user.setActivity("Don't forget!"); // "Playing <>" status message for bot
 
-    remContrl = new Worker("reminderCtrl.js");
+    remContrl = new Worker("./reminderCtrl.js");
 
     //This should be opened as soon as the bot is ready! Do not close the connection to the pool later. :)
     pool.connect();
