@@ -26,11 +26,11 @@ class Event
         let startTime = this.startTime;
         let endTime = this.endTime; 
         
-        if (startTime !== undefined && !isNaN(startTime))
+        if (startTime !== undefined && !isNaN(startTime) && startTime !== 0)
             startTime = new Date(this.startTime).toString();
        
        
-        if (endTime !== undefined && !isNaN(endTime))
+        if (endTime !== undefined && !isNaN(endTime) && endTime !== 0)
             endTime = new Date(this.endTime).toString();
             
     
