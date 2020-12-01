@@ -244,7 +244,7 @@ class Database
         else
         {
             query = `DELETE FROM EVENT 
-                        WHERE EVENT_ID = ${event.id};`;
+                        WHERE EVENT_ID = ${eventId};`;
 
             await this.pool.query(query, (err, res) => {
                 if(err) 
