@@ -228,7 +228,7 @@ client.on("message", async message => {
     if (cmd === `${prefix}ListEvent`)
     {
         const eventArray = await database.listEvent();
-        let result;
+        let result = "";
 
         for (let element of eventArray)
         {

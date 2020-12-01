@@ -241,8 +241,12 @@ class Database
 
         if (isNaN(eventId))
             succeed = false;
-        else
+        else if (this.getEvent(eventId) === false)
+            succeed = false;
+        else 
         {
+            // TODO: delete all ralated entries(reminder, advertisement, subscription) before deleting the event
+
             query = `DELETE FROM EVENT 
                         WHERE EVENT_ID = ${eventId};`;
 
