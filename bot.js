@@ -220,8 +220,6 @@ client.on("message", async message => {
         
         }
 
- 
-
     }
 
     // a temp version for list events
@@ -248,20 +246,17 @@ client.on("message", async message => {
 
         if (args[0] === undefined || args[1] === undefined) 
         {
-            message.channel.send("command format error");
+            message.channel.send(invalid);
         }
         else 
         {
             // TODO:
             // event id validation check
 
-            if (args[2] === undefined) // info is optional
+            reminder = new Reminder(args[0], args[1]);
+            if (args[2] !== undefined) // info is optional
             {
-                reminder = new Reminder(args[0], args[1]);
-            }
-            else 
-            {
-                reminder = new Reminder(args[0], args[1], args[2]);  
+                reminder.info = args.slice(2).join(' ');
             }
             database.createReminder(reminder);
         }

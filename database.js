@@ -117,35 +117,7 @@ class Database
         });
     }
 
-    // create an event in the database
-    // parameter 1: an Event object 
-    // return: true for success and false for error
-    createEvent (newEvent) 
-    {
-        if (newEvent instanceof Event)
-        {
-            let query = `INSERT INTO EVENT (event_name, event_description, event_start, event_end, event_url, event_userid, event_serverid, event_permission) 
-                      VALUES (\'${newEvent.name}\', \'${newEvent.description}\', ${newEvent.startTime}, ${newEvent.endTime}, \'${newEvent.url}\', \'${newEvent.userId}\', \'${newEvent.serverId}\', \'${newEvent.permission}\');`;
-            
-            this.pool.query(query, (err, res) => {
-                if(err) 
-                {
-                    throw err;
-                    
-                }
-     
-            });
-
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-            
-    }
-
-    // edit an event
+    // edit an event (create or modify)
     // parameter 1: event object
     // return: true for success, false for error
     async editEvent(event)
