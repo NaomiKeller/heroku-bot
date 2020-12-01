@@ -177,8 +177,10 @@ class Database
                     throw err;
                 }
             });
+
+            succeed = true;
         }
-        console.log(succeed)
+        console.log(succeed);
         return succeed;
     }
 
