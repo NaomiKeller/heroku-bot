@@ -128,7 +128,7 @@ client.on("message", async message => {
                 }
                 else 
                 {
-                    currentEvent = database.getEvent(args[1]);
+                    currentEvent = await database.getEvent(args[1]);
                     console.log(currentEvent);
                     if (currentEvent === null)
                     {
