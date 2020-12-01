@@ -149,35 +149,36 @@ class Database
     {
         let query;
         let result;
+        let success;
 
         if (event instanceof Event === false)
-            return false;
-        
-        // create an event
-        if (isNaN(event.id))
-        {
-            query = `INSERT INTO EVENT (event_name, event_description, event_start, event_end, event_url, event_userid, event_serverid, event_permission) 
-                      VALUES (\'${newEvent.name}\', \'${newEvent.description}\', ${newEvent.startTime}, ${newEvent.endTime}, \'${newEvent.url}\', \'${newEvent.userId}\', \'${newEvent.serverId}\', \'${newEvent.permission}\');`;
-        }
-        // modify an existing event
+            success = false;
         else 
         {
-            query = `UPDATE EVENT
-                    SET EVENT_NAME = ${event.name}, EVENT_DESCRIPTION = ${event.description}, EVENT_START = ${event.startTime}, EVENT_END = ${event.endTime}, EVENT_URL = ${event.url}, EVENT_PERMISSION = ${event.permission}
-                    WHERE EVENT_ID = ${event.id};`;
+            // create an event
+            if (isNaN(event.id))       
+            {
+                query = `INSERT INTO EVENT (event_name, event_description, event_start, event_end, event_url, event_userid, event_serverid, event_permission) 
+                          VALUES (\'${newEvent.name}\', \'${newEvent.description}\', ${newEvent.startTime}, ${newEvent.endTime}, \'${newEvent.url}\', \'${newEvent.userId}\', \'${newEvent.serverId}\', \'${newEvent.permission}\');`;
+            }
+            // modify an existing event
+            else        
+            {
+                query = `UPDATE EVENT
+                        SET EVENT_NAME = ${event.name}, EVENT_DESCRIPTION = ${event.description}, EVENT_START = ${event.startTime}, EVENT_END = ${event.endTime}, EVENT_URL = ${event.url}, EVENT_PERMISSION = ${event.permission}
+                        WHERE EVENT_ID = ${event.id};`;
         
-        }
-        await this.pool.query(query, (err, res) => {
-            if(err) 
-                throw err;
-     
-        });
-        catch()
-        {
-            return false;
+            }
+            await this.pool.query(query, (err, res) => {
+                if(err) 
+                {
+                    success = false;
+                    throw err;
+                }
+            });
         }
 
-        return true;
+        return success;
     }
 
     // list all events in the database
