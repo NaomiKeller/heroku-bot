@@ -159,7 +159,7 @@ class Database
             if (isNaN(event.id))       
             {
                 query = `INSERT INTO EVENT (event_name, event_description, event_start, event_end, event_url, event_userid, event_serverid, event_permission) 
-                          VALUES (\'${newEvent.name}\', \'${newEvent.description}\', ${newEvent.startTime}, ${newEvent.endTime}, \'${newEvent.url}\', \'${newEvent.userId}\', \'${newEvent.serverId}\', \'${newEvent.permission}\');`;
+                          VALUES (\'${event.name}\', \'${event.description}\', ${event.startTime}, ${event.endTime}, \'${event.url}\', \'${event.userId}\', \'${event.serverId}\', \'${event.permission}\');`;
             }
             // modify an existing event
             else        
