@@ -26,11 +26,14 @@ class Event
         let startTime = this.startTime;
         let endTime = this.endTime; 
         
-        if (startTime !== undefined && !isNaN(startTime) && startTime !== 0)
+        if (startTime === undefined || startTime === null || isNaN(startTime) || startTime === 0)
+            startTime = null;
+        else 
             startTime = new Date(this.startTime).toString();
        
-       
-        if (endTime !== undefined && !isNaN(endTime) && endTime !== 0)
+        if (endTime === undefined || endTime === null || isNaN(endTime) || endTime === 0)
+            endTime = null;
+        else
             endTime = new Date(this.endTime).toString();
             
     
@@ -227,41 +230,11 @@ class Database
         
     };
 
-    /*
-    // to modify an EVENT
-    // parameter 1: event object
-    // return: true for success
-    async modifyEvent(event)
-    {
-        let query;
-        let result
-
-        // check if even id is a number
-        if (isNaN(event.eventId))
-            return false;
-        else 
-        {  
-            query = `UPDATE EVENT
-                    SET EVENT_NAME = ${event.name}, EVENT_DESCRIPTION = ${event.description}, EVENT_START = ${event.startTime}, EVENT_END = ${event.endTime}, EVENT_URL = ${event.url}, EVENT_PERMISSION = ${event.permission}
-                    WHERE EVENT_ID = ${event.id};`;
-
-            await this.pool.query(query, (err, res) => {
-                if(err) 
-                    throw err;
-                });
-
-            catch()
-            {
-                return false;
-            }
-            return true;
-        }     
-    }
-    */
-    // to remove an event from the database
+    
+    // to delete an event from the database
     // parameter 1: event id
     // return: true for success, false for error
-    async removeEvent(eventId)
+    async deleteEvent(eventId)
     {
         let succeed;
         let query;
@@ -281,6 +254,7 @@ class Database
                 }
  
             });
+            succeed = true;
         }
 
         return succeed;

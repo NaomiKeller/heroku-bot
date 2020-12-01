@@ -97,7 +97,7 @@ client.on("message", async message => {
         let currentEvent = checkTempEvent(message.author.id, message.guild.id, tempEventsArray);
         
 
-        if (currentEvent === null && args[0] !== "create" && args[0] !== "edit")
+        if (currentEvent === null && args[0] !== "create" && args[0] !== "edit" && args[0] !== "delete")
             message.channel.send("Use command \"!event create [event name]\" or \"!event edit [event id]\" first");
         else
         {
@@ -141,6 +141,15 @@ client.on("message", async message => {
                         currentEvent.userId = message.author.id;
                     }
 
+                }
+                break;
+                    
+            case "delete":
+                if (isNaN(args[1]))
+                    message.channel.send(invalid);
+                else if (await database.deleteEvent(args[1]))
+                {
+                    message.channel.send("Delete an event!");
                 }
                 break;
 
