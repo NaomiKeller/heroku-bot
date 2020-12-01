@@ -260,23 +260,27 @@ class Database
     // return: true for success, false for error
     async removeEvent(eventId)
     {
-        
-        if (isNaN(eventId))
-            return false;
+        let succeed;
+        let query;
 
-        let query = `DELETE FROM EVENT 
+        if (isNaN(eventId))
+            succeed = false;
+        else
+        {
+            query = `DELETE FROM EVENT 
                         WHERE EVENT_ID = ${event.id};`;
 
-        await this.pool.query(query, (err, res) => {
+            await this.pool.query(query, (err, res) => {
                 if(err) 
+                {
+                    succeed = false;
                     throw err;
-                });
-
-        catch()
-        {
-            return false;
+                }
+ 
+            });
         }
-        return true;
+
+        return succeed;
     }
 
     // create a Reminder
