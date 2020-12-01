@@ -22,6 +22,7 @@ const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 // a section for temporary event
 
 const tempEventsArray = [];
+const invalid = "Invalid command! Please view !help for a full list of valid commands!";
 
 // check if there is a temporary event being cached
 // parameter 1: user id
@@ -96,74 +97,115 @@ client.on("message", async message => {
         let currentEvent = checkTempEvent(message.author.id, message.guild.id, tempEventsArray);
         
 
-        if (args[0] !== "create" && currentEvent === null)
-            message.channel.send("Please use command \"!event create [event name]\" first");
-        else if (args[0] === "create" && currentEvent === null)
-        {
-            // create a temporary event in the array
-            let newEvent = new Event();
-            newEvent.name = args.slice(1).join(' ');
-            newEvent.userId = message.author.id;
-            newEvent.serverId = message.guild.id;
-
-            tempEventsArray.push(newEvent);
-            
-        }
+        if (currentEvent === null && args[0] !== "create" && args[0] !== "edit")
+            message.channel.send("Use command \"!event create [event name]\" or \"!event edit [event id]\" first");
         else
         {
             switch (args[0])
             {
 
-                case "create":
-                    currentEvent.name = args.slice(1).join(' ');   // assign name
-                    break;
+            case "create":      // create mode
+                if (currentEvent !== null)
+                    message.channel.send("Failure: There is an unsaved event. Use \"!event comfirm\" or \"!event cancel\"");
 
-                case "description":     
-                    currentEvent.description = args.slice(1).join(' ');    // assign description
-                    break;
+                else 
+                {
+                    currentEvent = new Event();
+                    currentEvent.userId = message.author.id;
+                    currentEvent.serverId = message.guild.id;
 
-                case "start":
-                    currentEvent.startTime = (new Date(args[1])).getTime(); // assign starting time
-                    break;
+                    tempEventsArray.push(currentEvent); 
+                }
+                break;
 
-                case "end":
-                    currentEvent.endTime = (new Date(args[1])).getTime();   // assign ending time
-                    break;                
-
-                case "url":
-                    currentEvent.url = (args[1]);   // assign url
-                    break;
-
-                case "permission":
-                    currentEvent.permission = (Number(args[1]));   // assign permission
-                    break;
-
-                case "review":
-                    message.channel.send(currentEvent.toString());
-                    break;
-
-                case "confirm":
-                    // event must have a name
-                    if (currentEvent.name === undefined)
+            case "edit":        // edit mode
+                if (currentEvent !== null)
+                    message.channel.send("Failure: There is an unsaved event. Use \"!event comfirm\" or \"!event cancel\"");
+                
+                else if (isNaN(args[1]))
+                {
+                    message.channel.send(invalid);
+                }
+                else 
+                {
+                    currentEvent = database.getEvent(args[1]);
+                    if (currentEvent === null)
                     {
-                        message.channel.send("Event must have a name");
+                        message.channel.send(`Failure: There is no such event ID ${args[1]}`);
                     }
                     else 
                     {
-                        // fill in empty properties
-                        currentEvent.fillBlank();
-                        database.createEvent(currentEvent); 
-                        message.channel.send("Create an Event");
+                        tempEventsArray.push(currentEvent);  
+                        currentEvent.ownerId = currentEvent.userId;         // save the previous id in ownerId 
+                        currentEvent.userId = message.author.id;
                     }
-                    
-                    
-                case "cancel":
-                    // remove the temporary event entry
-                    tempEventsArray.splice(tempEventsArray.indexOf(currentEvent), 1);
-                    break;
 
-                default:
-                    break;
+                }
+                break;
+
+            case "name":        
+                currentEvent.name = args.slice(1).join(' ');   // assign name
+                break;
+
+            case "description":     
+                currentEvent.description = args.slice(1).join(' ');    // assign description
+                break;
+
+            case "start":
+                currentEvent.startTime = (new Date(args[1])).getTime(); // assign starting time
+                break;
+
+            case "end":
+                currentEvent.endTime = (new Date(args[1])).getTime();   // assign ending time
+                break;                
+
+            case "url":
+                currentEvent.url = (args[1]);   // assign url
+                break;
+
+            case "permission":
+                if (!isNaN(args[1]))
+                {
+                    currentEvent.permission = (Number(args[1]));   // assign permission
+                }
+                break;
+
+            case "review":
+                message.channel.send(currentEvent.toString());
+                break;
+
+            case "confirm":
+                // event must have a name
+                if (currentEvent.name === undefined)
+                {
+                    message.channel.send("Event must have a name");
+                }
+                else 
+                {      
+                    if (currentEvent.ownerId !== undefined)
+                        currentEvent.userId = currentEvent.ownerId;
+
+                    currentEvent.fillBlank();       // fill in empty properties
+                    if (await database.editEvent(currentEvent) === false)
+                    {
+                        message.channel.send("Failure in submitting event");
+                        break;
+                    }
+                    else 
+                    {
+                        message.channel.send("Create an event!");
+                    }
+                        
+                }
+                    
+            case "cancel":
+                // remove the temporary event entry
+                tempEventsArray.splice(tempEventsArray.indexOf(currentEvent), 1);
+                console.log(tempEventsArray);
+                break;
+
+            default:
+                break;
             }
         
         }

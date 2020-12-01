@@ -142,6 +142,44 @@ class Database
             
     }
 
+    // edit an event
+    // parameter 1: event object
+    // return: true for success, false for error
+    async editEvent(event)
+    {
+        let query;
+        let result;
+
+        if (event instanceof Event === false)
+            return false;
+        
+        // create an event
+        if (isNaN(event.id))
+        {
+            query = `INSERT INTO EVENT (event_name, event_description, event_start, event_end, event_url, event_userid, event_serverid, event_permission) 
+                      VALUES (\'${newEvent.name}\', \'${newEvent.description}\', ${newEvent.startTime}, ${newEvent.endTime}, \'${newEvent.url}\', \'${newEvent.userId}\', \'${newEvent.serverId}\', \'${newEvent.permission}\');`;
+        }
+        // modify an existing event
+        else 
+        {
+            query = `UPDATE EVENT
+                    SET EVENT_NAME = ${event.name}, EVENT_DESCRIPTION = ${event.description}, EVENT_START = ${event.startTime}, EVENT_END = ${event.endTime}, EVENT_URL = ${event.url}, EVENT_PERMISSION = ${event.permission}
+                    WHERE EVENT_ID = ${event.id};`;
+        
+        }
+        await this.pool.query(query, (err, res) => {
+            if(err) 
+                throw err;
+     
+        });
+        catch()
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     // list all events in the database
     // parameter 1: none
     // return: an array of Event objects
@@ -164,7 +202,7 @@ class Database
 
     // to get a single event 
     // parameter 1: event ID 
-    // return: event object
+    // return: event object or null 
     async getEvent(eventId)
     {
         let result;
@@ -173,13 +211,72 @@ class Database
                         where event_id = ${eventId};`;
             
         result = await this.pool.query(query);
-        result = result.rows[0];
-        console.log(result);
-
-        event = new Event(result.event_name, result.event_description, result.event_start, result.event_end, result.event_url, result.event_userid, result.event_serverid, result.event_permission, result.event_id);
+        if (result.rows.length === 0)
+            return null;
+        else 
+        {
+            result = result.rows[0];
+            event = new Event(result.event_name, result.event_description, result.event_start, result.event_end, result.event_url, result.event_userid, result.event_serverid, result.event_permission, result.event_id);
     
-        return event;
+            return event;
+        }
+        
     };
+
+    /*
+    // to modify an EVENT
+    // parameter 1: event object
+    // return: true for success
+    async modifyEvent(event)
+    {
+        let query;
+        let result
+
+        // check if even id is a number
+        if (isNaN(event.eventId))
+            return false;
+        else 
+        {  
+            query = `UPDATE EVENT
+                    SET EVENT_NAME = ${event.name}, EVENT_DESCRIPTION = ${event.description}, EVENT_START = ${event.startTime}, EVENT_END = ${event.endTime}, EVENT_URL = ${event.url}, EVENT_PERMISSION = ${event.permission}
+                    WHERE EVENT_ID = ${event.id};`;
+
+            await this.pool.query(query, (err, res) => {
+                if(err) 
+                    throw err;
+                });
+
+            catch()
+            {
+                return false;
+            }
+            return true;
+        }     
+    }
+    */
+    // to remove an event from the database
+    // parameter 1: event id
+    // return: true for success, false for error
+    async removeEvent(eventId)
+    {
+        
+        if (isNaN(eventId))
+            return false;
+
+        let query = `DELETE FROM EVENT 
+                        WHERE EVENT_ID = ${event.id};`;
+
+        await this.pool.query(query, (err, res) => {
+                if(err) 
+                    throw err;
+                });
+
+        catch()
+        {
+            return false;
+        }
+        return true;
+    }
 
     // create a Reminder
     // parameter 1: a reminder object
