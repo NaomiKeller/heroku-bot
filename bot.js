@@ -129,6 +129,7 @@ client.on("message", async message => {
                 else 
                 {
                     currentEvent = database.getEvent(args[1]);
+                    console.log(currentEvent);
                     if (currentEvent === null)
                     {
                         message.channel.send(`Failure: There is no such event ID ${args[1]}`);
