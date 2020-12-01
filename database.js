@@ -149,10 +149,10 @@ class Database
     {
         let query;
         let result;
-        let success;
+        let succeed;
 
         if (event instanceof Event === false)
-            success = false;
+            succeed = false;
         else 
         {
             // create an event
@@ -165,20 +165,21 @@ class Database
             else        
             {
                 query = `UPDATE EVENT
-                        SET EVENT_NAME = ${event.name}, EVENT_DESCRIPTION = ${event.description}, EVENT_START = ${event.startTime}, EVENT_END = ${event.endTime}, EVENT_URL = ${event.url}, EVENT_PERMISSION = ${event.permission}
+                        SET EVENT_NAME = \'${event.name}\', EVENT_DESCRIPTION = \'${event.description}\', EVENT_START = ${event.startTime}, EVENT_END = ${event.endTime}, EVENT_URL = \'${event.url}\', EVENT_PERMISSION = ${event.permission}
                         WHERE EVENT_ID = ${event.id};`;
         
             }
+            console.log(query);
             await this.pool.query(query, (err, res) => {
                 if(err) 
                 {
-                    success = false;
+                    succeed = false;
                     throw err;
                 }
             });
         }
-
-        return success;
+        console.log(succeed)
+        return succeed;
     }
 
     // list all events in the database

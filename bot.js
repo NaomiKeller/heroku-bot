@@ -194,7 +194,7 @@ client.on("message", async message => {
                     }
                     else 
                     {
-                        message.channel.send("Create an event!");
+                        message.channel.send("Submit an event!");
                     }
                         
                 }
