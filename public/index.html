@@ -7,6 +7,9 @@
 		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/style.css">
+
+		
+
 	</head>
 
 	<body class="loginWrapper mt-5">
@@ -15,11 +18,11 @@
 			<h4 class="label text-white">Admin Login</h4>
 			<form class="loginForm" action="/" method="post" name="form">
 				<div class="text">Username</div>
-				<input autocomplete="off" type="text" name="username" value="this is brokey, just click login">
+				<input autocomplete="off" type="text" name="username">
 				<div class="text">Password</div>
-				<input autocomplete="off" type="password" name="password" value="just click login">
+				<input autocomplete="off" type="password" name="password">
 				<button type="submit" class="mt-5 btn-primary">Login</button>
-				<div id="loginError">Your credentials are incorrect.</div>
+				<div id="loginError" name="loginError">Your credentials are incorrect.</div>
 			</form>
 		</div>
 
@@ -28,7 +31,7 @@
 			because node cannot parse data from client side (browser). so i need to find some sort of workaround
 			to make the client side user input to interact with node.
 		-->
-		<!-- <script src="js/valid.js" type="application/javascript;charset=utf-8"></script> -->
+
 		<script src="../js/jquery.min.js" type="application/javascript;charset=utf-8"></script>
 		<script src="../js/popper.js" type="application/javascript;charset=utf-8"></script>
 		<script src="../js/bootstrap.min.js" type="application/javascript;charset=utf-8"></script>

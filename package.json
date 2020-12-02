@@ -8,6 +8,8 @@
     },
     "license": "ISC",
     "dependencies": {
+        "alert": "^5.0.6",
+        "body-parser": "^1.19.0",
         "discord.js": "^12.3.1",
         "express": "^4.17.1",
         "heroku-self-ping": "^2.0.1",
