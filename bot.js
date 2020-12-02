@@ -292,7 +292,7 @@ client.on("message", async message => {
     {
         if (args[0] === undefined || isNaN(args[0]))
             message.channel.send(invalid);
-        else if (await database.DeleteReminder(args[0]) === true)
+        else if (await database.deleteReminder(args[0]) === true)
         {            
             message.channel.send(`Delete a reminder!`);  
         }
