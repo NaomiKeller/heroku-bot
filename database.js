@@ -306,7 +306,7 @@ class Database
     // delete a reminder
     // parameter 1: reminder id
     // return: true for success and false for Error
-    deleteReminder(remId)
+    async deleteReminder(remId)
     {
         let succeed;
         let query;
