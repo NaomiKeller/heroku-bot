@@ -347,8 +347,6 @@ class Database
             succeed = false;
         else 
         {
-            // TODO: delete all ralated entries(reminder, advertisement, subscription) before deleting the event
-
             query = `DELETE FROM REMINDER 
                         WHERE REM_ID = ${remId};`;
 
@@ -365,6 +363,8 @@ class Database
             
         }
 
+        console.log("inside");
+        console.log(succeed);
         return succeed;
     
     }

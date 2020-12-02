@@ -296,6 +296,10 @@ client.on("message", async message => {
         {            
             message.channel.send(`Delete a reminder!`);  
         }
+        else 
+        {
+            console.log("error");
+        }
     }
 
 
