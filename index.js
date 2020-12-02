@@ -49,8 +49,17 @@ app.get('/help', (req, res) => {
 
 // this new post is to check username & password 
 app.post('/', (req, res) => {
-
-	console.log(req, "\n", req.body);
+	
+	console.log(req.body.username, req.body.password);
+	if (req.body.username === "admin" && req.body.password === "pass")	// if match authentication
+	{
+		res.redirect("/home");
+	}
+	else 
+	{
+		res.redirect("/");
+		// TODO: need send a message to prompt the user that either username or password is incorrect 
+	}
  
 });
 
