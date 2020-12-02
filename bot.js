@@ -13,7 +13,6 @@ const { Database, Event, Reminder, Advertisement, Subscription} = require('./dat
 const database = new Database();
 
 const { Worker, isMainThread, parentPort } = require('worker_threads');
-let remContrl;
 
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 
@@ -49,7 +48,9 @@ client.on('ready', () => {
     console.log('I am ready!');
     client.user.setActivity("Don't forget!"); // "Playing <>" status message for bot
 
-    remContrl = new Worker("./reminderCtrl.js");
+    // other threads
+    let remContrl = new Worker("./reminderCtrl.js");    // reminder control thread
+    let selfPing = new Worker("./selfPing.js");         // self ping thread
 
     //This should be opened as soon as the bot is ready! Do not close the connection to the pool later. :)
     pool.connect();
