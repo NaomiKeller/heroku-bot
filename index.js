@@ -3,7 +3,6 @@ const app = express();
 const path = require('path');
 const router = express.Router();
 const bodyParser = require("body-parser");
-const alert = require('alert');
 const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -55,13 +54,9 @@ app.post('/', (req, res) => {
 	if (req.body.username === "admin" && req.body.password === "pass")	// if match authentication
 	{
     res.redirect("/home");
-	}
-	else 
-	{
+	} else {
     res.redirect("/");
-    alert("Your login credentials were incorrect.");
-		// TODO: need send a message to prompt the user that either username or password is incorrect 
-	}
+  }
  
 });
 
