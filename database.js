@@ -70,6 +70,21 @@ class Reminder
         this.id = id;
     }
 
+    toString()
+    {
+        let string = `ID: ${this.id}\nEvent ID: ${this.eventId}\n`;
+
+        if (this.time === undefined || isNaN(this.time) || this.time === 0)
+            string += "";
+        else 
+            string += new Date(this.time).toString();
+
+        string += `\nInfo: ${this.info}\n`;
+
+        return string;
+
+    }
+
 }
 
 // subscription class
@@ -151,9 +166,11 @@ class Database
                     succeed = false;
                     throw err;
                 }
+                else 
+                    succeed = true;
             });
 
-            succeed = true;
+            
         }
         console.log(succeed);
         return succeed;
@@ -228,13 +245,16 @@ class Database
                     succeed = false;
                     throw err;
                 }
+                else 
+                    succeed = true;
  
-            });
-            succeed = true;
+            });  
         }
 
         return succeed;
     }
+
+    
 
     // create a Reminder
     // parameter 1: a reminder object
@@ -262,6 +282,62 @@ class Database
             return false;
     }
 
+    // list all reminders in the database
+    // parameter 1: none
+    // return: an array of reminder objects
+    async listEvent()
+    {
+        let result;
+        let remArray = [];
+        let temp;
+        let query = 'SELECT * FROM REMINDER;';
+ 
+        result = await this.pool.query(query);
+        for (let i of result.rows)
+        {
+            temp = new Reminder(i.rem_eventid, Number(i.rem_time), i.rem_info, Number(i.rem_id));
+            remArray.push(temp);
+        }
+
+        return remArray;
+    };
+
+
+    // delete a reminder
+    // parameter 1: reminder id
+    // return: true for success and false for Error
+    deleteReminder(remId)
+    {
+        let succeed;
+        let query;
+
+        if (isNaN(remId))
+            succeed = false;
+        else if (this.getEvent(remId) === false)
+            succeed = false;
+        else 
+        {
+            // TODO: delete all ralated entries(reminder, advertisement, subscription) before deleting the event
+
+            query = `DELETE FROM REMINDER 
+                        WHERE REM_ID = ${remId};`;
+
+            await this.pool.query(query, (err, res) => {
+                if(err) 
+                {
+                    succeed = false;
+                    throw err;
+                }
+                else 
+                    succeed = true;
+ 
+            });
+            
+        }
+
+        return succeed;
+    
+    }
 
     // create an advertisement in the database
     // parameter: an advertisement object 

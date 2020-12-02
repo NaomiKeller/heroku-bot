@@ -244,15 +244,16 @@ client.on("message", async message => {
     {
         let reminder;
 
-        if (args[0] === undefined || args[1] === undefined) 
+        if (args[0] === undefined || args[1] === undefined || isNaN(args[0]) || isNaN(args[1]) ) 
         {
             message.channel.send(invalid);
         }
+        else if (await database.getEvent(args[0]) === null)
+        {
+            message.channel.send(`Invalid Event ID!`);
+        }
         else 
         {
-            // TODO:
-            // event id validation check
-
             reminder = new Reminder(args[0], args[1]);
             if (args[2] !== undefined) // info is optional
             {
@@ -260,7 +261,20 @@ client.on("message", async message => {
             }
             database.createReminder(reminder);
         }
-       
+    }
+
+    // list reminders
+    if (cmd === `${prefix}ListReminder`)
+    {
+        const remArray = await database.ListReminder();
+        let result = "";
+
+        for (let element of remArray)
+        {
+            result += element.toString();
+            result += '\n';
+        }
+        message.channel.send(`${result}`);
     }
 
 
