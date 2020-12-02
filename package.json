@@ -12,6 +12,7 @@
         "express": "^4.17.1",
         "heroku-self-ping": "^2.0.1",
         "pg": "^8.4.2",
+        "ping": "^0.3.0",
         "worker-threads": "^1.0.0"
     },
     "engines": {

@@ -232,7 +232,7 @@ class Database
             succeed = false;
         else 
         {
-            // TODO: delete all ralated entries(reminder, advertisement, subscription) before deleting the event
+            // TODO: delete all ralative entries(reminder, advertisement, subscription) before deleting the event
 
             query = `DELETE FROM EVENT 
                         WHERE EVENT_ID = ${eventId};`;
