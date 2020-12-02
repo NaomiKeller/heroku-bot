@@ -266,7 +266,7 @@ client.on("message", async message => {
     // list reminders
     if (cmd === `${prefix}ListReminder`)
     {
-        const remArray = await database.ListReminder();
+        const remArray = await database.listReminder();
         let result = "";
 
         for (let element of remArray)

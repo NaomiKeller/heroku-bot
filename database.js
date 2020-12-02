@@ -285,7 +285,7 @@ class Database
     // list all reminders in the database
     // parameter 1: none
     // return: an array of reminder objects
-    async listEvent()
+    async listReminder()
     {
         let result;
         let remArray = [];
