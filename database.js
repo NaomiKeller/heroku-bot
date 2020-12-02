@@ -357,8 +357,12 @@ class Database
                     throw err;
                 }
                 else 
+                {
                     succeed = true;
- 
+                    console.log("in query");
+                    console.log(succeed);
+                }
+
             });
             
         }
