@@ -72,7 +72,7 @@ class Reminder
 
     toString()
     {
-        let string = `ID: ${this.id}\nEvent ID: ${this.eventId}\n`;
+        let string = `Reminder ID: ${this.id}\nEvent ID: ${this.eventId}\nTime: `;
 
         if (this.time === undefined || isNaN(this.time) || this.time === 0)
             string += "";
@@ -187,6 +187,10 @@ class Database
         let query = 'SELECT * FROM EVENT;';
  
         result = await this.pool.query(query);
+
+        if (result.rows.length === 0)
+            return null;
+
         for (let i of result.rows)
         {
             temp = new Event(i.event_name, i.event_description, Number(i.event_start), Number(i.event_end), i.event_url, i.event_userid, i.event_serverid, i.event_permission, i.event_id);
@@ -293,6 +297,10 @@ class Database
         let query = 'SELECT * FROM REMINDER;';
  
         result = await this.pool.query(query);
+
+        if (result.rows.length === 0)
+            return null;
+
         for (let i of result.rows)
         {
             temp = new Reminder(i.rem_eventid, Number(i.rem_time), i.rem_info, Number(i.rem_id));

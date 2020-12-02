@@ -228,12 +228,17 @@ client.on("message", async message => {
         const eventArray = await database.listEvent();
         let result = "";
 
-        for (let element of eventArray)
+        if (eventArray === null)
+            message.channel.send(`No Events.`);
+        else 
         {
-            result += element.toString();
-            result += '\n';
+            for (let element of eventArray)
+            {
+                result += element.toString();
+                result += '\n';
+            }
+            message.channel.send(`${result}`);
         }
-        message.channel.send(`${result}`);
     }
  
     // event ends
@@ -269,12 +274,17 @@ client.on("message", async message => {
         const remArray = await database.listReminder();
         let result = "";
 
-        for (let element of remArray)
+        if (remArray === null)
+            message.channel.send(`No Reminder.`);
+        else 
         {
-            result += element.toString();
-            result += '\n';
+             for (let element of remArray)
+            {
+                result += element.toString();
+                result += '\n';
+            }
+            message.channel.send(`${result}`);
         }
-        message.channel.send(`${result}`);
     }
 
 
