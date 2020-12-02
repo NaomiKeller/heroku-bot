@@ -47,6 +47,13 @@ app.get('/help', (req, res) => {
 
 // posts
 
+// this new post is to check username & password 
+app.post('/', (req, res) => {
+
+	console.log(req, "\n", req.body);
+ 
+});
+
 app.post('/home', (req, res) => {
   res.redirect("/home");
 });
