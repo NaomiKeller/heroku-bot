@@ -5,7 +5,7 @@ const ping = require('ping');
 const timer = ms => new Promise(res => setTimeout(res, ms));
 
 const host = "forgetmebot.herokuapp.com";	// website
-forgetmebot.herokuapp.com
+
 // self ping function
 async function selfPing()
 {
