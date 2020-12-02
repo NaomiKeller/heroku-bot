@@ -162,17 +162,11 @@ class Database
             console.log(query);
             await this.pool.query(query, (err, res) => {
                 if(err) 
-                {
-                    succeed = false;
-                    throw err;
-                }
-                else 
-                    succeed = true;
+                    throw err; 
             });
-
-            
+    
         }
-        console.log(succeed);
+        succeed = true;
         return succeed;
     }
 
@@ -244,21 +238,16 @@ class Database
                         WHERE EVENT_ID = ${eventId};`;
 
             await this.pool.query(query, (err, res) => {
-                if(err) 
-                {
-                    succeed = false;
+                if(err)             
                     throw err;
-                }
-                else 
-                    succeed = true;
- 
+
             });  
         }
+        succeed = true;
 
         return succeed;
     }
 
-    
 
     // create a Reminder
     // parameter 1: a reminder object
@@ -271,13 +260,10 @@ class Database
             let query = `INSERT INTO REMINDER (rem_eventid, rem_time, rem_info) 
                       VALUES (\'${newReminder.eventId}\', ${newReminder.time}, \'${newReminder.info}\');`;
             
-            console.log(query);
             this.pool.query(query, (err, res) => {
                 if(err) 
-                {
-                    console.error(err);
-                }
-     
+                    throw err;
+
             });
 
             return true;
@@ -352,23 +338,12 @@ class Database
 
             await this.pool.query(query, (err, res) => {
                 if(err) 
-                {
-                    succeed = false;
-                    throw err;
-                }
-                else 
-                {
-                    succeed = true;
-                    console.log("in query");
-                    console.log(succeed);
-                }
-
-            });
+                    throw err;           
+            }); 
             
         }
+        succeed = true;
 
-        console.log("inside");
-        console.log(succeed);
         return succeed;
     
     }
@@ -434,11 +409,7 @@ class Database
             console.log(query);
             this.pool.query(query, (err, res) => {
                 if(err) 
-                {
                     throw err;
-                    return false;
-                }
-     
             });
 
             return true;
