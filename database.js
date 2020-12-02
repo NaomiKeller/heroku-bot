@@ -310,6 +310,28 @@ class Database
         return remArray;
     };
 
+    // to get a single reminder 
+    // parameter 1: reminder ID 
+    // return: reminder object or null 
+    async getReminder(remId)
+    {
+        let result;
+        let reminder;
+        let query = `SELECT * FROM REMINDER
+                        where rem_id = ${remId};`;
+            
+        result = await this.pool.query(query);
+        if (result.rows.length === 0)
+            return null;
+        else 
+        {
+            result = result.rows[0];
+            temp = new Reminder(result.rem_eventid, Number(result.rem_time), result.rem_info, Number(result.rem_id));
+
+            return reminder;
+        }
+        
+    };
 
     // delete a reminder
     // parameter 1: reminder id

@@ -144,7 +144,7 @@ client.on("message", async message => {
                 }
                 break;
                     
-            case "delete":
+            case "delete":      // delete mode
                 if (isNaN(args[1]))
                     message.channel.send(invalid);
                 else if (await database.deleteEvent(args[1]))
@@ -284,6 +284,17 @@ client.on("message", async message => {
                 result += '\n';
             }
             message.channel.send(`${result}`);
+        }
+    }
+
+    // delete Reminder
+    if (cmd === `${prefix}DeleteReminder`)
+    {
+        if (args[0] === undefined || isNaN(args[0]))
+            message.channel.send(invalid);
+        else if (await database.DeleteReminder(args[0]) === true)
+        {            
+            message.channel.send(`Delete a reminder!`);  
         }
     }
 
