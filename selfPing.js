@@ -15,7 +15,7 @@ async function selfPing()
 		console.log("self ping");
 		await ping.sys.probe(host, function(isAlive){
 			let msg = isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
-			
+			console.log(msg);
 		})
 	}
 
