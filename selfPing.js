@@ -4,8 +4,8 @@ const ping = require('ping');
 // timer function
 const timer = ms => new Promise(res => setTimeout(res, ms));
 
-const host = "google.com";	// website
-
+const host = "forgetmebot.herokuapp.com";	// website
+forgetmebot.herokuapp.com
 // self ping function
 async function selfPing()
 {
