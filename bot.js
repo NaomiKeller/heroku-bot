@@ -50,7 +50,7 @@ client.on('ready', () => {
 
     // other threads
     let remContrl = new Worker("./reminderCtrl.js");    // reminder control thread
-    let selfPing = new Worker("./selfPing.js");         // self ping thread
+    
 
     //This should be opened as soon as the bot is ready! Do not close the connection to the pool later. :)
     pool.connect();
