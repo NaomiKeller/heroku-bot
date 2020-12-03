@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/public')));
-//app.use('/js', express.static(path.join(__dirname, '/public/js')));
+
 console.log(__dirname);
 
 
@@ -54,14 +54,15 @@ app.get('/help', (req, res) => {
 // this new post is to check username & password 
 app.post('/', (req, res) => {
 	
+	console.log(req.body);
 	console.log(req.body.username, req.body.password);
 	if (req.body.username === "admin" && req.body.password === "pass")	// if match authentication
 	{
-		res.redirect("/home");
+		console.log("correct");
+		res.sendFile(path.join(__dirname+'/public/home.html'));
 	} else {
 		
 		res.send("false");
-		
 		//res.redirect("/");
 	}
  

@@ -16,12 +16,12 @@
 		<div class="loginContainer mt-5">
 			<h1 class="label text-white font-weight-bold">Forget Me Bot</h1>
 			<h4 class="label text-white">Admin Login</h4>
-			<form class="loginForm" action="/" method="post" name="form" onclick="loginReq()">
+			<form class="loginForm" action="/" method="post" name="form">
 				<div class="text">Username</div>
 				<input autocomplete="off" type="text" name="username">
 				<div class="text">Password</div>
 				<input autocomplete="off" type="password" name="password">
-				<button type="button" class="mt-5 btn-primary" id="loginbtn">Login</button>
+				<button type="button" class="mt-5 btn-primary" id="loginbtn" onclick="loginReq()">Login</button>
 				<div id="loginError" name="loginError">Your credentials are incorrect.</div>
 			</form>
 		</div>
@@ -32,12 +32,15 @@
 		to make the client side user input to interact with node.
 	-->
 
-		<script src="../js/jquery.min.js" type="application/javascript;charset=utf-8"></script>
+		<script src="../js/jquery.min.js" type="application/javascript"></script>
 		<script src="../js/popper.js" type="application/javascript;charset=utf-8"></script>
 		<script src="../js/bootstrap.min.js" type="application/javascript;charset=utf-8"></script>
 		<script src="../index.js" type="application/javascript;charset=utf-8"></script>
-		<script src="/js/login.js" type="application/javascript"></script>
 		
+		
+		<script src="/js/login.js" type="application/javascript"></script>
+
+
 	</body>
 	  
 </html>
