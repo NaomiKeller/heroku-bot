@@ -1,7 +1,8 @@
 
 // control login form
 
-
+var username = document.forms['form']['username']
+var password = document.forms['form']['password']
 
 function loginReq()
 {
@@ -14,7 +15,10 @@ function loginReq()
             alert("Your credentials are incorrect.");
     };
 
-    request.send();
+    request.send(JSON.stringify({
+        username: username.value,
+        password: password.value
+    }));
 
     
 }
