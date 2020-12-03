@@ -53,9 +53,10 @@ app.post('/', (req, res) => {
 	console.log(req.body.username, req.body.password);
 	if (req.body.username === "admin" && req.body.password === "pass")	// if match authentication
 	{
-    res.redirect("/home");
+		res.redirect("/home");
 	} else {
-		res.send("send back");
+		//res.send("send back");
+		res.json({msg: "send back"});
 		//res.redirect("/");
   }
  
