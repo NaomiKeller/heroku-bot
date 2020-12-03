@@ -14,7 +14,7 @@ console.log(__dirname);
 // (is there a more efficient way of doing this other than getting and posting every individual fucking page?)
 
 router.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname+'/index.html')); // login
+	res.sendFile('/index.html')); // login path.join(__dirname+
 });
 
 app.get('/home', (req, res) => {
