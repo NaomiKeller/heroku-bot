@@ -46,6 +46,12 @@ app.get('/help', (req, res) => {
   res.sendFile(path.join(__dirname+'/public/help.html'));
 });
 
+// get js file request
+
+app.get('/js/login.js', (req, res) => {
+	res.sendFile('/js/login.js');
+});
+
 // posts
 
 // this new post is to check username & password 
