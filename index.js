@@ -55,7 +55,8 @@ app.post('/', (req, res) => {
 	{
     res.redirect("/home");
 	} else {
-    res.redirect("/");
+		res.send("send back");
+		//res.redirect("/");
   }
  
 });
