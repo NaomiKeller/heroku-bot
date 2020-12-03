@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/public')));
 console.log(__dirname);
+console.log(path.join(__dirname, '/public'));
 
 // NAVIGATION 
 // (is there a more efficient way of doing this other than getting and posting every individual fucking page?)
