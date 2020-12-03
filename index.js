@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/public')));
+//app.use('/js', express.static(path.join(__dirname, '/public/js')));
 console.log(__dirname);
 
 
@@ -46,11 +47,7 @@ app.get('/help', (req, res) => {
   res.sendFile(path.join(__dirname+'/public/help.html'));
 });
 
-// get js file request
 
-app.get('/js/login.js', (req, res) => {
-	res.sendFile('/js/login.js');
-});
 
 // posts
 
@@ -62,9 +59,9 @@ app.post('/', (req, res) => {
 	{
 		res.redirect("/home");
 	} else {
-		//res.sendFile(path.join(__dirname+'/public/js/login.js'));
-		//res.send("send back");
-		//res.json({msg: "send back"});
+		
+		res.send("false");
+		
 		//res.redirect("/");
   }
  
