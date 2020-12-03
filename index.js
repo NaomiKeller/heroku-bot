@@ -55,7 +55,7 @@ app.post('/', (req, res) => {
 	{
 		res.redirect("/home");
 	} else {
-		res.sendFile(path.join(__dirname+'/public/js/login.js'));
+		//res.sendFile(path.join(__dirname+'/public/js/login.js'));
 		//res.send("send back");
 		//res.json({msg: "send back"});
 		//res.redirect("/");
