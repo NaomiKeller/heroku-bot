@@ -107,7 +107,7 @@ client.on("message", async message => {
 
             case "create":      // create mode
                 if (currentEvent !== null)
-                    message.channel.send("Failure: There is an unsaved event. Use \"!event comfirm\" or \"!event cancel\"");
+                    message.channel.send("Failure: There is an unsaved event. Use \"!event confirm\" or \"!event cancel\"");
 
                 else 
                 {
@@ -121,7 +121,7 @@ client.on("message", async message => {
 
             case "edit":        // edit mode
                 if (currentEvent !== null)
-                    message.channel.send("Failure: There is an unsaved event. Use \"!event comfirm\" or \"!event cancel\"");
+                    message.channel.send("Failure: There is an unsaved event. Use \"!event confirm\" or \"!event cancel\"");
                 
                 else if (isNaN(args[1]))
                 {
@@ -150,7 +150,7 @@ client.on("message", async message => {
                     message.channel.send(invalid);
                 else if (await database.deleteEvent(args[1]))
                 {
-                    message.channel.send("Delete an event!");
+                    message.channel.send("Deleted an event!");
                 }
                 break;
 
@@ -204,7 +204,7 @@ client.on("message", async message => {
                     }
                     else 
                     {
-                        message.channel.send("Submit an event!");
+                        message.channel.send("Submitted an event!");
                     }
                         
                 }
@@ -295,7 +295,7 @@ client.on("message", async message => {
             message.channel.send(invalid);
         else if (await database.deleteReminder(args[0]) === true)
         {            
-            message.channel.send(`Delete a reminder!`);  
+            message.channel.send(`Deleted a reminder!`);  
         }
         else 
         {
