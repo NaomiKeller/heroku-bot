@@ -147,7 +147,24 @@ client.on("message", async message => {
 
                 }
                 break;
-                    
+                
+            case "list":
+                const eventArray = await database.listEvent();
+                let result = "";
+
+                if (eventArray === null)
+                    message.channel.send(`No Events.`);
+                else 
+                {
+                    for (let element of eventArray)
+                    {
+                        result += element.toString();
+                        result += '\n';
+                    }
+                    message.channel.send(`${result}`);
+                }
+                break;
+
             case "delete":      // delete mode
                 if (isNaN(args[1]))
                     message.channel.send(invalid);
@@ -232,8 +249,13 @@ client.on("message", async message => {
         const eventArray = await database.listEvent();
         let result = "";
 
+        console.log(eventArray);
         if (eventArray === null)
+        {
+            
             message.channel.send(`No Events.`);
+        }
+            
         else 
         {
             for (let element of eventArray)
