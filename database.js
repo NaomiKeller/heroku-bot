@@ -242,8 +242,8 @@ class Database
                     throw err;
 
             });  
+            succeed = true;
         }
-        succeed = true;
 
         return succeed;
     }
