@@ -228,7 +228,7 @@ class Database
 
         if (isNaN(eventId))
             succeed = false;
-        else if (this.getEvent(eventId) === false)
+        else if (this.getEvent(eventId) === null)
             succeed = false;
         else 
         {
