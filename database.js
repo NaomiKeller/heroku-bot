@@ -29,12 +29,12 @@ class Event
         if (startTime === undefined || startTime === null || isNaN(startTime) || startTime === 0)
             startTime = null;
         else 
-            startTime = new Date(this.startTime).toLocaleString('en-US', {timeZone: "America/New_York"});
+            startTime = new Date(this.startTime).toLocaleString('en-US', {timeZone: "America/New_York"}) + " ET";
        
         if (endTime === undefined || endTime === null || isNaN(endTime) || endTime === 0)
             endTime = null;
         else
-            endTime = new Date(this.endTime).toLocaleString('en-US', {timeZone: "America/New_York"});
+            endTime = new Date(this.endTime).toLocaleString('en-US', {timeZone: "America/New_York"}) + " ET";
             
     
         let string = `Event ID: ${this.id}\nEvent name: ${this.name}\nEvent description: ${this.description}\nEvent start time: ${startTime}\nEvent end time: ${endTime}\nEvent url: ${this.url}\n` +
