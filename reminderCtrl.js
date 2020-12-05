@@ -8,8 +8,8 @@ async function remControl()
 {
 	while (1)
 	{
-		await timer(5000);
-		console.log("reminder control looping");
+		await timer(60*1000);
+		
 
 		//TODO: check reminders in database
 	}
