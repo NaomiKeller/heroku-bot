@@ -86,7 +86,10 @@ client.on("message", async message => {
     }
 
     if (cmd === `${prefix}test`) {
-       console.log(message.createAt);
+        console.log(message);
+        let local = message.createdTimestamp;
+        console.log(local);
+        console.log(new Date(local));
     }
     
     
