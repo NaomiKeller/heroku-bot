@@ -168,7 +168,7 @@ client.on("message", async message => {
             case "delete":      // delete mode
                 if (isNaN(args[1]))
                     message.channel.send(invalid);
-                else if (await database.deleteEvent(args[1]))
+                else if (await database.deleteEvent(args[1]) === true)
                 {
                     message.channel.send("Deleted an event!");
                 }

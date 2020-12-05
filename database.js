@@ -244,7 +244,7 @@ class Database
             });  
             succeed = true;
         }
-
+        console.log("database", succeed);
         return succeed;
     }
 
