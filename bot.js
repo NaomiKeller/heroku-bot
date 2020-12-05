@@ -86,7 +86,7 @@ client.on("message", async message => {
     }
 
     if (cmd === `${prefix}test`) {
-       
+       console.log(message.createAt());
     }
     
     
