@@ -15,7 +15,8 @@
         "heroku-self-ping": "^2.0.1",
         "pg": "^8.4.2",
         "ping": "^0.3.0",
-        "worker-threads": "^1.0.0"
+        "worker-threads": "^1.0.0",
+        "xmlhttprequest": "^1.8.0"
     },
     "engines": {
         "node": "12.x"
