@@ -205,6 +205,7 @@ class Database
                         where event_id = ${eventId};`;
             
         result = await this.pool.query(query);
+        console.log(result.rows.length);
         if (result.rows.length === 0)
             return null;
         else 
