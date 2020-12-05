@@ -172,6 +172,10 @@ client.on("message", async message => {
                 {
                     message.channel.send("Deleted an event!");
                 }
+                else 
+                {
+                    message.channel.send("The event ID is invalid!");
+                }
                 break;
 
             case "name":        
@@ -243,29 +247,6 @@ client.on("message", async message => {
 
     }
 
-    // a temp version for list events
-    if (cmd === `${prefix}ListEvent`)
-    {
-        const eventArray = await database.listEvent();
-        let result = "";
-
-        console.log(eventArray);
-        if (eventArray === null)
-        {
-            
-            message.channel.send(`No Events.`);
-        }
-            
-        else 
-        {
-            for (let element of eventArray)
-            {
-                result += element.toString();
-                result += '\n';
-            }
-            message.channel.send(`${result}`);
-        }
-    }
  
     // event ends
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
