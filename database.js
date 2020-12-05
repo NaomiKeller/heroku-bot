@@ -211,7 +211,7 @@ class Database
         else 
         {
             result = result.rows[0];
-            event = new Event(result.event_name, result.event_description, result.event_start, result.event_end, result.event_url, result.event_userid, result.event_serverid, result.event_permission, result.event_id);
+            event = new Event(result.event_name, result.event_description, Number(result.event_start), Number(result.event_end), result.event_url, result.event_userid, result.event_serverid, result.event_permission, Number(result.event_id));
     
             return event;
         }
