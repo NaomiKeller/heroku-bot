@@ -86,10 +86,10 @@ client.on("message", async message => {
     }
 
     if (cmd === `${prefix}test`) {
-        console.log(message);
-        let local = message.createdTimestamp;
-        console.log(local);
-        console.log(new Date(local));
+        let date = new Date(args[0]);
+        message.channel.send(`${date}`);
+        let string = date.toLocaleString('en-US', {timeZone: "America/New_York"});
+        message.channel.send(`${string}`);
     }
     
     
