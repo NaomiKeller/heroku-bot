@@ -166,11 +166,11 @@ client.on("message", async message => {
                 break;
 
             case "start":
-                currentEvent.startTime = (new Date(args[1])).getTime(); // assign starting time
+                currentEvent.startTime = (new Date(args[1] + "-05:00")).getTime(); // estern time
                 break;
 
             case "end":
-                currentEvent.endTime = (new Date(args[1])).getTime();   // assign ending time
+                currentEvent.endTime = (new Date(args[1] + "-05:00")).getTime();   // estern time
                 break;                
 
             case "url":
