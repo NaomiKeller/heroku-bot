@@ -205,7 +205,7 @@ class Database
                         where event_id = ${eventId};`;
             
         result = await this.pool.query(query);
-        console.log(result.rows.length);
+      
         if (result.rows.length === 0)
             return null;
         else 
@@ -229,7 +229,7 @@ class Database
 
         if (isNaN(eventId))
             succeed = false;
-        else if (this.getEvent(eventId) === null)
+        else if (await this.getEvent(eventId) === null)
             succeed = false;
         else 
         {
@@ -245,7 +245,7 @@ class Database
             });  
             succeed = true;
         }
-        console.log("database", succeed);
+        
         return succeed;
     }
 
