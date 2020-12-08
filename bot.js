@@ -67,14 +67,10 @@ client.on("message", async message => {
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
     let d = new Date();
-    let helpArray = ["!blip"," !date", " !site"]; // List of available commands
-
+    let helpArray = ["!blip", " !site", " !ListEvent", " !event help"]; // List of available commands
+    // going to add event command case that includes brief overview of event management commands
     if (cmd === `${prefix}blip`) {
         return message.channel.send("blap");
-    }
-
-    if (cmd === `${prefix}date`) {
-        return message.channel.send(`${d}`);
     }
 
     if (cmd === `${prefix}help`) {
@@ -82,16 +78,8 @@ client.on("message", async message => {
     }
 
     if (cmd === `${prefix}site`) {
-        return message.channel.send("https://testing-dis-bot.herokuapp.com");
+        return message.channel.send("https://forgetmebot.herokuapp.com");
     }
-
-    if (cmd === `${prefix}test`) {
-        let date = new Date(args[0]);
-        message.channel.send(`${date}`);
-        let string = date.toLocaleString('en-US', {timeZone: "America/New_York"});
-        message.channel.send(`${string}`);
-    }
-    
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
     // event editor:
@@ -230,7 +218,7 @@ client.on("message", async message => {
                     {
                         message.channel.send("Submitted an event!");
                     }
-                        
+                     
                 }
                     
             case "cancel":

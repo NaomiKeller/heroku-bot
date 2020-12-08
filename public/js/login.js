@@ -20,10 +20,9 @@ function loginReq()
             alert("Your credentials are incorrect.");
         else 
         {
-            alert("Your credentials are correct.");
             // this version works, but it does not block users directly accessing /home without entering username & password.
-
             window.location = "/home"
+            // Deleted alert for successful login, don't think it's necessary
         }
     };
     

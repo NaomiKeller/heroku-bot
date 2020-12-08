@@ -4,6 +4,9 @@ const path = require('path');
 const router = express.Router();
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 5000;
+////////////////////////
+// alright idk how to even connect to the DB
+////////////////////////
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -11,9 +14,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 console.log(__dirname);
 
-
 // NAVIGATION 
-// (is there a more efficient way of doing this other than getting and posting every individual fucking page?)
 
 router.get('/', (req, res) => {
 	res.sendFile('/index.html'); // login path.join(__dirname+
@@ -47,8 +48,6 @@ app.get('/help', (req, res) => {
   res.sendFile(path.join(__dirname+'/public/help.html'));
 });
 
-
-
 // posts
 
 // this new post is to check username & password 
@@ -61,9 +60,7 @@ app.post('/', (req, res) => {
 		console.log("correct");
 		res.sendFile(path.join(__dirname+'/public/home.html'));
 	} else {
-		
 		res.send("false");
-		//res.redirect("/");
 	}
  
 });
