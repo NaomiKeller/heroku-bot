@@ -13,7 +13,7 @@ async function selfPing()
 {
 	while (1)
 	{
-		await timer(20*60*1000);		// check once every 20 minutes
+		await timer(10*60*1000);		// check once every 10 minutes
 		request.open("GET", "https://forgetmebot.herokuapp.com/");
 
 		request.send();

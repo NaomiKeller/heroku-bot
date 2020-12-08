@@ -6,6 +6,14 @@ const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 5000;
 ////////////////////////
 // alright idk how to even connect to the DB
+// just use include database.js
+
+const { Database, Event, Reminder, Advertisement, Subscription} = require('./database.js');
+const database = new Database();
+
+// now use database.createEvent(Event Object)
+// you can call all methods in database.js
+
 ////////////////////////
 
 app.use(bodyParser.urlencoded({ extended: false }));
