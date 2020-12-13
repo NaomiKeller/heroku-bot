@@ -18,7 +18,7 @@ client.on("message", async message => {
 
     if (cmd === `!channel`) {
 		console.log(message.channel.id);
-        return message.channel.send(channel.id);
+        return message.channel.send(message.channel.id);
     }
 });
 
@@ -50,8 +50,10 @@ async function remControl()
 			let guild = await client.guilds.fetch(tempEvent.serverId);
 			console.log(guild);
 
+			let system = await guild.channels.cache.get(guild.systemChannelID);
 			let channel = await client.channels.cache.get('');
 			let channel1 = await guild.channels.cache.get('');
+			console.log(system);
 			console.log(channel);
 			console.log("channel from guild: ", channel1);
 			//channel.send("@Jack X");
