@@ -503,10 +503,11 @@ class Database
             else 
                 query = `SELECT * FROM SUBSCRIPTION 
                             WHERE sub_eventId = ${eventId};`;
-        }
-            
+        }   
 
         result = await this.pool.query(query);
+        console.log(query);
+        console.log(result.rows);
 
         if (result.rows.length === 0)
             return null;
