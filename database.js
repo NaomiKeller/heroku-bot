@@ -506,16 +506,14 @@ class Database
         }   
 
         result = await this.pool.query(query);
-        
-        console.log(result.rows);
 
         if (result.rows.length === 0)
             return null;
 
         for (let element of result.rows)
         {
-            console.log(element);
-            temp = new Subscription(Number(element.sub_eventId), element.sub_userId);
+            
+            temp = new Subscription(Number(element.sub_eventid), element.sub_userid);
             subArray.push(temp);
         }
 
