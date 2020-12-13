@@ -1,7 +1,7 @@
 
-
+/*
 window.onload = loadOAuth();
-
+*/
 function loadOAuth() 
 {
 	console.log(window.location.hash.slice(1));
