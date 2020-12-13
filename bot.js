@@ -248,13 +248,12 @@ client.on("message", async message => {
         {
             message.channel.send(invalid);
         }
-        /*else if (await database.getEvent(args[0]) === null)
+        else if (await database.getEvent(args[0]) === null)
         {
             message.channel.send(`Invalid Event ID!`);
-        }*/
+        }
         else 
         {
-            console.log(args);
             reminder = new Reminder(args[0], (new Date(args[1] + "-05:00")).getTime());
             if (args[2] !== undefined) // info is optional
             {
