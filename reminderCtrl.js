@@ -17,7 +17,7 @@ client.on("message", async message => {
    
 
     if (cmd === `!channel`) {
-		console.log(channel.id);
+		console.log(message.channel.id);
         return message.channel.send(channel.id);
     }
 });
@@ -53,7 +53,7 @@ async function remControl()
 			let channel = await client.channels.cache.get('');
 			let channel1 = await guild.channels.cache.get('');
 			console.log(channel);
-			console.log("channel from guild: ", channel);
+			console.log("channel from guild: ", channel1);
 			//channel.send("@Jack X");
 
 			if (deltaTime < 1000 * 60 && deltaTime > 0)
