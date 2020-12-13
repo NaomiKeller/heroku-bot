@@ -48,8 +48,13 @@ async function remControl()
 			let tempEvent = await database.getEvent(element.eventId);
 			console.log(tempEvent);
 
-			let guild = client.guilds.fetch(tempEvent.serverId);
+			let guild = await client.guilds.fetch(tempEvent.serverId);
 			console.log(guild);
+
+			let channel = await guild.systemChennel;
+			console.log(channel);
+
+			channel.send("@Jack X");
 
 			if (deltaTime < 1000 * 60 && deltaTime > 0)
 			{
