@@ -49,42 +49,40 @@ async function remControl()
 
 		for (let element of remArray)
 		{
-			deltaTime = element.time - new Date();
-			console.log(deltaTime);
-			let tempEvent = await database.getEvent(element.eventId);
 			
-			let guild = await client.guilds.fetch(tempEvent.serverId);
-			
-
-			let channel = await guild.systemChannel;
-			//console.log(channel);
-			
-			subArray = await database.listSub(tempEvent.id);
-			console.log(subArray);
-			if (subArray !== null)
-			{
-				message = "";
-				for (let sub of subArray)
-				{
-					message += `<@${sub.userId}> `
-					channel.send(`<@${sub.userId}>`);
-				}
-				console.log(message);
-				message += '\n';
-				message += tempEvent.toString();
-				message += '\n';
-
-				channel.send(message);
-			}
 			
 			
 			
 
 			if (deltaTime < 1000 * 60 && deltaTime > 0)
 			{
-				console.log("trigger");
+				deltaTime = element.time - new Date();
+				console.log(deltaTime);
+				let tempEvent = await database.getEvent(element.eventId);
 			
-			}
+				let guild = await client.guilds.fetch(tempEvent.serverId);
+			
+
+				let channel = await guild.systemChannel;
+				//console.log(channel);
+			
+				subArray = await database.listSub(tempEvent.id);
+				console.log(subArray);
+				if (subArray !== null)
+				{
+					message = "";
+					for (let sub of subArray)
+					{
+						message += `<@${sub.userId}> `;	
+					}
+				console.log(message);
+				message += '\n';
+				message += tempEvent.toString();
+				message += '\n';
+
+				channel.send(message);
+			
+				console.log("trigger");
 		}
 
 		await timer(60*1000);
