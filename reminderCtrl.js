@@ -45,8 +45,18 @@ async function remControl()
 		{
 			deltaTime = element.time - new Date();
 			//console.log(deltaTime);
+			let tempEvent = await database.getEvent(element.eventId);
+			console.log(tempEvent);
+
+			let guild = client.guilds.fetch(tempEvent.serverId);
+			console.log(guild);
+
 			if (deltaTime < 1000 * 60 && deltaTime > 0)
+			{
 				console.log("trigger");
+			
+			}
+				
 
 		}
 
