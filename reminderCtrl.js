@@ -42,7 +42,7 @@ async function remControl()
 	let remArray;
 	let subArray;
 	let deltaTime;
-
+	let message;
 	while (true)
 	{
 		remArray = await database.listReminder();
@@ -57,20 +57,30 @@ async function remControl()
 			
 
 			let channel = await guild.systemChannel;
-			console.log(channel);
+			//console.log(channel);
 			
+			subArray = database.listSub(tempEvent.id);
+			console.log(subArray);
 			
+			message = "";
+			for (let sub of subArray)
+			{
+				message += `<@${sub.userId}> `
+				channel.send(`<@${sub.userId}>`);
+			}
+			console.log(message);
+			message += '\n';
+			message += tempEvent.toString();
+			message += '\n';
+
+			channel.send(message);
 
 			if (deltaTime < 1000 * 60 && deltaTime > 0)
 			{
 				console.log("trigger");
 			
 			}
-				
-
 		}
-
-		//TODO: check reminders in database
 
 		await timer(60*1000);
 	}

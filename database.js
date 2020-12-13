@@ -492,9 +492,19 @@ class Database
         let result;
         let subArray = [];
         let temp;
-        let query = 'SELECT * FROM SUBSCRIPTION;';
+        let query;
         
-       
+        if (eventId === 0)
+            query = 'SELECT * FROM SUBSCRIPTION;';
+        else
+        {
+            if (await getEvent(eventId) === null)
+                return null;
+            else 
+                query = `SELECT * FROM SUBSCRIPTION 
+                            WHERE sub_eventId = ${eventId};`;
+        }
+            
 
         result = await this.pool.query(query);
 
