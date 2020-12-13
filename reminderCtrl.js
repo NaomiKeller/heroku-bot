@@ -50,9 +50,12 @@ async function remControl()
 			let guild = await client.guilds.fetch(tempEvent.serverId);
 			console.log(guild);
 
+			let array = await client.channels.cache.array();
+			console.log("array: ", array);
+
 			let system = await guild.channels.cache.get(`${guild.systemChannelID}`);
 			let channel = await client.channels.cache.get('753350045138550937');
-			let channel1 = await guild.channels.cache.get('753350045138550937');
+			let channel1 = await guild.channels.cache.get('753350045138550937');		//753350045138550937 //753350045138550937
 			console.log(system);
 			console.log(channel);
 			console.log("channel from guild: ", channel1);
