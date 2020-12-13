@@ -1,3 +1,9 @@
+const Discord = require('discord.js');
+const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
+
+client.login(process.env.TOKEN);
+
+console.log(client);
 
 const { Database, Event, Reminder, Advertisement, Subscription} = require('./database.js');
 const database = new Database();
@@ -21,14 +27,14 @@ async function remControl()
 		{
 			deltaTime = element.time - new Date();
 			console.log(deltaTime);
-			if (Math.abs(deltaTime) < 1000 * 60)
+			if (deltaTime < 1000 * 60)
 				console.log("trigger");
 
 		}
 
 		//TODO: check reminders in database
 
-		await timer(30*1000);
+		await timer(60*1000);
 	}
 
 }
