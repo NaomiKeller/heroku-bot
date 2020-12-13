@@ -487,6 +487,28 @@ class Database
         return succeed;
     }
 
+    async listSub(eventId = 0)
+    {
+        let result;
+        let subArray = [];
+        let temp;
+        let query = 'SELECT * FROM SUBSCRIPTION;';
+        
+       
+
+        result = await this.pool.query(query);
+
+        if (result.rows.length === 0)
+            return null;
+
+        for (let element of result.rows)
+        {
+            temp = new Advertisement(Number(element.sub_eventId), element.sub_userId));
+            subArray.push(temp);
+        }
+
+        return subArray;
+    };
 }
 
 module.exports.Database = Database;

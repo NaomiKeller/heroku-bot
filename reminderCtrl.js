@@ -40,6 +40,7 @@ const timer = ms => new Promise(res => setTimeout(res, ms));
 async function remControl()
 {
 	let remArray;
+	let subArray;
 	let deltaTime;
 
 	while (true)
@@ -49,22 +50,16 @@ async function remControl()
 		for (let element of remArray)
 		{
 			deltaTime = element.time - new Date();
-			//console.log(deltaTime);
+			console.log(deltaTime);
 			let tempEvent = await database.getEvent(element.eventId);
-			//console.log(tempEvent);
-
+			
 			let guild = await client.guilds.fetch(tempEvent.serverId);
-			//console.log(guild);
+			
 
 			let channel = await guild.systemChannel;
 			console.log(channel);
-			//let system = await guild.channels.cache.get(`${guild.systemChannelID}`);
-			//let channel = await client.channels.cache.get('753350045138550937');
-			//let channel1 = await guild.channels.cache.get('753350045138550937');		
-			//console.log("system", system);
-			//console.log(channel);
-			//console.log("channel from guild: ", channel1);
-			channel.send("@Jack X");
+			
+			
 
 			if (deltaTime < 1000 * 60 && deltaTime > 0)
 			{
