@@ -3,8 +3,6 @@ const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 
 client.login(process.env.TOKEN);
 
-console.log(client);
-
 
 client.on("message", async message => {
     if (message.author.bot) return;
@@ -18,8 +16,9 @@ client.on("message", async message => {
  
    
 
-    if (cmd === `!ctrl`) {
-        return message.channel.send("response");
+    if (cmd === `!channel`) {
+		console.log(channel.id);
+        return message.channel.send(channel.id);
     }
 });
 
@@ -51,10 +50,11 @@ async function remControl()
 			let guild = await client.guilds.fetch(tempEvent.serverId);
 			console.log(guild);
 
-			let channel = await guild.systemChennel;
+			let channel = await client.channels.cache.get('');
+			let channel1 = await guild.channels.cache.get('');
 			console.log(channel);
-
-			channel.send("@Jack X");
+			console.log("channel from guild: ", channel);
+			//channel.send("@Jack X");
 
 			if (deltaTime < 1000 * 60 && deltaTime > 0)
 			{
