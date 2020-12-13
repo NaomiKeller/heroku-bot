@@ -506,7 +506,7 @@ class Database
         }   
 
         result = await this.pool.query(query);
-        console.log(query);
+        
         console.log(result.rows);
 
         if (result.rows.length === 0)
@@ -514,6 +514,7 @@ class Database
 
         for (let element of result.rows)
         {
+            console.log(element);
             temp = new Subscription(Number(element.sub_eventId), element.sub_userId);
             subArray.push(temp);
         }
