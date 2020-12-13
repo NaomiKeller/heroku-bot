@@ -513,7 +513,7 @@ class Database
         for (let element of result.rows)
         {
             
-            temp = new Subscription(Number(element.sub_eventid), element.sub_userid);
+            temp = new Subscription(element.sub_userid, Number(element.sub_eventid));
             subArray.push(temp);
         }
 
