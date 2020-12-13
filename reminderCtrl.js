@@ -40,7 +40,7 @@ const timer = ms => new Promise(res => setTimeout(res, ms));
 async function remControl()
 {
 	let remArray;
-	let subArray;
+	let subArray = [];
 	let deltaTime;
 	let message;
 	while (true)
@@ -59,21 +59,26 @@ async function remControl()
 			let channel = await guild.systemChannel;
 			//console.log(channel);
 			
-			subArray = database.listSub(tempEvent.id);
+			subArray = await database.listSub(tempEvent.id);
 			console.log(subArray);
-			
-			message = "";
-			for (let sub of subArray)
+			if (subArray !== null)
 			{
-				message += `<@${sub.userId}> `
-				channel.send(`<@${sub.userId}>`);
-			}
-			console.log(message);
-			message += '\n';
-			message += tempEvent.toString();
-			message += '\n';
+				message = "";
+				for (let sub of subArray)
+				{
+					message += `<@${sub.userId}> `
+					channel.send(`<@${sub.userId}>`);
+				}
+				console.log(message);
+				message += '\n';
+				message += tempEvent.toString();
+				message += '\n';
 
-			channel.send(message);
+				channel.send(message);
+			}
+			
+			
+			
 
 			if (deltaTime < 1000 * 60 && deltaTime > 0)
 			{
