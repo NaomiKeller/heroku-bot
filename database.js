@@ -354,7 +354,7 @@ class Database
 
         if (isNaN(remId))
             succeed = false;
-        else if (this.getReminder(remId) === null)
+        else if (await this.getReminder(remId) === null)
             succeed = false;
         else 
         {
