@@ -244,14 +244,14 @@ client.on("message", async message => {
     {
         let reminder;
 
-        if (args[0] === undefined || args[1] === undefined || isNaN(args[0]) || isNaN(args[1]) ) 
+        if (args[0] === undefined || args[1] === undefined || isNaN(args[0]) ) 
         {
             message.channel.send(invalid);
         }
-        else if (await database.getEvent(args[0]) === null)
+        /*else if (await database.getEvent(args[0]) === null)
         {
             message.channel.send(`Invalid Event ID!`);
-        }
+        }*/
         else 
         {
             reminder = new Reminder(args[0], (new Date(args[1] + "-05:00")).getTime());
@@ -259,6 +259,7 @@ client.on("message", async message => {
             {
                 reminder.info = args.slice(2).join(' ');
             }
+            console.log(reminder);
             database.createReminder(reminder);
         }
     }
