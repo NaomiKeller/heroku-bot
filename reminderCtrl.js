@@ -11,15 +11,15 @@ client.on("message", async message => {
     if (message.channel.type === "dm") return;
 
 
-    let prefix = config.prefix; // prefix is '!'. Set in config.json
+ 
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
-    let d = new Date();
-    let helpArray = ["!blip", " !site", " !ListEvent", " !event help"]; // List of available commands
-    // going to add event command case that includes brief overview of event management commands
-    if (cmd === `${prefix}ctrl`) {
-        return message.channel.send("ctrl");
+ 
+   
+
+    if (cmd === `!ctrl`) {
+        return message.channel.send("response");
     }
 });
 
