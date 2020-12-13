@@ -498,7 +498,7 @@ class Database
             query = 'SELECT * FROM SUBSCRIPTION;';
         else
         {
-            if (await getEvent(eventId) === null)
+            if (await this.getEvent(eventId) === null)
                 return null;
             else 
                 query = `SELECT * FROM SUBSCRIPTION 
