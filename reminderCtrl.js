@@ -1,5 +1,8 @@
+
 const Discord = require('discord.js');
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
+
+
 
 client.login(process.env.TOKEN);
 
@@ -39,53 +42,56 @@ const timer = ms => new Promise(res => setTimeout(res, ms));
 // reminder control function
 async function remControl()
 {
-	let remArray;
+	let remArray = [];
 	let subArray = [];
 	let deltaTime;
 	let message;
+
+	let tempEvent;
+	let guild;
+	let channel;
+
+	const checkTime = 1000 * 60;	// 1 minute 
+
 	while (true)
 	{
-		remArray = await database.listReminder();
+		remArray = await database.listReminder();	// get all reminders in the database
 
-		for (let element of remArray)
+		if (remArray !== null)
 		{
-			
-			
-			
-			
-
-			if (deltaTime < 1000 * 60 && deltaTime > 0)
+			for (let element of remArray)
 			{
 				deltaTime = element.time - new Date();
 				console.log(deltaTime);
-				let tempEvent = await database.getEvent(element.eventId);
-			
-				let guild = await client.guilds.fetch(tempEvent.serverId);
-			
 
-				let channel = await guild.systemChannel;
-				//console.log(channel);
-			
-				subArray = await database.listSub(tempEvent.id);
-				console.log(subArray);
-				if (subArray !== null)
+				if (deltaTime > 0 && deltaTime < checkTime)
 				{
-					message = "";
-					for (let sub of subArray)
+					tempEvent = await database.getEvent(element.eventId);	// get the corresponding event of the reminder		
+					guild = await client.guilds.fetch(tempEvent.serverId);
+					channel = await guild.systemChannel;
+								
+					subArray = await database.listSub(tempEvent.id);	// get all Subscriptions that relate to the event
+					
+					if (subArray !== null)
 					{
-						message += `<@${sub.userId}> `;	
-					}
-				console.log(message);
-				message += '\n';
-				message += tempEvent.toString();
-				message += '\n';
+						message = "";
+						for (let sub of subArray)
+						{
+							message += `<@${sub.userId}> `;	
+						}
+	
+						message += '\n';
+						message += tempEvent.toString();
+						message += '\n';
 
-				channel.send(message);
-			
-				console.log("trigger");
+						channel.send(message);
+					}
+				}
+			}
+		
 		}
 
-		await timer(60*1000);
+		await timer(checkTime);
 	}
 
 }
