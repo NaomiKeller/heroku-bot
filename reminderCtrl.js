@@ -21,7 +21,7 @@ client.on("message", async message => {
     if (cmd === `${prefix}ctrl`) {
         return message.channel.send("ctrl");
     }
-}
+});
 
 const { Database, Event, Reminder, Advertisement, Subscription} = require('./database.js');
 const database = new Database();
