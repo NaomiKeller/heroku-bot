@@ -3,6 +3,12 @@ const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 
 client.login(process.env.TOKEN);
 
+client.on('ready', () => {
+    
+	remControl();
+    
+});
+
 
 client.on("message", async message => {
     if (message.author.bot) return;
@@ -75,4 +81,3 @@ async function remControl()
 
 }
 
-remControl();
