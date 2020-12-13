@@ -294,7 +294,7 @@ client.on("message", async message => {
         }
         else 
         {
-            console.log("error");
+            message.channel.send(`Invalid Reminder ID!`); 
         }
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
