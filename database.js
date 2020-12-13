@@ -77,7 +77,7 @@ class Reminder
         if (this.time === undefined || isNaN(this.time) || this.time === 0)
             string += "";
         else 
-            string += new Date(this.time).toString();
+            string += new Date(this.time).toLocaleString('en-US', {timeZone: "America/New_York"}) + " ET";
 
         string += `\nInfo: ${this.info}\n`;
 

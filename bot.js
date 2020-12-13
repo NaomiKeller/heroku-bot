@@ -254,7 +254,7 @@ client.on("message", async message => {
         }
         else 
         {
-            reminder = new Reminder(args[0], args[1]);
+            reminder = new Reminder(args[0], (new Date(args[1] + "-05:00")).getTime());
             if (args[2] !== undefined) // info is optional
             {
                 reminder.info = args.slice(2).join(' ');
