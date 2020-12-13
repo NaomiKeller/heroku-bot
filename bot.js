@@ -239,7 +239,7 @@ client.on("message", async message => {
     // event ends
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // a temp version for create reminder
+    // reminder functions
     if (cmd === `${prefix}CreateReminder`)
     {
         let reminder;
@@ -296,6 +296,8 @@ client.on("message", async message => {
             console.log("error");
         }
     }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
     //testing database features below...

@@ -233,7 +233,32 @@ class Database
             succeed = false;
         else 
         {
-            // TODO: delete all ralative entries(reminder, advertisement, subscription) before deleting the event
+            // delete relative advertisements
+            query = `DELETE FROM ADVERTISEMENT 
+                        WHERE advert_eventid = ${eventId};`;
+            await this.pool.query(query, (err, res) => {
+                if(err)             
+                    throw err;
+
+            });  
+
+            // delete relative subscriptions
+            query = `DELETE FROM SUBSCRIPTION 
+                        WHERE sub_eventId = ${eventId};`;
+            await this.pool.query(query, (err, res) => {
+                if(err)             
+                    throw err;
+
+            });  
+
+            // delete relative reminders
+            query = `DELETE FROM REMINDER 
+                        WHERE rem_eventid = ${eventId};`;
+            await this.pool.query(query, (err, res) => {
+                if(err)             
+                    throw err;
+
+            });  
 
             query = `DELETE FROM EVENT 
                         WHERE EVENT_ID = ${eventId};`;
@@ -253,7 +278,7 @@ class Database
     // create a Reminder
     // parameter 1: a reminder object
     // return: true for success and false for Error
-    createReminder(newReminder)
+    async createReminder(newReminder)
     {
         if (newReminder instanceof Reminder)
         {
@@ -261,10 +286,9 @@ class Database
             let query = `INSERT INTO REMINDER (rem_eventid, rem_time, rem_info) 
                       VALUES (\'${newReminder.eventId}\', ${newReminder.time}, \'${newReminder.info}\');`;
             
-            this.pool.query(query, (err, res) => {
+            await this.pool.query(query, (err, res) => {
                 if(err) 
                     throw err;
-
             });
 
             return true;
@@ -330,7 +354,7 @@ class Database
 
         if (isNaN(remId))
             succeed = false;
-        else if (this.getEvent(remId) === false)
+        else if (this.getEvent(remId) === null)
             succeed = false;
         else 
         {
@@ -341,10 +365,8 @@ class Database
                 if(err) 
                     throw err;           
             }); 
-            
+            succeed = true;
         }
-        succeed = true;
-
         return succeed;
     
     }
@@ -352,7 +374,7 @@ class Database
     // create an advertisement in the database
     // parameter: an advertisement object 
     // return: true for success and false for error
-    createAdvert(newAdvert)
+    async createAdvert(newAdvert)
     {
         if (newAdvert instanceof Advertisement)
         {
@@ -361,20 +383,15 @@ class Database
                       VALUES (\'${newAdvert.messageId}\', ${newAdvert.eventId}, \'${newAdvert.serverId}\');`;
             
             console.log(query);
-            this.pool.query(query, (err, res) => {
+            await this.pool.query(query, (err, res) => {
                 if(err) 
-                {
-                    console.error(err);
-                    return false;
-                }
-     
+                    throw(err);   
             });
 
             return true;
         }
         else    
             return false;
-
     }
 
     // to get a single advertisement 
@@ -387,28 +404,54 @@ class Database
         let query = `SELECT * FROM ADVERTISEMENT
                         where advert_messageid = \'${advertId}\';`;
         
-        console.log(query);
-        
         result = await this.pool.query(query);
-        advertisement = new Advertisement(result.rows[0].advert_messageid, result.rows[0].advert_eventid, result.rows[0].advert_serverid);    
-
-        return advertisement; 
-        
+        if (result.rows.length === 0)
+            return null;
+        else 
+        {
+            advertisement = new Advertisement(result.rows[0].advert_messageid, Number(result.rows[0].advert_eventid), result.rows[0].advert_serverid);   
+            return advertisement;   
+        } 
     };
+
+    async listAdvert()
+    {
+        let result;
+        let advertArray = [];
+        let temp;
+        let query = 'SELECT * FROM ADVERTISEMENT;';
+ 
+        result = await this.pool.query(query);
+
+        if (result.rows.length === 0)
+            return null;
+
+        for (let i of result.rows)
+        {
+            temp = new Advertisement(i.advert_messageid, Number(i.advert_eventid), i.advert_serverid);
+            advertArray.push(temp);
+        }
+
+        return advertArray;
+    };
+
+
 
     // create a subscription in the database
     // parameter 1: a subscription object 
     // return: true for success and false for error
-    createSub(newSub)
+    async createSub(newSub)
     {   
+        let query;
+
         if (newSub instanceof Subscription)
         {
             
-            let query = `INSERT INTO SUBSCRIPTION (sub_userId, sub_eventId) 
+            query = `INSERT INTO SUBSCRIPTION (sub_userId, sub_eventId) 
                       VALUES (\'${newSub.userId}\', ${newSub.eventId} );`;
             
             console.log(query);
-            this.pool.query(query, (err, res) => {
+            await this.pool.query(query, (err, res) => {
                 if(err) 
                     throw err;
             });
@@ -421,10 +464,29 @@ class Database
         } 
     }
 
-    removeSub(existingSub)
+    async deleteSub(eventId, userId)
     {
-        
+        let succeed;
+        let query;
+
+        if (isNaN(eventId))
+            succeed = false;
+        else if (this.getEvent(eventId) === null)
+            succeed = false;
+        else 
+        {
+            query = `DELETE FROM SUBSCRIPTION 
+                        WHERE sub_eventId = ${eventId} and sub_userId = ${userId};`;
+
+            await this.pool.query(query, (err, res) => {
+                if(err) 
+                    throw err;           
+            }); 
+            succeed = true;
+        }
+        return succeed;
     }
+
 }
 
 module.exports.Database = Database;
