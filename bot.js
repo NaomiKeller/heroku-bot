@@ -260,7 +260,15 @@ client.on("message", async message => {
                 reminder.info = args.slice(2).join(' ');
             }
             console.log(reminder);
-            database.createReminder(reminder);
+            
+            if (await database.createReminder(reminder) === true)
+            {
+                 message.channel.send(`Created a reminder!`);
+            }
+            else
+            {
+                 message.channel.send(`Failure: to create a reminder!`);
+            }
         }
     }
 

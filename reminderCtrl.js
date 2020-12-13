@@ -62,7 +62,6 @@ async function remControl()
 			for (let element of remArray)
 			{
 				deltaTime = element.time - new Date();
-				console.log(deltaTime);
 
 				if (deltaTime > 0 && deltaTime < checkTime)
 				{
