@@ -6,8 +6,6 @@ const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 5000;
 
 ////////////////////////
-// alright idk how to even connect to the DB
-// just use include database.js
 
 const { Database, Event, Reminder, Advertisement, Subscription} = require('./database.js');
 const database = new Database();
@@ -92,7 +90,7 @@ app.post('/create', async (req, res) => {
 
 	if (isNaN(newEvent.start))
         newEvent.start = null;
-    if (isNaN(newEvent.end))
+    else if (isNaN(newEvent.end))
         newEvent.end = null;
 
 	if (await database.editEvent(newEvent) === true)
@@ -103,8 +101,14 @@ app.post('/create', async (req, res) => {
 	//res.redirect("/create");
 });
 
-app.post('/edit', (req, res) => {
-  res.redirect("/edit");
+app.post('/edit', async (req, res) => {
+
+	console.log(req.body);
+	let eventID = req.body.ID;
+	let currentEvent = await database.getEvent(eventID);
+	console.log(currentEvent);
+	
+	//res.redirect("/create");
 });
 
 app.post('/delete', (req, res) => {

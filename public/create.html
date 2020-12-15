@@ -23,16 +23,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <script src="js/event.js" type="text/javascript"></script>
-  <!--<script>
-    var eventList = {};
-
-    function addEvent(form) {
-        eventList[form.name.value] = {description: form.description.value, date: form.date.value};
-        console.log(eventList);
-        return false;
-        
-    }
-  </script>-->
 
 </head>
 
@@ -68,15 +58,15 @@
           <div class="col-lg-8">
             <form class="eventForm" action="" method="" name="form" onsubmit="return addEvent(this)">
               <div class="text">Event Name</div>
-              <input autocomplete="off" type="text" name="name" class="notTime">
+              <input autocomplete="off" type="text" name="name" required>
               <div class="text">Event Description</div>
-              <input autocomplete="off" type="text" name="description" class="notTime">
+              <input autocomplete="off" type="text" name="description">
               <div class="text">Start Time</div>
-              <input autocomplete="off" type="text" name="startTime" placeholder="2021/12/20-17:00:00">
+              <input autocomplete="off" type="text" name="startTime" placeholder="2021/12/20-17:00:00" required>
               <div class="text">End Time</div>
-              <input autocomplete="off" type="text" name="endTime" placeholder="2021/12/20-17:00:00">
+              <input autocomplete="off" type="text" name="endTime" placeholder="2021/12/20-17:00:00" required>
               <div class="text">URL</div>
-              <input autocomplete="off" type="text" name="url" placeholder="optional" class="notTime">
+              <input autocomplete="off" type="text" name="url" placeholder="optional">
               <br>
               <button type="submit" class="mt-5 btn btn-primary">Submit</button>
               <!-- <div id="loginError">Your credentials are incorrect.</div> -->

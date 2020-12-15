@@ -14,16 +14,14 @@ function addEvent(form) {
         
     };
 
-  /*  eventObj[form.name.value] = {eventName: form.name.value, description: form.description.value, 
-        start: form.startTime.value, end: form.endTime.value, url: form.url.value};
-    console.log(eventObj);
-    */
     eventObj = {eventName: form.name.value, description: form.description.value, 
         start: form.startTime.value, end: form.endTime.value, url: form.url.value};
-    console.log(eventObj);
 
     eventObj.start = (new Date(eventObj.start + "-05:00")).getTime();
     eventObj.end = (new Date(eventObj.end + "-05:00")).getTime();
+
+    console.log(eventObj);
+    alert("Event Submitted!");
 
     request.send(JSON.stringify({
         name: eventObj.eventName,
@@ -32,7 +30,11 @@ function addEvent(form) {
         end: eventObj.end, 
         url: eventObj.url
     }));
-    
 
     return false;   
+}
+
+function editEvent(form) {
+    let eventID = form.ID.value;
+    console.log(eventID);
 }
