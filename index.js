@@ -87,7 +87,7 @@ app.post('/create', async (req, res) => {
 	console.log(req.body);
 
 	//let newEvent = new Event(req.body.eventName, req.body.description, req.body.start, req.body.end, req.body.url, null, serverId);
-	let newEvent = new Event(req.body.eventName, req.body.description, Date(), Date(), req.body.url, null, serverId);
+	let newEvent = new Event(req.body.eventName, req.body.description, Date().getTime(), Date().getTime(), req.body.url, null, serverId);
 	console.log(newEvent);
 
 	if (await database.editEvent(newEvent) === true)
