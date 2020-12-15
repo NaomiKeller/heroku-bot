@@ -4,15 +4,15 @@ const path = require('path');
 const router = express.Router();
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 5000;
+
 ////////////////////////
 // alright idk how to even connect to the DB
 // just use include database.js
-/*
+
 const { Database, Event, Reminder, Advertisement, Subscription} = require('./database.js');
-const database = new Database();
-*/
-// now use database.createEvent(Event Object)
-// you can call all methods in database.js
+//const database = new Database();
+
+const serverId = '750766901306589309';
 
 ////////////////////////
 
@@ -62,7 +62,7 @@ app.get('/help', (req, res) => {
 app.post('/', (req, res) => {
 	
 	console.log(req.body);
-	console.log(req.body.username, req.body.password);
+	
 	if (req.body.username === "admin" && req.body.password === "pass")	
 	{
 		console.log("correct");
@@ -81,8 +81,20 @@ app.post('/cal', (req, res) => {
   res.redirect("/cal");
 });
 
+// create event router
 app.post('/create', (req, res) => {
-  res.redirect("/create");
+
+	console.log(req.body);
+
+	let newEvent = new Event(req.body.eventName, req.body.description, req.body.start, req.body.end, req.body.url, null, serverId);
+
+	console.log(newEvent);
+	if (await database.editEvent(newEvent))
+	{
+		res.send("true");
+	}
+	
+	//res.redirect("/create");
 });
 
 app.post('/edit', (req, res) => {
