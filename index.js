@@ -103,18 +103,19 @@ app.post('/create', async (req, res) => {
 
 app.post('/edit', async (req, res) => {
 
+
 	console.log(req.body);
 
 	//let newEvent = new Event(req.body.eventName, req.body.description, req.body.start, req.body.end, req.body.url, null, serverId);
-	let editEvent = new Event(req.body.eventId, req.body.name, req.body.description, req.body.start, req.body.end, req.body.url, null, serverId, 0);
-	console.log(editEvent);
+	let newEvent = new Event(req.body.eventId, req.body.name, req.body.description, req.body.start, req.body.end, req.body.url, null, serverId, 0);
+	console.log(newEvent);
 
-	if (isNaN(editEvent.start))
-        editEvent.start = null;
+	if (isNaN(newEvent.start))
+        newEvent.start = null;
     else if (isNaN(newEvent.end))
-        editEvent.end = null;
+        newEvent.end = null;
 
-	if (await database.editEvent(editEvent) === true)
+	if (await database.editEvent(newEvent) === true)
 	{
 		res.send("true");
 	}
