@@ -107,7 +107,7 @@ app.post('/edit', async (req, res) => {
 	console.log(req.body);
 
 	//let newEvent = new Event(req.body.eventName, req.body.description, req.body.start, req.body.end, req.body.url, null, serverId);
-	let newEvent = new Event(req.body.eventId, req.body.name, req.body.description, req.body.start, req.body.end, req.body.url, null, serverId, 0);
+	let newEvent = new Event(req.body.id, req.body.name, req.body.description, req.body.start, req.body.end, req.body.url, null, serverId, 0);
 	console.log(newEvent);
 
 	if (isNaN(newEvent.start))

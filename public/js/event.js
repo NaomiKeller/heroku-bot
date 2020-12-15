@@ -57,7 +57,7 @@ function editEvent(form) {
     alert("Event Changes Submitted!");
 
     request.send(JSON.stringify({
-        eventId: eventObj.eventId,
+        id: eventObj.eventId,
         name: eventObj.eventName,
         description: eventObj.description, 
         start: eventObj.start, 
