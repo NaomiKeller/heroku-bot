@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5000;
 // just use include database.js
 
 const { Database, Event, Reminder, Advertisement, Subscription} = require('./database.js');
-//const database = new Database();
+const database = new Database();
 
 const serverId = '750766901306589309';
 
