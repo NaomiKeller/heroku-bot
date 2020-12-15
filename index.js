@@ -89,7 +89,10 @@ app.post('/create', (req, res) => {
 	let newEvent = new Event(req.body.eventName, req.body.description, req.body.start, req.body.end, req.body.url, null, serverId);
 
 	console.log(newEvent);
-	if (await database.editEvent(newEvent))
+	database.editEvent(newEvent);
+	
+
+	if (true)
 	{
 		res.send("true");
 	}
