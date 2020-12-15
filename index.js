@@ -82,7 +82,7 @@ app.post('/cal', (req, res) => {
 });
 
 // create event router
-app.post('/create', (req, res) => {
+app.post('/create', async (req, res) => {
 
 	console.log(req.body);
 
@@ -90,7 +90,7 @@ app.post('/create', (req, res) => {
 	let newEvent = new Event(req.body.eventName, req.body.description, Date(), Date(), req.body.url, null, serverId);
 	console.log(newEvent);
 
-	if (await database.editEvent(newEvent))
+	if (await database.editEvent(newEvent) === true)
 	{
 		res.send("true");
 	}
