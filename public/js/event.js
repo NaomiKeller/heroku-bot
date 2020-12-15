@@ -34,7 +34,16 @@ function addEvent(form) {
     return false;   
 }
 
-function editEvent(form) {
+/* 
+Jack -
+
+the same comment i left in index.js can be applied here, with the additional notes that i did give the edit.html page
+the proper 'onsubmit' to call the editEvent function. I also added alert boxes to give user feedback on whether or not
+a submission was successful (although there's not really any error checking client-side), and added 'required' fields in the html 
+forms to prevent necessary input from being excluded.
+
+*/
+function editEvent(form) { 
     let request = new XMLHttpRequest();
 
     request.open("POST", "/edit");

@@ -100,22 +100,19 @@ app.post('/create', async (req, res) => {
 	
 	//res.redirect("/create");
 });
-
+//yeah i think this is probably wrong. i just copied your post and thought the db would edit if given an id - i dont really know how all of this communicates.
 app.post('/edit', async (req, res) => {
 
-
 	console.log(req.body);
+	let editEvent = new Event(req.body.id, req.body.name, req.body.description, req.body.start, req.body.end, req.body.url, null, serverId, 0);
+	console.log(editEvent);
 
-	//let newEvent = new Event(req.body.eventName, req.body.description, req.body.start, req.body.end, req.body.url, null, serverId);
-	let newEvent = new Event(req.body.id, req.body.name, req.body.description, req.body.start, req.body.end, req.body.url, null, serverId, 0);
-	console.log(newEvent);
+	if (isNaN(editEvent.start))
+        editEvent.start = null;
+    else if (isNaN(editEvent.end))
+        editEvent.end = null;
 
-	if (isNaN(newEvent.start))
-        newEvent.start = null;
-    else if (isNaN(newEvent.end))
-        newEvent.end = null;
-
-	if (await database.editEvent(newEvent) === true)
+	if (await database.editEvent(editEvent) === true)
 	{
 		res.send("true");
 	}
