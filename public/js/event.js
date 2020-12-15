@@ -47,7 +47,7 @@ function editEvent(form) {
         
     };
 
-    eventObj = {eventId: form.ID.value, eventName: form.name.value, description: form.description.value, 
+    eventObj = {eventId: form.eventId.value, eventName: form.name.value, description: form.description.value, 
         start: form.startTime.value, end: form.endTime.value, url: form.url.value};
 
     eventObj.start = (new Date(eventObj.start + "-05:00")).getTime();
