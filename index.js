@@ -87,8 +87,13 @@ app.post('/create', async (req, res) => {
 	console.log(req.body);
 
 	//let newEvent = new Event(req.body.eventName, req.body.description, req.body.start, req.body.end, req.body.url, null, serverId);
-	let newEvent = new Event(req.body.eventName, req.body.description, 2000, 3000, req.body.url, null, serverId, 0);
+	let newEvent = new Event(req.body.name, req.body.description, req.body.start, req.body.end, req.body.url, null, serverId, 0);
 	console.log(newEvent);
+
+	if (isNaN(newEvent.start))
+        newEvent.start = null;
+    if (isNaN(newEvent.end))
+        newEvent.end = null;
 
 	if (await database.editEvent(newEvent) === true)
 	{
