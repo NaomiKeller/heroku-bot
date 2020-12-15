@@ -104,11 +104,21 @@ app.post('/create', async (req, res) => {
 app.post('/edit', async (req, res) => {
 
 	console.log(req.body);
-	let eventID = req.body.ID;
-	let currentEvent = await database.getEvent(eventID);
-	console.log(currentEvent);
+
+	//let newEvent = new Event(req.body.eventName, req.body.description, req.body.start, req.body.end, req.body.url, null, serverId);
+	let editEvent = new Event(req.body.eventId, req.body.name, req.body.description, req.body.start, req.body.end, req.body.url, null, serverId, 0);
+	console.log(editEvent);
+
+	if (isNaN(editEvent.start))
+        editEvent.start = null;
+    else if (isNaN(newEvent.end))
+        editEvent.end = null;
+
+	if (await database.editEvent(editEvent) === true)
+	{
+		res.send("true");
+	}
 	
-	//res.redirect("/create");
 });
 
 app.post('/delete', (req, res) => {
