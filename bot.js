@@ -70,7 +70,7 @@ client.on("message", async message => {
     let helpArray = ["!blip", " !site", " !ListEvent", " !event help"]; // List of available commands
     // going to add event command case that includes brief overview of event management commands
     if (cmd === `${prefix}blip`) {
-        return message.channel.send("blap");
+        return message.channel.send("```blap```");
     }
 
     if (cmd === `${prefix}help`) {
