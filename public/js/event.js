@@ -97,9 +97,14 @@ function listEvent()
         else 
         {
             // the returned array is here
-            console.log(request.response);
+            // ok, I do not know how to put all values to the table in cal.html
             eventArray = JSON.parse(request.response);
             console.log('\n', eventArray);
+
+            for (let event of eventArray)
+            {
+                ;
+            }
         }
 
         
