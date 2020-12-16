@@ -448,26 +448,38 @@ class Database
     async createSub(newSub)
     {   
         let query;
+        let result;
 
         if (newSub instanceof Subscription)
         {
-            
-            query = `INSERT INTO SUBSCRIPTION (sub_userId, sub_eventId) 
+            // check if the sub exists 
+            query = `SELECT * FROM SUBSCRIPTION 
+                            WHERE sub_eventId = ${newSub.eventId} AND sub_userId = \'${newSub.userId}\';`;
+            result = await this.pool.query(query);
+            if (result.rows.length === 0)
+            {
+                query = `INSERT INTO SUBSCRIPTION (sub_userId, sub_eventId) 
                       VALUES (\'${newSub.userId}\', ${newSub.eventId} );`;
             
-            console.log(query);
-            await this.pool.query(query, (err, res) => {
-                if(err) 
-                    throw err;
-            });
+                console.log(query);
+                await this.pool.query(query, (err, res) => {
+                    if(err) 
+                        throw err;
+                });
 
-            return true;
+                return true;
+            
+            }
+            else 
+                return false;
+            
         }
         else
         {
             return false;
         } 
     }
+
 
     async deleteSub(eventId, userId)
     {
