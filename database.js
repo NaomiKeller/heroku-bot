@@ -58,11 +58,10 @@ class Event
 // reminder class
 class Reminder
 {
-    constructor(eventId, time, info = null, id = null)
+    constructor(eventId, time, id = null)
     {
         this.eventId = eventId;
         this.time = time;
-        this.info = info;
         this.id = id;
     }
 
@@ -73,12 +72,9 @@ class Reminder
         if (this.time === undefined || isNaN(this.time) || this.time === 0)
             string += "";
         else 
-            string += new Date(this.time).toLocaleString('en-US', {timeZone: "America/New_York"}) + " ET";
-
-        string += `\nInfo: ${this.info}\n`;
+            string += new Date(this.time).toLocaleString('en-US', {timeZone: "America/New_York"}) + " ET\n";
 
         return string;
-
     }
 
 }
@@ -284,8 +280,8 @@ class Database
         if (newReminder instanceof Reminder)
         {
             
-            let query = `INSERT INTO REMINDER (rem_eventid, rem_time, rem_info) 
-                      VALUES (\'${newReminder.eventId}\', ${newReminder.time}, \'${newReminder.info}\');`;
+            let query = `INSERT INTO REMINDER (rem_eventid, rem_time) 
+                      VALUES (\'${newReminder.eventId}\', ${newReminder.time});`;
             
             await this.pool.query(query, (err, res) => {
                 if(err) 
@@ -315,7 +311,7 @@ class Database
 
         for (let i of result.rows)
         {
-            temp = new Reminder(i.rem_eventid, Number(i.rem_time), i.rem_info, Number(i.rem_id));
+            temp = new Reminder(i.rem_eventid, Number(i.rem_time), Number(i.rem_id));
             remArray.push(temp);
         }
 
@@ -338,7 +334,7 @@ class Database
         else 
         {
             result = result.rows[0];
-            temp = new Reminder(result.rem_eventid, Number(result.rem_time), result.rem_info, Number(result.rem_id));
+            temp = new Reminder(result.rem_eventid, Number(result.rem_time), Number(result.rem_id));
 
             return reminder;
         }
