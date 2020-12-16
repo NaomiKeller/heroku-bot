@@ -119,9 +119,15 @@ function listEvent()
             html+="</tr>";
 
             for (var i=0; i<eventArray.length;i++) {
-
-                var startTime = new Date(eventArray[i].startTime).toLocaleString('en-US', {timeZone: "America/New_York"}) + " ET";
-                var endTime = new Date(eventArray[i].endTime).toLocaleString('en-US', {timeZone: "America/New_York"}) + " ET";
+                var startTime;
+                var endTime;
+                if (eventArray[i].startTime > 0) {
+                    startTime = new Date(eventArray[i].startTime).toLocaleString('en-US', {timeZone: "America/New_York"}) + " ET";
+                    endTime = new Date(eventArray[i].endTime).toLocaleString('en-US', {timeZone: "America/New_York"}) + " ET";
+                } else {
+                    endTime = "No date";
+                    startTime = "No date";
+                }
 
                 html+="<tr>";
                 html+="<td>"+eventArray[i].name+"</td>";
