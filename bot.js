@@ -149,7 +149,7 @@ client.on("message", async message => {
                         result += element.toString();
                         result += '\n';
                     }
-                    message.channel.send("```css "+`${result}`+"```");
+                    message.channel.send("```css"+"\n"+`${result}`+"```");
                 }
                 break;
 
