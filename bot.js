@@ -58,15 +58,16 @@ client.on('ready', () => {
 
 
 client.on("message", async message => {
-    if (message.author.bot) return;
-    if (message.channel.type === "dm") return;
+    if (message.author.bot) 
+        return;
+    if (message.channel.type === "dm") 
+        return;
 
 
     let prefix = config.prefix; // prefix is '!'. Set in config.json
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
-    let d = new Date();
     let helpArray = ["!blip", " !site", " !ListEvent", " !event help"]; // List of available commands
     // going to add event command case that includes brief overview of event management commands
     if (cmd === `${prefix}blip`) {
@@ -88,9 +89,8 @@ client.on("message", async message => {
 
         let currentEvent = checkTempEvent(message.author.id, message.guild.id, tempEventsArray);
         
-
         if (currentEvent === null && args[0] !== "create" && args[0] !== "edit" && args[0] !== "delete" && args[0] !== "list")
-            message.channel.send("```"+"Use command \"!event create [event name]\" or \"!event edit [event id]\" first"+"```");
+            message.channel.send("```"+"Use command \"!event create\" or \"!event edit [event id]\" first"+"```");
         else
         {
             switch (args[0])
@@ -204,8 +204,6 @@ client.on("message", async message => {
                 }
                 else 
                 {      
-                    //if (currentEvent.ownerId !== undefined)
-                     //   currentEvent.userId = currentEvent.ownerId;
 
                     currentEvent.fillBlank();       // fill in empty properties
                     if (await database.editEvent(currentEvent) === false)
@@ -461,13 +459,8 @@ client.on('messageReactionAdd', async (reaction, user) => {
 
     //This determines whether a bot is making the call, and whether the correct emoji is being used. (We can change that later)
     if(!(user.bot) && (reaction.emoji.name == '🤔')){
-        
-        //TODO: figure out if the message being reacted to corresponds to an advertised event via query.
-        console.log(reaction.message.id);
+
         advert = await database.getAdvert(reaction.message.id);
-        console.log(user.id);
-        console.log(advert);
-  
         database.createSub(new Subscription(user.id, advert.eventId));
     }
 });
@@ -476,7 +469,6 @@ client.on('messageReactionAdd', async (reaction, user) => {
 client.on('messageReactionRemove', async (reaction, user) => {
     
     let advert;
-   
 
     if(reaction.partial){
         try{
@@ -493,10 +485,8 @@ client.on('messageReactionRemove', async (reaction, user) => {
         
         // get advert first
         advert = await database.getAdvert(reaction.message.id);
-        console.log(advert);
-
+        
         // delete subscription
-        console.log("user id :", user.id);
         await database.deleteSub(advert.eventId, user.id);
     }
 });
