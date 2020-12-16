@@ -18,21 +18,23 @@ function addEvent(form) {
         start: form.startTime.value, end: form.endTime.value, url: form.url.value};
 
     console.log(eventObj);
-        eventObj.start = (new Date(eventObj.start + "-05:00")).getTime();
-        eventObj.end = (new Date(eventObj.end + "-05:00")).getTime();
-        if (isNaN(eventObj.start)) {
-            alert("Start date invalid. Please try again.")
-        } else {
-            request.send(JSON.stringify({
-                name: eventObj.eventName,
-                description: eventObj.description, 
-                start: eventObj.start, 
-                end: eventObj.end, 
-                url: eventObj.url
-            }));
-            alert("Event Submitted!")
-        return false;  
-        }
+
+    eventObj.start = (new Date(eventObj.start + "-05:00")).getTime();
+    eventObj.end = (new Date(eventObj.end + "-05:00")).getTime();
+
+    if (isNaN(eventObj.start)) {
+        alert("Start date invalid. Please try again.")
+    } else {
+        request.send(JSON.stringify({
+            name: eventObj.eventName,
+            description: eventObj.description, 
+            start: eventObj.start, 
+            end: eventObj.end, 
+            url: eventObj.url
+        }));
+        alert("Event Submitted!")
+    return false;  
+    }
 }
 
 function editEvent(form) { 
@@ -52,21 +54,23 @@ function editEvent(form) {
         start: form.startTime.value, end: form.endTime.value, url: form.url.value};
 
     console.log(eventObj);
-    alert("Event Changes Submitted!");
     
     eventObj.start = (new Date(eventObj.start + "-05:00")).getTime();
     eventObj.end = (new Date(eventObj.end + "-05:00")).getTime();
 
-    request.send(JSON.stringify({
-        id: eventObj.eventId,
-        name: eventObj.eventName,
-        description: eventObj.description, 
-        start: eventObj.start, 
-        end: eventObj.end, 
-        url: eventObj.url
-    }));
-
-    return false;   
+    if (isNaN(eventObj.start)) {
+        alert("Start date invalid. Please try again.")
+    } else {
+        request.send(JSON.stringify({
+            name: eventObj.eventName,
+            description: eventObj.description, 
+            start: eventObj.start, 
+            end: eventObj.end, 
+            url: eventObj.url
+        }));
+        alert("Event Submitted!")
+    return false;  
+    }
 }
 
 function listEvent()
