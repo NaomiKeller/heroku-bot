@@ -99,18 +99,18 @@ app.post('/create', async (req, res) => {
 	console.log(req.body);
 
 	
-	let newEvent = new Event(req.body.name, req.body.description, req.body.start, req.body.end, req.body.url, null, serverId, 0);
+	let newEvent = new Event(req.body.name, req.body.description, req.body.start, req.body.end, req.body.url, serverId);
 	console.log(newEvent);
 
-if (isNaN(newEvent.start))
-	newEvent.start = null;
-if (isNaN(newEvent.end))
-	newEvent.end = null;
+	if (isNaN(newEvent.start))
+		newEvent.start = null;
+	if (isNaN(newEvent.end))
+		newEvent.end = null;
 
-if (await database.editEvent(newEvent) === true)
-{
-	res.send("true");
-}
+	if (await database.editEvent(newEvent) === true)
+	{
+		res.send("true");
+	}
 	
 	//res.redirect("/create");
 });
@@ -118,7 +118,7 @@ if (await database.editEvent(newEvent) === true)
 app.post('/edit', async (req, res) => {
 
 	console.log(req.body);
-	let editEvent = new Event(req.body.name, req.body.description, req.body.start, req.body.end, req.body.url, null, serverId, 0, req.body.id);
+	let editEvent = new Event(req.body.name, req.body.description, req.body.start, req.body.end, req.body.url, serverId, req.body.id);
 	console.log(editEvent);
 
 	// event id validation

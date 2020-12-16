@@ -1,11 +1,11 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Database.js V1.0
+// Database.js V1.1
 //
 
 // Event class 
 class Event
 {
-    constructor(name, description, startTime, endTime, url, userId, serverId, permission, id)
+    constructor(name, description, startTime, endTime, url, serverId, id)
     {
        
         this.id = id;
@@ -14,9 +14,8 @@ class Event
         this.startTime = startTime;
         this.endTime = endTime;
         this.url = url;
-        this.userId = userId;
         this.serverId = serverId;
-        this.permission = permission;
+        
     }
 
     // this method only formats date/time
@@ -37,8 +36,8 @@ class Event
             endTime = new Date(this.endTime).toLocaleString('en-US', {timeZone: "America/New_York"}) + " ET";
             
     
-        let string = `Event ID: ${this.id}\nEvent name: ${this.name}\nEvent description: ${this.description}\nEvent start time: ${startTime}\nEvent end time: ${endTime}\nEvent url: ${this.url}\n` +
-                        `Event permission: ${this.permission}\nEvent owner: ${this.userId}\nEvent server: ${this.serverId}\n`;
+        let string = `Event ID: ${this.id}\nEvent name: ${this.name}\nEvent description: ${this.description}\nEvent start time: ${startTime}\nEvent end time: ${endTime}\n
+                        Event url: ${this.url}\n` + `Event server: ${this.serverId}\n`;
         return string;
     }
 
@@ -52,9 +51,6 @@ class Event
             this.endTime = null;
         if (this.url === undefined)
             this.url = null;
-        if (this.permission === undefined)
-            this.permission = 0;
-
     }
     
 }
@@ -153,14 +149,14 @@ class Database
             // create an event
             if (isNaN(event.id))       
             {
-                query = `INSERT INTO EVENT (event_name, event_description, event_start, event_end, event_url, event_userid, event_serverid, event_permission) 
-                          VALUES (\'${event.name}\', \'${event.description}\', ${event.startTime}, ${event.endTime}, \'${event.url}\', \'${event.userId}\', \'${event.serverId}\', \'${event.permission}\');`;
+                query = `INSERT INTO EVENT (event_name, event_description, event_start, event_end, event_url, event_serverid) 
+                          VALUES (\'${event.name}\', \'${event.description}\', ${event.startTime}, ${event.endTime}, \'${event.url}\', \'${event.serverId}\');`;
             }
             // modify an existing event
             else        
             {
                 query = `UPDATE EVENT
-                        SET EVENT_NAME = \'${event.name}\', EVENT_DESCRIPTION = \'${event.description}\', EVENT_START = ${event.startTime}, EVENT_END = ${event.endTime}, EVENT_URL = \'${event.url}\', EVENT_PERMISSION = ${event.permission}
+                        SET EVENT_NAME = \'${event.name}\', EVENT_DESCRIPTION = \'${event.description}\', EVENT_START = ${event.startTime}, EVENT_END = ${event.endTime}, EVENT_URL = \'${event.url}\'
                         WHERE EVENT_ID = ${event.id};`;
         
             }
@@ -192,7 +188,7 @@ class Database
 
         for (let i of result.rows)
         {
-            temp = new Event(i.event_name, i.event_description, Number(i.event_start), Number(i.event_end), i.event_url, i.event_userid, i.event_serverid, i.event_permission, i.event_id);
+            temp = new Event(i.event_name, i.event_description, Number(i.event_start), Number(i.event_end), i.event_url, i.event_serverid, i.event_id);
             eventArray.push(temp);
         }
 
@@ -216,7 +212,7 @@ class Database
         else 
         {
             result = result.rows[0];
-            event = new Event(result.event_name, result.event_description, Number(result.event_start), Number(result.event_end), result.event_url, result.event_userid, result.event_serverid, result.event_permission, Number(result.event_id));
+            event = new Event(result.event_name, result.event_description, Number(result.event_start), Number(result.event_end), result.event_url, result.event_serverid, Number(result.event_id));
     
             return event;
         }

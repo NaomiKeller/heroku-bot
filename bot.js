@@ -129,7 +129,6 @@ client.on("message", async message => {
                     else 
                     {
                         tempEventsArray.push(currentEvent);  
-                        currentEvent.ownerId = currentEvent.userId;         // save the previous id in ownerId 
                         currentEvent.userId = message.author.id;
                     }
 
@@ -205,8 +204,8 @@ client.on("message", async message => {
                 }
                 else 
                 {      
-                    if (currentEvent.ownerId !== undefined)
-                        currentEvent.userId = currentEvent.ownerId;
+                    //if (currentEvent.ownerId !== undefined)
+                     //   currentEvent.userId = currentEvent.ownerId;
 
                     currentEvent.fillBlank();       // fill in empty properties
                     if (await database.editEvent(currentEvent) === false)
