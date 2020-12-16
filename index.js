@@ -90,7 +90,7 @@ app.post('/create', async (req, res) => {
 
 	if (isNaN(newEvent.start))
         newEvent.start = null;
-    else if (isNaN(newEvent.end))
+    if (isNaN(newEvent.end))
         newEvent.end = null;
 
 	if (await database.editEvent(newEvent) === true)
@@ -109,7 +109,7 @@ app.post('/edit', async (req, res) => {
 
 	if (isNaN(editEvent.start))
         editEvent.start = null;
-    else if (isNaN(editEvent.end))
+    if (isNaN(editEvent.end))
         editEvent.end = null;
 
 	if (await database.editEvent(editEvent) === true)
