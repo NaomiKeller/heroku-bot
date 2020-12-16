@@ -306,7 +306,28 @@ client.on("message", async message => {
         }
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // list subscriptions
+    if (cmd === `${prefix}ListSubscription`)
+    {
+        const subArray = await database.listSub();
+        let result = "";
 
+        if (subArray === null)
+            message.channel.send("```"+`No Subscriptions.`+"```");
+        else 
+        {
+            result = "Subscriptions:\n";
+             for (let element of subArray)
+            {
+                result += element.toString();
+                result += '\n';
+            }
+            message.channel.send("```"+`${result}`+"```");
+        }
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     //testing database features below...

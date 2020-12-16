@@ -96,6 +96,11 @@ class Subscription
         this.userId = userId;
     }
 
+    toString()
+    {
+        let string = `Event ID: ${this.eventId}\nUser ID: ${this.userId}\n`;
+        return string;
+    }
 }
 
 // Advertisement class
