@@ -473,6 +473,33 @@ client.on('messageReactionAdd', async (reaction, user) => {
     }
 });
 
+// remove subscription
+client.on('messageReactionRemove', async (reaction, user) => {
+    
+    let advert;
+   
+
+    if(reaction.partial){
+        try{
+            await reaction.fetch();
+        }catch(error){
+            console.error("Error fetching message: ", error);
+            return;
+        }
+    }
+
+    console.log(reaction);
+    //This determines whether a bot is making the call, and whether the correct emoji is being used. (We can change that later)
+    if(!(user.bot) && (reaction.emoji.name == '🤔')){
+        
+        // get advert first
+        advert = await database.getAdvert(reaction.message.id);
+        console.log(advert);
+
+        // delete subscription
+        await database.deleteSub(advert.eventId , user.id);
+    }
+});
 
 
 // do not touch this. this is how our bot links to our code from discord. 
