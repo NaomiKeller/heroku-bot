@@ -194,7 +194,7 @@ client.on("message", async message => {
                 break;
 
             case "review":
-                message.channel.send(currentEvent.toString());
+                message.channel.send("```"+currentEvent.toString()+"```");
                 break;
 
             case "confirm":
