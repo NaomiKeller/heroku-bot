@@ -91,8 +91,8 @@ function listEvent()
         
     };
 
-    request.send(JSON.stringify(
-        "getEvent"
-    ));
+    request.send(JSON.stringify({
+        msg: "getEvent"
+    }));
 
 }
