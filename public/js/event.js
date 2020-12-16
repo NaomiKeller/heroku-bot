@@ -107,16 +107,17 @@ function listEvent()
                 ;
             }
             var html = "<table border='1|1'>";
-            for (var i=0; i<eventArray.length;i++) {
+            
+            html+="<tr>";
+            html+="<th>Event Name</th>";
+            html+="<th>Event ID</th>"; 
+            html+="<th>Description</th>"; 
+            html+="<th>Start Time</th>"; 
+            html+="<th>End Time</th>"; 
+            html+="<th>URL</th>";  
+            html+="</tr>";
 
-                html+="<tr>";
-                html+="<th>Event Name</th>";
-                html+="<th>Event ID</th>"; 
-                html+="<th>Description</th>"; 
-                html+="<th>Start Time</th>"; 
-                html+="<th>End Time</th>"; 
-                html+="<th>URL</th>";  
-                html+="</tr>";
+            for (var i=0; i<eventArray.length;i++) {
 
                 html+="<tr>";
                 html+="<td>"+eventArray[i].name+"</td>";
