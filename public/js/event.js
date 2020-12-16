@@ -76,3 +76,19 @@ function editEvent(form) {
 
     return false;   
 }
+
+function listEvent()
+{
+    let request = new XMLHttpRequest();
+
+    request.open("POST", "/edit");
+    request.responseType = 'text';
+    request.setRequestHeader('Content-type', 'application/json');
+    
+    request.onload = function() {
+        
+        console.log(request.response);
+        
+    };
+
+}

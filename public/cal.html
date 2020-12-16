@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -26,124 +26,123 @@
 
 <body>
 
-  <div class="d-flex" id="wrapper">
+    <div class="d-flex" id="wrapper">
 
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper">
-      <div class="sidebar-heading text-white">Forget Me Bot</div>
-      <div class="list-group list-group-flush shift">
-        <a href="home.html" class="list-group-item list-group-item-action" action="/home" method="post">Dashboard</a>
-        <a href="cal.html" class="list-group-item list-group-item-action" action="/cal" method="post">Calendar</a>
-        <a href="about.html" class="list-group-item list-group-item-action" action="/about" method="post">About</a>
-        <a href="contact.html" class="list-group-item list-group-item-action" action="/contact" method="post">Contact</a>
-      </div>
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <div class="sidebar-heading text-white">Forget Me Bot</div>
+            <div class="list-group list-group-flush shift">
+                <a href="home.html" class="list-group-item list-group-item-action" action="/home" method="post">Dashboard</a>
+                <a href="cal.html" class="list-group-item list-group-item-action" action="/cal" method="post">Calendar</a>
+                <a href="about.html" class="list-group-item list-group-item-action" action="/about" method="post">About</a>
+                <a href="contact.html" class="list-group-item list-group-item-action" action="/contact" method="post">Contact</a>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+
+            <nav class="navbar navbar-expand-lg">
+                <button class="btn btn-primary" id="menu-toggle"><em class="fa fa-bars"></em></button>
+            </nav>
+
+            <div class="container mt-5 headerContainer">
+                <div><h2>Calendar</h2></div>
+            </div>
+
+            <div class="bodyBorder"></div>
+
+            <div class="row justify-content-sm-center">
+
+                <div class="col-lg-8">
+                    <table id="cal">
+                        <!-- Head of columns -->
+                        <tr class="tableHead">
+                            <th>Event Name</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>URL</th>
+                        </tr>
+                        <!-- Row 1 -->
+                        <tr>
+                            <th>Event 1</th>
+                            <th>description</th>
+                            <th>11/25/20</th>
+                            <th>12:00 PM</th>
+                            <th>01:00 PM</th>
+                            <th>website.com</th>
+                        </tr>
+                        <!-- Row 2 -->
+                        <tr>
+                            <th>Event 2</th>
+                            <th>description</th>
+                            <th>11/25/20</th>
+                            <th>12:00 PM</th>
+                            <th>01:00 PM</th>
+                            <th>website.com</th>
+                        </tr>
+                        <!-- Row 3 -->
+                        <tr>
+                            <th>Event 3</th>
+                            <th>description</th>
+                            <th>11/25/20</th>
+                            <th>12:00 PM</th>
+                            <th>01:00 PM</th>
+                            <th>website.com</th>
+                        </tr>
+                        <!-- Row 4 -->
+                        <tr>
+                            <th>Event 4</th>
+                            <th>description</th>
+                            <th>11/25/20</th>
+                            <th>12:00 PM</th>
+                            <th>01:00 PM</th>
+                            <th>website.com</th>
+                        </tr>
+                        <!-- Row 5 -->
+                        <tr>
+                            <th>Event 5</th>
+                            <th>description</th>
+                            <th>11/25/20</th>
+                            <th>12:00 PM</th>
+                            <th>01:00 PM</th>
+                            <th>website.com</th>
+                        </tr>
+                        <!-- Row 6 -->
+                        <tr>
+                            <th>Event 6</th>
+                            <th>description</th>
+                            <th>11/25/20</th>
+                            <th>12:00 PM</th>
+                            <th>01:00 PM</th>
+                            <th>website.com</th>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /#page-content-wrapper -->
+
     </div>
+    <!-- /#wrapper -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+        });
+    </script>
 
-      <nav class="navbar navbar-expand-lg">
-        <button class="btn btn-primary" id="menu-toggle"><em class="fa fa-bars"></em></button>
-      </nav>
-
-      <div class="container mt-5 headerContainer">
-        <div><h2>Calendar</h2></div>
-      </div>
-
-      <div class="bodyBorder"></div>
-
-      <div class="row justify-content-sm-center">
-        
-          <div class="col-lg-8">
-            <table id="cal">
-               <!-- Head of columns -->
-              <tr class="tableHead">
-                <th>Event Name</th>
-                <th>Description</th>
-                <th>Date</th>
-                <th>Start Time</th>
-                <th>End Time</th>
-                <th>URL</th>
-              </tr>
-              <!-- Row 1 -->
-              <tr>
-                <th>Event 1</th>
-                <th>description</th>
-                <th>11/25/20</th>
-                <th>12:00 PM</th>
-                <th>01:00 PM</th>
-                <th>website.com</th>
-              </tr>
-              <!-- Row 2 -->
-              <tr>
-                <th>Event 2</th>
-                <th>description</th>
-                <th>11/25/20</th>
-                <th>12:00 PM</th>
-                <th>01:00 PM</th>
-                <th>website.com</th>
-              </tr>
-              <!-- Row 3 -->
-              <tr>
-                <th>Event 3</th>
-                <th>description</th>
-                <th>11/25/20</th>
-                <th>12:00 PM</th>
-                <th>01:00 PM</th>
-                <th>website.com</th>
-              </tr>
-              <!-- Row 4 -->
-              <tr>
-                <th>Event 4</th>
-                <th>description</th>
-                <th>11/25/20</th>
-                <th>12:00 PM</th>
-                <th>01:00 PM</th>
-                <th>website.com</th>
-              </tr>
-              <!-- Row 5 -->
-              <tr>
-                <th>Event 5</th>
-                <th>description</th>
-                <th>11/25/20</th>
-                <th>12:00 PM</th>
-                <th>01:00 PM</th>
-                <th>website.com</th>
-              </tr>
-              <!-- Row 6 -->
-              <tr>
-                <th>Event 6</th>
-                <th>description</th>
-                <th>11/25/20</th>
-                <th>12:00 PM</th>
-                <th>01:00 PM</th>
-                <th>website.com</th>
-              </tr>
-            </table>
-          </div>
-        
-      </div>
-
-    </div>
-    <!-- /#page-content-wrapper -->
-
-  </div>
-  <!-- /#wrapper -->
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-  <!-- Menu Toggle Script -->
-  <script>
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
-
-  <script src="../index.js" type="application/javascript;charset=utf-8"></script>
-
+    <script src="../index.js" type="application/javascript;charset=utf-8"></script>
+    <script src="js/event.js" type="text/javascript"></script>
 </body>
 
 </html>
