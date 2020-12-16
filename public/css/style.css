@@ -349,6 +349,7 @@ input:focus {
 /* Calendar / Table */
 
 table {
+  margin-top: -2em;
   width: 100%;
 }
 
