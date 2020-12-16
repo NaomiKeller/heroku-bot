@@ -34,15 +34,6 @@ function addEvent(form) {
     return false;   
 }
 
-/* 
-Jack -
-
-the same comment i left in index.js can be applied here, with the additional notes that i did give the edit.html page
-the proper 'onsubmit' to call the editEvent function. I also added alert boxes to give user feedback on whether or not
-a submission was successful (although there's not really any error checking client-side), and added 'required' fields in the html 
-forms to prevent necessary input from being excluded.
-
-*/
 function editEvent(form) { 
     let request = new XMLHttpRequest();
 
@@ -90,15 +81,11 @@ function listEvent()
         
         if (request.response === 'empty')
         {
-            // if there is no events
-            // need a prompt here 
             console.log(request.response);
             alert("There are no events");
         }
         else 
         {
-            // the returned array is here
-            // ok, I do not know how to put all values to the table in cal.html
             eventArray = JSON.parse(request.response);
             console.log('\n', eventArray);
 
@@ -145,8 +132,6 @@ function listEvent()
             html += "</table>";
             document.getElementById("jsTable").innerHTML = html;
         }
-
-        
         
     };
 
@@ -154,4 +139,11 @@ function listEvent()
         msg: "listEvent"
     }));
 
+}
+
+// using the same list so user can see what events are available for deletion
+// didnt add anything to do with actually deleting
+function deleteEvent()
+{
+    listEvent();
 }

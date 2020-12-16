@@ -22,9 +22,11 @@
   <link href="https://fonts.googleapis.com/css?family=Noto Sans:300,400,500,600,700,800,900" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+  <script src="js/event.js" type="text/javascript"></script>
+
 </head>
 
-<body>
+<body onLoad="deleteEvent()">
 
   <div class="d-flex" id="wrapper">
 
@@ -52,7 +54,21 @@
 
       <div class="bodyBorder"></div>
 
-      <div class="container"></div>
+      <div class="row justify-content-sm-center">
+        <div class="eventWrapper">
+          <div class="col-lg-8">
+
+            <div id="jsTable"></div>
+
+            <form class="eventForm" action="" method="" name="form" onsubmit="return editEvent(this)">
+              <div class="text">Event ID to Delete</div>
+              <input autocomplete="off" type="text" name="eventId" required>
+              <br>
+              <button type="submit" class="mt-5 btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
 
     </div>
     <!-- /#page-content-wrapper -->
