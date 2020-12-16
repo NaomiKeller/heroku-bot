@@ -61,7 +61,7 @@
       <div class="bodyBorder"></div>
       
       <div class="row justify-content-sm-center">
-        <div class="col-lg-8 mb-5" id="hidden" style="display:none;">
+        <div class="col-lg-8 mb-5">
           <div id="jsTable"></div>
         </div>
       </div>
@@ -70,6 +70,7 @@
         <div class="col-lg-8">
           <br>
           <button class="mt-5 btn btn-primary" onclick="display()">Show Events</button>
+          <button type="button" class="mt-5 btn btn-primary" onclick="display()">Show Events</button>
         </div>
       </div>-->
 
@@ -78,7 +79,6 @@
           <div class="col-lg-8">
             
             <form class="eventForm" action="" method="" name="form" onsubmit="return editEvent(this)">
-              <button type="button" class="mt-5 btn btn-primary" onclick="display()">Show Events</button>
               <div class="text">Event ID</div>
               <input autocomplete="off" type="text" name="eventId" size="34" required>
               <div class="text">Event Name</div>
@@ -92,7 +92,7 @@
               <div class="text">URL</div>
               <input autocomplete="off" type="text" name="url" size="34">
               <br>
-              <button type="submit" class="mt-5 btn btn-primary">Submit</button>
+              <button type="submit" class="mt-5 btn btn-primary" onclick="window.location.reload()">Submit</button>
             </form>
           </div>
         </div>

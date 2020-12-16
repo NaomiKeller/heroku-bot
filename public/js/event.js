@@ -68,7 +68,7 @@ function editEvent(form) {
             end: eventObj.end, 
             url: eventObj.url
         }));
-        alert("Event Submitted! Click 'Show Events' again to see your changes.");
+        alert("Event Submitted! Your view has been refreshed.");
     return false;  
     }
 }
