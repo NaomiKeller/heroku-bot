@@ -287,7 +287,7 @@ client.on("message", async message => {
                 result += element.toString();
                 result += '\n';
             }
-            message.channel.send(`${result}`);
+            message.channel.send("```"+`${result}`+"```");
         }
     }
 
