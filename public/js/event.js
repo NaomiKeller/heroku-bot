@@ -106,8 +106,9 @@ function listEvent()
             {
                 ;
             }
+
             var html = "<table border='1|1'>";
-            
+
             html+="<tr>";
             html+="<th>Event Name</th>";
             html+="<th>Event ID</th>"; 
@@ -119,12 +120,15 @@ function listEvent()
 
             for (var i=0; i<eventArray.length;i++) {
 
+                var startTime = new Date(eventArray[i].startTime).toLocaleString('en-US', {timeZone: "America/New_York"}) + " ET";
+                var endTime = new Date(eventArray[i].endTime).toLocaleString('en-US', {timeZone: "America/New_York"}) + " ET";
+
                 html+="<tr>";
                 html+="<td>"+eventArray[i].name+"</td>";
                 html+="<td>"+eventArray[i].id+"</td>";
                 html+="<td>"+eventArray[i].description+"</td>";
-                html+="<td>"+eventArray[i].startTime+"</td>";
-                html+="<td>"+eventArray[i].endTime+"</td>";
+                html+="<td>"+startTime+"</td>";
+                html+="<td>"+endTime+"</td>";
                 html+="<td>"+eventArray[i].url+"</td>";
                 html+="</tr>";
             }
