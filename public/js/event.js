@@ -121,7 +121,7 @@ function listEvent()
             for (var i=0; i<eventArray.length;i++) {
                 var startTime;
                 var endTime;
-                if (eventArray[i].startTime > 0) {
+                if (eventArray[i].startTime && eventArray[i].endTime> 0) {
                     startTime = new Date(eventArray[i].startTime).toLocaleString('en-US', {timeZone: "America/New_York"}) + " ET";
                     endTime = new Date(eventArray[i].endTime).toLocaleString('en-US', {timeZone: "America/New_York"}) + " ET";
                 } else {
