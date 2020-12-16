@@ -106,6 +106,20 @@ function listEvent()
             {
                 ;
             }
+            var html = "<table border='1|1'>";
+            for (var i=0; i<eventArray.length;i++) {
+                html+="<tr>";
+                html+="<td>"+eventArray[i].name+"</td>";
+                html+="<td>"+eventArray[i].id+"</td>";
+                html+="<td>"+eventArray[i].description+"</td>";
+                html+="<td>"+eventArray[i].startTime+"</td>";
+                html+="<td>"+eventArray[i].endTime+"</td>";
+                html+="<td>"+eventArray[i].url+"</td>";
+
+                html+="</tr>";
+            }
+            html += "</table>";
+            document.getElementById("jsTable").innerHTML = html;
         }
 
         
