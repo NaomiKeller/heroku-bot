@@ -24,6 +24,7 @@
 
   <script>
       window.onload = listEvent();
+      document.getElementById("display").innerHTML = eventArray.toString();
   </script>
 
 </head>
@@ -59,6 +60,7 @@
             <div class="row justify-content-sm-center">
 
                 <div class="col-lg-8">
+                    <div id="display"></div>
                     <table id="cal">
                         <!-- Head of columns -->
                         <tr class="tableHead">
