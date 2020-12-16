@@ -80,6 +80,7 @@ function editEvent(form) {
 function listEvent()
 {
     let request = new XMLHttpRequest();
+    let eventArray = [];
 
     request.open("POST", "/cal");
     request.responseType = 'text';
@@ -87,12 +88,26 @@ function listEvent()
     
     request.onload = function() {
         
-        console.log(request.response);
+        if (request.response === 'empty')
+        {
+            // if there is no events
+            // need a prompt here 
+            console.log(request.response);
+        }
+        else 
+        {
+            // the returned array is here
+            console.log(request.response);
+            eventArray = JSON.parse(request.response);
+            console.log('\n', eventArray);
+        }
+
+        
         
     };
 
     request.send(JSON.stringify({
-        msg: "getEvent"
+        msg: "listEvent"
     }));
 
 }

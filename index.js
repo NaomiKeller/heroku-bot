@@ -81,7 +81,7 @@ app.post('/cal', async (req, res) => {
 	let eventArray;
 	console.log(req.body);	
 	
-	if (1)
+	if (req.body.msg === 'listEvent')
 	{
 		eventArray = await database.listEvent();
 		if (eventArray === null)
