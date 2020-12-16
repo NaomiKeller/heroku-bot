@@ -325,8 +325,8 @@ position: relative;
 
 .eventForm button {
   background-color: var(--green);
-  width: 7em;
-  margin-left: 8.1em;
+  width: 10em;
+  margin-left: 6.5em;
 }
 
 input::placeholder {
