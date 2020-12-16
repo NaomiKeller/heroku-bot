@@ -23,6 +23,22 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <script src="js/event.js" type="text/javascript"></script>
+  <script>
+    var html = "<table border='1|1'>";
+    for (var i=0; i<eventArray.length;i++) {
+        html+="<tr>";
+        html+="<td>"+eventArray[i].name+"</td>";
+        html+="<td>"+eventArray[i].id+"</td>";
+        html+="<td>"+eventArray[i].description+"</td>";
+        html+="<td>"+eventArray[i].startTime+"</td>";
+        html+="<td>"+eventArray[i].endTime+"</td>";
+        html+="<td>"+eventArray[i].url+"</td>";
+
+        html+="</tr>";
+    }
+    html += "</table>";
+    document.getElementById("jsTable").innerHTML = html;
+  </script>
 
 </head>
 
@@ -57,9 +73,9 @@
             <div class="row justify-content-sm-center">
 
                 <div class="col-lg-8">
-                    <div id="display"></div>
-                    <table id="cal">
-                        <!-- Head of columns -->
+                    <div id="jsTable"></div>
+                    <!--<table id="cal">
+                        <!-- Head of columns --
                         <tr class="tableHead">
                             <th>Event Name</th>
                             <th>Description</th>
@@ -68,7 +84,7 @@
                             <th>End Time</th>
                             <th>URL</th>
                         </tr>
-                        <!-- Row 1 -->
+                        <!-- Row 1 --
                         <tr>
                             <th>Event 1</th>
                             <th>description</th>
@@ -77,7 +93,7 @@
                             <th>01:00 PM</th>
                             <th>website.com</th>
                         </tr>
-                        <!-- Row 2 -->
+                        <!-- Row 2 --
                         <tr>
                             <th>Event 2</th>
                             <th>description</th>
@@ -86,7 +102,7 @@
                             <th>01:00 PM</th>
                             <th>website.com</th>
                         </tr>
-                        <!-- Row 3 -->
+                        <!-- Row 3 --
                         <tr>
                             <th>Event 3</th>
                             <th>description</th>
@@ -95,7 +111,7 @@
                             <th>01:00 PM</th>
                             <th>website.com</th>
                         </tr>
-                        <!-- Row 4 -->
+                        <!-- Row 4 --
                         <tr>
                             <th>Event 4</th>
                             <th>description</th>
@@ -104,7 +120,7 @@
                             <th>01:00 PM</th>
                             <th>website.com</th>
                         </tr>
-                        <!-- Row 5 -->
+                        <!-- Row 5 --
                         <tr>
                             <th>Event 5</th>
                             <th>description</th>
@@ -113,7 +129,7 @@
                             <th>01:00 PM</th>
                             <th>website.com</th>
                         </tr>
-                        <!-- Row 6 -->
+                        <!-- Row 6 --
                         <tr>
                             <th>Event 6</th>
                             <th>description</th>
@@ -122,7 +138,7 @@
                             <th>01:00 PM</th>
                             <th>website.com</th>
                         </tr>
-                    </table>
+                    </table>-->
                 </div>
 
             </div>

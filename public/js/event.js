@@ -93,6 +93,7 @@ function listEvent()
             // if there is no events
             // need a prompt here 
             console.log(request.response);
+            alert("There are no events");
         }
         else 
         {
