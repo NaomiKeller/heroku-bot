@@ -18,20 +18,22 @@ function addEvent(form) {
         start: form.startTime.value, end: form.endTime.value, url: form.url.value};
 
     console.log(eventObj);
-    alert("Event Submitted!");
+    if (eventObj.start < 1) {
+        eventObj.start = (new Date(eventObj.start + "-05:00")).getTime();
+        eventObj.end = (new Date(eventObj.end + "-05:00")).getTime();
 
-    eventObj.start = (new Date(eventObj.start + "-05:00")).getTime();
-    eventObj.end = (new Date(eventObj.end + "-05:00")).getTime();
-
-    request.send(JSON.stringify({
-        name: eventObj.eventName,
-        description: eventObj.description, 
-        start: eventObj.start, 
-        end: eventObj.end, 
-        url: eventObj.url
-    }));
-
-    return false;   
+        request.send(JSON.stringify({
+            name: eventObj.eventName,
+            description: eventObj.description, 
+            start: eventObj.start, 
+            end: eventObj.end, 
+            url: eventObj.url
+        }));
+        alert("Event Submitted!")
+        return false;   
+    } else {
+        alert("Start date invalid. Please try again.")
+    }
 }
 
 function editEvent(form) { 
