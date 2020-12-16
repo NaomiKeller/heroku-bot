@@ -399,7 +399,7 @@ client.on("message", async message => {
         //second version       
         eventName = (await database.getEvent(Number(eventID))).name; 
         
-        message.channel.send("Click the emoji below to subscribe to the event: " + eventName).then(value => {
+        message.channel.send("```Click the emoji below to subscribe to the event: \n" + eventName + "```").then(value => {
             messageID = value.id;
             value.react('🤔')
             serverID = message.guild.id
