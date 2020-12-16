@@ -81,7 +81,7 @@ function listEvent()
 {
     let request = new XMLHttpRequest();
 
-    request.open("POST", "/edit");
+    request.open("POST", "/cal");
     request.responseType = 'text';
     request.setRequestHeader('Content-type', 'application/json');
     
@@ -90,5 +90,9 @@ function listEvent()
         console.log(request.response);
         
     };
+
+    request.send(JSON.stringify({
+        "getEvent"
+    }));
 
 }

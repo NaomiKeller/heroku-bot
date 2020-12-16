@@ -75,8 +75,22 @@ app.post('/home', (req, res) => {
   res.redirect("/home");
 });
 
+// try some calendar output here
 app.post('/cal', (req, res) => {
-  res.redirect("/cal");
+	
+	let eventArray;
+	console.log(req.body);	
+	
+	if (1)
+	{
+		eventArray = database.listEvent();
+		if (eventArray === null)
+			res.send("empty");
+		else 
+			res.send(JSON.stringify(eventArray));
+	}
+
+//res.redirect("/cal");
 });
 
 // create event router
