@@ -73,17 +73,18 @@ async function remControl()
 					
 					if (subArray !== null)
 					{
-						message = "```";
+						message = "";
 						for (let sub of subArray)
 						{
 							message += `<@${sub.userId}> `;	
 						}
-	
+						
 						message += '\n';
 						message += "Don't forget! An event you subscribed to is happening soon.";  
 						message += '\n';
 						message += "Here's what you need to know:";
 						message += '\n';
+						message += '```'
 						message += '\n';
 						message += tempEvent.toString();
 						message += '\n';
