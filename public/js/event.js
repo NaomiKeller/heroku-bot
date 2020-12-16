@@ -140,10 +140,3 @@ function listEvent()
     }));
 
 }
-
-// using the same list so user can see what events are available for deletion
-// didnt add anything to do with actually deleting
-function deleteEvent()
-{
-    listEvent();
-}
