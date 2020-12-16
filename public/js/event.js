@@ -21,17 +21,17 @@ function addEvent(form) {
         eventObj.start = (new Date(eventObj.start + "-05:00")).getTime();
         eventObj.end = (new Date(eventObj.end + "-05:00")).getTime();
         if (isNaN(eventObj.start)) {
-            request.send(JSON.stringify({
-                name: eventObj.eventName,
-                description: eventObj.description, 
-                start: eventObj.start, 
-                end: eventObj.end, 
-                url: eventObj.url
-            }));
-            alert("Event Submitted!")
-            return false;   
+            alert("Start date invalid. Please try again.")
         } else {
-        alert("Start date invalid. Please try again.")
+        request.send(JSON.stringify({
+            name: eventObj.eventName,
+            description: eventObj.description, 
+            start: eventObj.start, 
+            end: eventObj.end, 
+            url: eventObj.url
+        }));
+        alert("Event Submitted!")
+        return false;  
         }
 }
 
