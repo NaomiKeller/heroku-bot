@@ -23,6 +23,13 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <script src="js/event.js" type="text/javascript"></script>
+
+  <script>
+    function display() {
+      document.getElementById('hidden').style.display = "block";
+    }
+  </script>
+
 </head>
 
 <body>
@@ -52,6 +59,19 @@
       </div>
 
       <div class="bodyBorder"></div>
+      
+      <div class="row justify-content-sm-center">
+        <div class="col-lg-8" id="hidden" style="display:none;">
+          <div id="jsTable"></div>
+        </div>
+      </div>
+
+      <div class="row justify-content-sm-center">
+        <div class="col-lg-8">
+          <button class="mt-5 btn btn-primary" onclick="display()">Show Events</button>
+        </div>
+      </div>
+
       <div class="row justify-content-sm-center">
         <div class="eventWrapper">
           <div class="col-lg-8">
