@@ -36,8 +36,8 @@ class Event
             endTime = new Date(this.endTime).toLocaleString('en-US', {timeZone: "America/New_York"}) + " ET";
             
     
-        let string = `Event ID: ${this.id}\nEvent name: ${this.name}\nEvent description: ${this.description}\nEvent start time: ${startTime}\nEvent end time: ${endTime}\n
-                        Event url: ${this.url}\n` + `Event server: ${this.serverId}\n`;
+        let string = `Event ID: ${this.id}\nEvent name: ${this.name}\nEvent description: ${this.description}\nEvent start time: ${startTime}\nEvent end time: ${endTime}\n` +
+                        `Event url: ${this.url}\nEvent server: ${this.serverId}\n`;
         return string;
     }
 
