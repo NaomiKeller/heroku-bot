@@ -21,7 +21,7 @@ const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 // a section for temporary event
 
 const tempEventsArray = [];
-const invalid = "Invalid command! Please view !help for a full list of valid commands!";
+const invalid = "```Invalid command! Please view !help for a full list of valid commands!```";
 
 // check if there is a temporary event being cached
 // parameter 1: user id
