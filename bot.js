@@ -90,7 +90,7 @@ client.on("message", async message => {
         
 
         if (currentEvent === null && args[0] !== "create" && args[0] !== "edit" && args[0] !== "delete" && args[0] !== "list")
-            message.channel.send("Use command \"!event create [event name]\" or \"!event edit [event id]\" first");
+            message.channel.send("```"+"Use command \"!event create [event name]\" or \"!event edit [event id]\" first"+"```");
         else
         {
             switch (args[0])
@@ -98,7 +98,7 @@ client.on("message", async message => {
 
             case "create":      // create mode
                 if (currentEvent !== null)
-                    message.channel.send("Failure: There is an unsaved event. Use \"!event confirm\" or \"!event cancel\"");
+                    message.channel.send("```"+"Failure: There is an unsaved event. Use \"!event confirm\" or \"!event cancel\""+"```");
 
                 else 
                 {
@@ -112,7 +112,7 @@ client.on("message", async message => {
 
             case "edit":        // edit mode
                 if (currentEvent !== null)
-                    message.channel.send("Failure: There is an unsaved event. Use \"!event confirm\" or \"!event cancel\"");
+                    message.channel.send("```"+"Failure: There is an unsaved event. Use \"!event confirm\" or \"!event cancel\""+"```");
                 
                 else if (isNaN(args[1]))
                 {
@@ -124,7 +124,7 @@ client.on("message", async message => {
                     console.log(currentEvent);
                     if (currentEvent === null)
                     {
-                        message.channel.send(`Failure: There is no such event ID ${args[1]}`);
+                        message.channel.send("```"+`Failure: There is no such event ID ${args[1]}`+"```");
                     }
                     else 
                     {
@@ -141,7 +141,7 @@ client.on("message", async message => {
                 let result = "";
 
                 if (eventArray === null)
-                    message.channel.send(`No Events.`);
+                    message.channel.send("```"+`No Events.`+"```");
                 else 
                 {
                     for (let element of eventArray)
@@ -149,7 +149,7 @@ client.on("message", async message => {
                         result += element.toString();
                         result += '\n';
                     }
-                    message.channel.send("```css\n"+`${result}`+"```");
+                    message.channel.send("```"+`${result}`+"```");
                 }
                 break;
 
@@ -158,11 +158,11 @@ client.on("message", async message => {
                     message.channel.send(invalid);
                 else if (await database.deleteEvent(args[1]) === true)
                 {
-                    message.channel.send("Deleted an event!");
+                    message.channel.send("```Deleted an event!```");
                 }
                 else 
                 {
-                    message.channel.send("The event ID is invalid!");
+                    message.channel.send("```The event ID is invalid!```");
                 }
                 break;
 
@@ -201,7 +201,7 @@ client.on("message", async message => {
                 // event must have a name
                 if (currentEvent.name === undefined)
                 {
-                    message.channel.send("Event must have a name");
+                    message.channel.send("```Event must have a name```");
                 }
                 else 
                 {      
@@ -211,12 +211,12 @@ client.on("message", async message => {
                     currentEvent.fillBlank();       // fill in empty properties
                     if (await database.editEvent(currentEvent) === false)
                     {
-                        message.channel.send("Failure in submitting event");
+                        message.channel.send("```Failure in submitting event```");
                         break;
                     }
                     else 
                     {
-                        message.channel.send("Submitted an event!");
+                        message.channel.send("```Submitted an event!```");
                     }
                      
                 }
@@ -250,7 +250,7 @@ client.on("message", async message => {
         }
         else if (await database.getEvent(args[0]) === null)
         {
-            message.channel.send(`Invalid Event ID!`);
+            message.channel.send("```"+`Invalid Event ID!`+"```");
         }
         else 
         {
@@ -263,11 +263,11 @@ client.on("message", async message => {
             
             if (await database.createReminder(reminder) === true)
             {
-                 message.channel.send(`Created a reminder!`);
+                 message.channel.send("```"+`Created a reminder!`+"```");
             }
             else
             {
-                 message.channel.send(`Failure: to create a reminder!`);
+                 message.channel.send("```"+`Failure: to create a reminder!`+"```");
             }
         }
     }
@@ -279,7 +279,7 @@ client.on("message", async message => {
         let result = "";
 
         if (remArray === null)
-            message.channel.send(`No Reminder.`);
+            message.channel.send("```"+`No Reminder.`+"```");
         else 
         {
              for (let element of remArray)
@@ -298,11 +298,11 @@ client.on("message", async message => {
             message.channel.send(invalid);
         else if (await database.deleteReminder(args[0]) === true)
         {            
-            message.channel.send(`Deleted a reminder!`);  
+            message.channel.send("```"+`Deleted a reminder!`+"```");  
         }
         else 
         {
-            message.channel.send(`Invalid Reminder ID!`); 
+            message.channel.send("```"+`Invalid Reminder ID!`+"```"); 
         }
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -324,7 +324,7 @@ client.on("message", async message => {
                 throw err;
             }
             else{
-                message.channel.send("Test Tables created");
+                message.channel.send("```Test Tables created```");
             }
         });
     }
@@ -339,16 +339,16 @@ client.on("message", async message => {
         let name = args[0];
 
         message.channel.send(name);
-        message.channel.send("Pre-attempt");
+        message.channel.send("```Pre-attempt```");
         
-        message.channel.send("Attempting...");
+        message.channel.send("```Attempting...```");
 
         pool.query(`INSERT INTO TEST_EVENT (EVENT_NAME) VALUES (\'${name}\');`, (err, res) => {
             if(err) {
                 throw err;
             }
             else{
-                message.channel.send("No error creating");
+                message.channel.send("```No error creating```");
             }
         });
 
@@ -417,7 +417,7 @@ client.on("message", async message => {
                 throw err;
             }
             for (let row of res.rows) {
-                message.channel.send(JSON.stringify(row));
+                message.channel.send("```"+JSON.stringify(row)+"```");
             }
           
         });
