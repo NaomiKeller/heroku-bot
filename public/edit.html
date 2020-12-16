@@ -26,8 +26,8 @@
 
 </head>
 
-<body> <!--onload="listEvent()"-->
-
+<body onload="listEvent()"> 
+ 
   <div class="d-flex" id="wrapper">
 
     <!-- Sidebar -->
@@ -86,7 +86,7 @@
               <div class="text">URL</div>
               <input autocomplete="off" type="text" name="url" size="34">
               <br>
-              <button type="submit" class="mt-5 btn btn-primary" onclick="window.location.reload()">Submit</button>
+              <button type="submit" class="mt-5 btn btn-primary" onclick="setTimeout(window.location.reload(), 5000)">Submit</button>
             </form>
           </div>
         </div>

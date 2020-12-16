@@ -62,6 +62,7 @@ function editEvent(form) {
         alert("Start date invalid. Please try again.")
     } else {
         request.send(JSON.stringify({
+            id: eventObj.eventId,
             name: eventObj.eventName,
             description: eventObj.description, 
             start: eventObj.start, 
