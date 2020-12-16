@@ -481,8 +481,8 @@ class Database
         else 
         {
             query = `DELETE FROM SUBSCRIPTION 
-                        WHERE sub_eventId = ${eventId} and sub_userId = ${userId};`;
-
+                        WHERE sub_eventId = ${eventId} AND sub_userId = \'${userId}\';`;
+            console.log(query);
             await this.pool.query(query, (err, res) => {
                 if(err) 
                     throw err;           

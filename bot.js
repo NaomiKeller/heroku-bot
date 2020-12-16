@@ -488,7 +488,7 @@ client.on('messageReactionRemove', async (reaction, user) => {
         }
     }
 
-    console.log(reaction);
+    console.log("trigger remove handler");
     //This determines whether a bot is making the call, and whether the correct emoji is being used. (We can change that later)
     if(!(user.bot) && (reaction.emoji.name == '🤔')){
         
@@ -497,7 +497,8 @@ client.on('messageReactionRemove', async (reaction, user) => {
         console.log(advert);
 
         // delete subscription
-        await database.deleteSub(advert.eventId , user.id);
+        console.log("user id :", user.id);
+        await database.deleteSub(advert.eventId, user.id);
     }
 });
 
