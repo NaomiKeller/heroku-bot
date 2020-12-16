@@ -84,7 +84,7 @@ async function remControl()
 						message += '\n';
 						message += "Here's what you need to know:";
 						message += '\n';
-						message += '```'
+						message += '```';
 						message += '\n';
 						message += tempEvent.toString();
 						message += '\n';
