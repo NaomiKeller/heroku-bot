@@ -284,6 +284,7 @@ position: relative;
   box-shadow: 0 0 2px 2px rgba(27, 27, 27, 0.1);
   margin-top: 8px;
   font-size: 16px;
+  max-width: 18em;
 }
 
 .loginForm .text {
@@ -319,6 +320,7 @@ position: relative;
 
 .eventForm .text {
   margin-top: .5em; margin-bottom: -.5em;
+
 }
 
 .eventForm button {
@@ -345,6 +347,7 @@ input:focus {
   margin-top: 8px;
   font-size: 16px;
   padding-left: .5em; padding-right: 3.5em;
+  max-width: 23em;
 }
 
 /* Calendar / Table */
@@ -368,6 +371,4 @@ table th {
   padding: .5em 1em .5em 1em;
 }
 
-.margFix {
-  
-}
+
