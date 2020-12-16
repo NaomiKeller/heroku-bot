@@ -23,14 +23,14 @@ function addEvent(form) {
         if (isNaN(eventObj.start)) {
             alert("Start date invalid. Please try again.")
         } else {
-        request.send(JSON.stringify({
-            name: eventObj.eventName,
-            description: eventObj.description, 
-            start: eventObj.start, 
-            end: eventObj.end, 
-            url: eventObj.url
-        }));
-        alert("Event Submitted!")
+            request.send(JSON.stringify({
+                name: eventObj.eventName,
+                description: eventObj.description, 
+                start: eventObj.start, 
+                end: eventObj.end, 
+                url: eventObj.url
+            }));
+            alert("Event Submitted!")
         return false;  
         }
 }
