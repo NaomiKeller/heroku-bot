@@ -76,14 +76,14 @@ app.post('/home', (req, res) => {
 });
 
 // try some calendar output here
-app.post('/cal', (req, res) => {
+app.post('/cal', async (req, res) => {
 	
 	let eventArray;
 	console.log(req.body);	
 	
 	if (1)
 	{
-		eventArray = database.listEvent();
+		eventArray = await database.listEvent();
 		if (eventArray === null)
 			res.send("empty");
 		else 
