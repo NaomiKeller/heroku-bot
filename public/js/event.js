@@ -202,6 +202,10 @@ function displayCal()
             date.setDate(1);
             const firstWeekDay = date.getDay();
             const weeks = Math.ceil((days + firstWeekDay) / 7);
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+            ];
+            //var month = monthNames[d.getMonth()];
 
             console.log(eventArray);
 
@@ -219,6 +223,11 @@ function displayCal()
             console.log(filtered);
 
             // headers
+
+            html += "<tr>";
+            html += "<th style=\"width:100%\">" + monthNames[d.getMonth()] + "</th>";
+            html += "</tr>";
+
             html += "<tr>";
             html += "<th style=\"width:14%\"> Sun</th>";
             html += "<th style=\"width:14%\">Mon</th>"; 
