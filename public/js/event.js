@@ -23,7 +23,7 @@ function addEvent(form) {
     console.log(eventObj.start);
 
     if (isNaN(eventObj.start)) {
-        alert("Start date invalid. Please try again.")
+        alert("Start date invalid. Please try again.");
     } else {
         request.send(JSON.stringify({
             name: eventObj.eventName,
@@ -32,8 +32,9 @@ function addEvent(form) {
             end: eventObj.end, 
             url: eventObj.url
         }));
-        
+    location.reload(); 
     return false;  
+    
     }
 }
 
@@ -56,8 +57,8 @@ function editEvent(form) {
     eventObj = {eventId: form.eventId.value, eventName: form.name.value, description: form.description.value, 
         start: form.startTime.value, end: form.endTime.value, url: form.url.value};
     
-    eventObj.start = (new Date(eventObj.start + "-05:00")).getTime();
-    eventObj.end = (new Date(eventObj.end + "-05:00")).getTime();
+    eventObj.start = (new Date(eventObj.start)).getTime();
+    eventObj.end = (new Date(eventObj.end)).getTime();
 
     if (isNaN(eventObj.start)) {
         alert("Start date invalid. Please try again.")
