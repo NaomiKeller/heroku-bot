@@ -203,9 +203,6 @@ function displayCal()
             const firstWeekDay = date.getDay();
             const weeks = Math.ceil((days + firstWeekDay) / 7);
 
-            console.log(eventArray);
-
-
             let filtered = eventArray.filter(event => 
             {
                 let start = new Date(event.startTime);
@@ -216,7 +213,10 @@ function displayCal()
                     return false;
             });
 
-            console.log(filtered);
+            // sorting time
+            filtered.sort(function(a, b) {
+                return a.startTime - b.startTime;
+            });)
 
             // headers
 
