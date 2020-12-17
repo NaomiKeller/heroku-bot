@@ -386,7 +386,7 @@ table p {
 .monthName {
   text-align: center;
   margin-left: auto; margin-right: auto;
-  margin-top: -1.5em; margin-bottom: 6em;
+  margin-top: -1.5em;
   padding: 5px 0 5px 0;
   font-size: 22px;
 }
