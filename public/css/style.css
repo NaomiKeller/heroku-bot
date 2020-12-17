@@ -378,5 +378,6 @@ table th {
 
 cal tr td th {
   background-color:green;
+  padding: 0 0 0 0;
 }
 

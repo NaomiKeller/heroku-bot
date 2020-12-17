@@ -220,14 +220,14 @@ function displayCal()
 
             // headers
 
-            html += "<tr class=\"cal\">";
-            html += "<th class=\"cal\" style=\"width:14%\">Sun</th>";
-            html += "<th class=\"cal\" style=\"width:14%\">Mon</th>"; 
-            html += "<th class=\"cal\" style=\"width:14%\">Tue</th>"; 
-            html += "<th class=\"cal\" style=\"width:14%\">Wed</th>"; 
-            html += "<th class=\"cal\" style=\"width:14%\">Thu</th>"; 
-            html += "<th class=\"cal\" style=\"width:14%\">Fri</th>";  
-            html += "<th class=\"cal\" style=\"width:14%\">Sat</th>";  
+            html += "<tr>";
+            html += "<th style=\"width:14%\"> Sun</th>";
+            html += "<th style=\"width:14%\">Mon</th>"; 
+            html += "<th style=\"width:14%\">Tue</th>"; 
+            html += "<th style=\"width:14%\">Wed</th>"; 
+            html += "<th style=\"width:14%\">Thu</th>"; 
+            html += "<th style=\"width:14%\">Fri</th>";  
+            html += "<th style=\"width:14%\">Sat</th>";  
             html += "</tr>";
 
     
@@ -236,16 +236,16 @@ function displayCal()
             for (curWeek = 0; curWeek < weeks; curWeek++)
             {
                 
-                html += "<tr class=\"cal\" style = \"line-height:80px\">";        // row starts
+                html += "<tr style = \"line-height:80px\">";        // row starts
 
                 for (let i = 0; i < 7; i++)
                 {
                     if ((curDate < 1 && i < firstWeekDay) || curDate >= days)
-                        html += "<td class=\"cal\"> </td>";
+                        html += "<td> </td>";
                     else 
                     {
                         curDate++;
-                        html += "<td class=\"cal\" style=\"text-align:left;vertical-align:top\">" + curDate + "<br/>";
+                        html += "<td style=\"text-align:left;vertical-align:top\">" + curDate + "<br/>";
 
                         for (let event of filtered)
                         {
