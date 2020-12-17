@@ -216,7 +216,7 @@ function displayCal()
             // sorting time
             filtered.sort(function(a, b) {
                 return a.startTime - b.startTime;
-            });)
+            });
 
             // headers
 
