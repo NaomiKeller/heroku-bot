@@ -236,16 +236,16 @@ function displayCal()
             for (curWeek = 0; curWeek < weeks; curWeek++)
             {
                 
-                html += "<tr style = \"line-height:50px\">";        // row starts
+                html += "<tr style = \"line-height:20px;font-size:12px;\">";        // row starts
 
                 for (let i = 0; i < 7; i++)
                 {
                     if ((curDate < 1 && i < firstWeekDay) || curDate >= days)
-                        html += "<td class=\"one\"> </td>";
+                        html += "<td> </td>";
                     else 
                     {
                         curDate++;
-                        html += "<td style=\"text-align:left;vertical-align:top\" class=\"two\">" + curDate + "<br/>";
+                        html += "<td style=\"text-align:left;vertical-align:top;font-size:6px;\">" + curDate + "<br/>";
 
                         for (let event of filtered)
                         {
