@@ -224,9 +224,9 @@ function displayCal()
 
             // headers
 
-            //html += "<tr>";
-            //html += "<td>" + monthNames[d.getMonth()] + "</td>";
-            //html += "</tr>";
+            html += "<tr>";
+            html += "<td>" + monthNames[d.getMonth()] + "</td>";
+            html += "</tr>";
 
             html += "<tr>";
             html += "<th style=\"width:14%\"> Sun</th>";
