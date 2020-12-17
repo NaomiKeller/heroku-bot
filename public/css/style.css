@@ -375,3 +375,7 @@ table th {
   padding: .5em 1em .5em 1em;
   border: 1px solid white;
 }
+
+table p {
+  color:rgb(121, 219, 170)
+}
