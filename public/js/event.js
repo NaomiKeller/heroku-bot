@@ -10,14 +10,12 @@ function addEvent(form) {
     
     request.onload = function() {
         
-        console.log(request.response);
-        
+        if (request.response === 'true')
+            alert("Event Submitted!");
     };
 
     eventObj = {eventName: form.name.value, description: form.description.value, 
         start: form.startTime.value, end: form.endTime.value, url: form.url.value};
-
-    console.log(eventObj);
 
     eventObj.start = (new Date(eventObj.start + "-05:00")).getTime();
     eventObj.end = (new Date(eventObj.end + "-05:00")).getTime();
@@ -32,7 +30,7 @@ function addEvent(form) {
             end: eventObj.end, 
             url: eventObj.url
         }));
-        alert("Event Submitted!")
+        
     return false;  
     }
 }
@@ -46,14 +44,15 @@ function editEvent(form) {
     
     request.onload = function() {
         
-        console.log(request.response);
+        if (request.response === 'false')
+            alert("Invalid Event ID");
+        else 
+            alert("Event Submitted! Your view has been refreshed.");
         
     };
 
     eventObj = {eventId: form.eventId.value, eventName: form.name.value, description: form.description.value, 
         start: form.startTime.value, end: form.endTime.value, url: form.url.value};
-
-    console.log(eventObj);
     
     eventObj.start = (new Date(eventObj.start + "-05:00")).getTime();
     eventObj.end = (new Date(eventObj.end + "-05:00")).getTime();
@@ -69,7 +68,7 @@ function editEvent(form) {
             end: eventObj.end, 
             url: eventObj.url
         }));
-        alert("Event Submitted! Your view has been refreshed.");
+        
     return false;  
     }
 }
@@ -87,18 +86,11 @@ function listEvent()
         
         if (request.response === 'empty')
         {
-            console.log(request.response);
             alert("There are no events");
         }
         else 
         {
             eventArray = JSON.parse(request.response);
-            console.log('\n', eventArray);
-
-            for (let event of eventArray)
-            {
-                ;
-            }
 
             var html = "<table border='1|1'>";
 
@@ -158,8 +150,7 @@ function deleteEvent(form)
     request.setRequestHeader('Content-type', 'application/json');
     
     request.onload = function() {
-        
-        console.log(request.response);
+  
         if (request.response === 'true')
         {
             //reload page;

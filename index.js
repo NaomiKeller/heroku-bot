@@ -109,6 +109,8 @@ app.post('/create', async (req, res) => {
 	{
 		res.send("true");
 	}
+	else 
+		res.send("false");
 	
 });
 //yeah i think this is probably wrong. i just copied your post and thought the db would edit if given an id - i dont really know how all of this communicates.
