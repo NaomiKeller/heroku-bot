@@ -361,14 +361,14 @@ table {
   width: 100%;
 }
 
-table tr td {
+list tr td {
   font-weight: normal;
   border: 1px solid white;
   padding: .5em 1em .5em 1em;
   text-align: center;
 }
 
-table th {
+list th {
   font-weight: bold;
   background-color: rgba(255, 255, 255, 0.1);
   text-align: center;
@@ -376,7 +376,7 @@ table th {
   border: 1px solid white;
 }
 
-cal tr td th {
+.cal tr td th {
   background-color:green;
   padding: 0 0 0 0;
 }
