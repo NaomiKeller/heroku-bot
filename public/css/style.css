@@ -376,4 +376,7 @@ table th {
   border: 1px solid white;
 }
 
+cal tr td th {
+  background-color:green;
+}
 
