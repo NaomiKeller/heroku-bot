@@ -245,7 +245,7 @@ function displayCal()
                     else 
                     {
                         curDate++;
-                        html += "<td style=\"text-align:left;vertical-align:top;height:30px;padding-left:5px;\">" + "<p style=\"font-size:14px;padding-bottom:3px;\">"+curDate+"</p>" + "<br/>";
+                        html += "<td style=\"text-align:left;vertical-align:top;height:30px;padding-left:5px;\">" + "<p style=\"font-size:16px;padding-bottom:1px;\">"+curDate+"</p>" + "<br/>";
 
                         for (let event of filtered)
                         {
@@ -268,7 +268,7 @@ function displayCal()
       
             }
 
-            document.getElementById("jsTable").innerHTML = html;
+            document.getElementById("calTable").innerHTML = html;
         }
         
     };
