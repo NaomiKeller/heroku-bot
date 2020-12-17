@@ -236,7 +236,7 @@ function displayCal()
             for (curWeek = 0; curWeek < weeks; curWeek++)
             {
                 
-                html += "<tr style = \"line-height:20px;height:120px;font-size:12px;width:120px;\">";        // row starts
+                html += "<tr style = \"line-height:20px;height:120px;font-size:12px;\">";        // row starts
 
                 for (let i = 0; i < 7; i++)
                 {
@@ -245,7 +245,7 @@ function displayCal()
                     else 
                     {
                         curDate++;
-                        html += "<td style=\"text-align:left;vertical-align:top;height:30px;padding-left:5px;font-size:9px;\">" + "<p style=\"font-size:14px;padding-bottom:3px;\">"+curDate+"</p>" + "<br/>";
+                        html += "<td style=\"text-align:left;vertical-align:top;height:30px;padding-left:5px;\">" + "<p style=\"font-size:14px;padding-bottom:3px;\">"+curDate+"</p>" + "<br/>";
 
                         for (let event of filtered)
                         {
