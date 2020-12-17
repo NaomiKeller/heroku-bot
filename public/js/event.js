@@ -146,3 +146,32 @@ function listEvent()
     }));
 
 }
+
+
+function deleteEvent(form)
+{
+    let request = new XMLHttpRequest();
+    let eventId = form.eventId.value
+
+    request.open("POST", "/delete");
+    request.responseType = 'text';
+    request.setRequestHeader('Content-type', 'application/json');
+    
+    request.onload = function() {
+        
+        console.log(request.response);
+        if (request.response === 'true')
+        {
+            //reload page;
+            window.location.reload();
+        }
+        else 
+            alert("Invalid Event ID");
+    };  
+
+    request.send(JSON.stringify({
+            id: eventId
+    }));
+
+    return false;   
+}

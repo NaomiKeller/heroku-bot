@@ -90,14 +90,12 @@ app.post('/cal', async (req, res) => {
 			res.send(JSON.stringify(eventArray));
 	}
 
-//res.redirect("/cal");
 });
 
 // create event router
 app.post('/create', async (req, res) => {
 
 	console.log(req.body);
-
 	
 	let newEvent = new Event(req.body.name, req.body.description, req.body.start, req.body.end, req.body.url, serverId);
 	console.log(newEvent);
@@ -112,7 +110,6 @@ app.post('/create', async (req, res) => {
 		res.send("true");
 	}
 	
-	//res.redirect("/create");
 });
 //yeah i think this is probably wrong. i just copied your post and thought the db would edit if given an id - i dont really know how all of this communicates.
 app.post('/edit', async (req, res) => {
@@ -139,12 +136,23 @@ app.post('/edit', async (req, res) => {
 			res.send("false");
 	}
 
-	
-	
 });
 
-app.post('/delete', (req, res) => {
-  res.redirect("/delete");
+app.post('/delete', async (req, res) => {
+
+	console.log(req.body);
+	let eventId = req.body.id;
+
+	// event id validation
+	if (await database.getEvent(eventId) === null)
+		res.send("false");
+	else if (await database.deleteEvent(eventId) === true)
+	{
+		res.send("true");
+	}
+	else
+		res.send("false");
+	
 });
 
 app.post('/contact', (req, res) => {
