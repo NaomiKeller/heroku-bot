@@ -245,7 +245,7 @@ function displayCal()
                     else 
                     {
                         curDate++;
-                        html += "<td style=\"text-align:left;vertical-align:top;height:30px;padding-left:5px;\">" + "<p style=\"font-size:14px;padding-bottom:3px;\">"+curDate+"</p>" + "<br/>";
+                        html += "<td style=\"text-align:left;vertical-align:top;height:30px;padding-left:5px;\">" + curDate + "<br/>";
 
                         for (let event of filtered)
                         {
