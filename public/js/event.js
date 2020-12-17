@@ -256,7 +256,7 @@ function displayCal()
                         
                                 eventString = "";
                                 eventString += (event.name + " - " + start);
-                                html += eventString + "</td>";
+                                html += eventString + "<br/>";
                             }
                         }
 
