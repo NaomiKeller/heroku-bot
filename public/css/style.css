@@ -377,10 +377,10 @@ list th {
 }
 
 .cal tr td th {
-  background-color:green;
-  padding: 0 0 0 0;
+  padding: 0 1em 0 0;
   vertical-align: top;
   font-size: 8px;
+  height: 5em;
 }
 
 .cal th {
