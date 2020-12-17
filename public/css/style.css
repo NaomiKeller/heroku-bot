@@ -57,6 +57,10 @@ body {
   background-color: var(--bg);
 }
 
+placeholder {
+  color: rgb(136, 136, 136);
+}
+
 /* Buttons */
 
 .btn {
