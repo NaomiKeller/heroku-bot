@@ -51,7 +51,9 @@ function editEvent(form) {
         if (request.response === 'false')
             alert("Invalid Event ID");
         else 
+            window.location.reload();
             alert("Event Submitted! Your view has been refreshed.");
+            
         
     };
 
