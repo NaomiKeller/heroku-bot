@@ -376,11 +376,11 @@ list th {
   border: 1px solid white;
 }
 
-.cal tr td th {
+.cal {
   padding: 0 1em 0 0;
   vertical-align: top;
   font-size: 8px;
-  height: 5em;
+  height: 10px;
 }
 
 .cal th {
