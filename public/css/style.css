@@ -377,5 +377,13 @@ table th {
 }
 
 table p {
-  color:rgb(121, 219, 170)
+  color:rgb(121, 219, 170);
+  font-size: 16px;
+  padding-bottom: -4px;
+}
+
+.monthName {
+  text-align: center;
+  margin: auto;
+  padding: 5px 0 5px 0;
 }
