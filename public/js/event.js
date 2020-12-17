@@ -17,8 +17,8 @@ function addEvent(form) {
     eventObj = {eventName: form.name.value, description: form.description.value, 
         start: form.startTime.value, end: form.endTime.value, url: form.url.value};
 
-    eventObj.start = (new Date(eventObj.start + "-05:00")).getTime();
-    eventObj.end = (new Date(eventObj.end + "-05:00")).getTime();
+    eventObj.start = (new Date(eventObj.start)).getTime();
+    eventObj.end = (new Date(eventObj.end)).getTime();
 
     console.log(eventObj.start);
 
