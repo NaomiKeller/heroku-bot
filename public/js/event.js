@@ -241,11 +241,11 @@ function displayCal()
                 for (let i = 0; i < 7; i++)
                 {
                     if ((curDate < 1 && i < firstWeekDay) || curDate >= days)
-                        html += "<td> </td>";
+                        html += "<td class=\"one\"> </td>";
                     else 
                     {
                         curDate++;
-                        html += "<td style=\"text-align:left;vertical-align:top\">" + curDate + "<br/>";
+                        html += "<td style=\"text-align:left;vertical-align:top\" class=\"two\">" + curDate + "<br/>";
 
                         for (let event of filtered)
                         {
