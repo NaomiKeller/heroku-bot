@@ -20,6 +20,8 @@ function addEvent(form) {
     eventObj.start = (new Date(eventObj.start + "-05:00")).getTime();
     eventObj.end = (new Date(eventObj.end + "-05:00")).getTime();
 
+    console.log(eventObj.start);
+
     if (isNaN(eventObj.start)) {
         alert("Start date invalid. Please try again.")
     } else {
