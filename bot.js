@@ -1,3 +1,7 @@
+
+// This module is the main thread of the bot 
+
+
 const Discord = require('discord.js');
 const config = require("./config.json");
    
@@ -13,8 +17,8 @@ const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 
 
 //////////////////////////////////////////////////////////////////////////////////////
-// a section for temporary event
 
+// a section for temporary event
 const tempEventsArray = [];
 const invalid = "```Invalid command! Please view !help for a full list of valid commands!```";
 
@@ -35,10 +39,10 @@ function checkTempEvent(userID, serverID, eventArray)
     return null;   
 }
 
-// section ends
+
 //////////////////////////////////////////////////////////////////////////////////////
 
-
+// when the client is on
 client.on('ready', () => {
     console.log('I am ready!');
     client.user.setActivity("Don't forget!"); // "Playing <>" status message for bot
@@ -50,6 +54,7 @@ client.on('ready', () => {
 
 //////////////////////////////////////////////////////////////////////////////////////
 
+// message handler
 client.on("message", async message => {
     
     if (message.author.bot) 
@@ -65,264 +70,265 @@ client.on("message", async message => {
     let helpArray = ["!blip", " !site", " !ListEvent", " !event help"]; // List of available commands
     // going to add event command case that includes brief overview of event management commands
 
-    if (cmd === `${prefix}blip`) {
-        return message.channel.send("```blap```");
-    }
-    if (cmd === `${prefix}help`) {
-        return message.channel.send("Available commands: " + `${helpArray}`);
-    }
-
-    if (cmd === `${prefix}site`) {
-        return message.channel.send("https://forgetmebot.herokuapp.com");
-    }
-    
-    
-    // event editor:
-    if (cmd === `${prefix}event`) {
-
-        let currentEvent = checkTempEvent(message.author.id, message.guild.id, tempEventsArray);
-        
-        if (currentEvent === null && args[0] !== "create" && args[0] !== "edit" && args[0] !== "delete" && args[0] !== "list")
-            message.channel.send("```"+"Use command \"!event create\" or \"!event edit [event id]\" first"+"```");
-        else
-        {
-            switch (args[0])
-            {
-
-            case "create":      // create mode
-                if (currentEvent !== null)
-                    message.channel.send("```"+"Failure: There is an unsaved event. Use \"!event confirm\" or \"!event cancel\""+"```");
-
-                else 
-                {
-                    currentEvent = new Event();
-                    currentEvent.userId = message.author.id;
-                    currentEvent.serverId = message.guild.id;
-
-                    tempEventsArray.push(currentEvent); 
-                }
-                break;
-
-            case "edit":        // edit mode
-                if (currentEvent !== null)
-                    message.channel.send("```"+"Failure: There is an unsaved event. Use \"!event confirm\" or \"!event cancel\""+"```");
-                
-                else if (isNaN(args[1]))
-                {
-                    message.channel.send(invalid);
-                }
-                else 
-                {
-                    currentEvent = await database.getEvent(args[1]);
-                    console.log(currentEvent);
-                    if (currentEvent === null)
-                    {
-                        message.channel.send("```"+`Failure: There is no such event ID ${args[1]}`+"```");
-                    }
-                    else 
-                    {
-                        tempEventsArray.push(currentEvent);  
-                        currentEvent.userId = message.author.id;
-                    }
-
-                }
-                break;
-                
-            case "list":    // list mode
-                const eventArray = await database.listEvent();
-                let result = "";
-
-                if (eventArray === null)
-                    message.channel.send("```"+`No Events.`+"```");
-                else 
-                {
-                    for (let element of eventArray)
-                    {
-                        result += element.toString();
-                        result += '\n';
-                    }
-                    message.channel.send("```"+`${result}`+"```");
-                }
-                break;
-
-            case "delete":      // delete mode
-                if (isNaN(args[1]))
-                    message.channel.send(invalid);
-                else if (await database.deleteEvent(args[1]) === true)
-                {
-                    message.channel.send("```Deleted an event!```");
-                }
-                else 
-                {
-                    message.channel.send("```The event ID is invalid!```");
-                }
-                break;
-
-            case "name":        
-                currentEvent.name = args.slice(1).join(' ');   // assign name
-                break;
-
-            case "description":     
-                currentEvent.description = args.slice(1).join(' ');    // assign description
-                break;
-
-            case "start":
-                currentEvent.startTime = (new Date(args[1] + "-05:00")).getTime(); // estern time
-                break;
-
-            case "end":
-                currentEvent.endTime = (new Date(args[1] + "-05:00")).getTime();   // estern time
-                break;                
-
-            case "url":
-                currentEvent.url = (args[1]);   // assign url
-                break;
-
-            case "permission":
-                if (!isNaN(args[1]))
-                {
-                    currentEvent.permission = (Number(args[1]));   // assign permission
-                }
-                break;
-
-            case "review":
-                message.channel.send("```"+currentEvent.toString()+"```");
-                break;
-
-            case "confirm":
-                // event must have a name
-                if (currentEvent.name === undefined)
-                {
-                    message.channel.send("```Event must have a name```");
-                }
-                else 
-                {      
-
-                    currentEvent.fillBlank();       // fill in empty properties
-                    if (await database.editEvent(currentEvent) === false)
-                    {
-                        message.channel.send("```Failure in submitting event```");
-                        break;
-                    }
-                    else 
-                    {
-                        message.channel.send("```Submitted an event!```");
-                    }
-                     
-                }
-                    
-            case "cancel":
-                // remove the temporary event entry
-                tempEventsArray.splice(tempEventsArray.indexOf(currentEvent), 1);
-                console.log(tempEventsArray);
-                break;
-
-            default:
-                break;
-            }
-        
-        }
-
-    }
-    
-    // create reminder
-    if (cmd === `${prefix}CreateReminder`)
+    // commands analyzing
+    switch (cmd)
     {
-        let reminder;
+        case `${prefix}blip`:
+            message.channel.send("```blap```");
+            break;
 
-        if (args[0] === undefined || args[1] === undefined || isNaN(args[0]) ) 
-        {
-            message.channel.send(invalid);
-        }
-        else if (await database.getEvent(args[0]) === null)
-        {
-            message.channel.send("```"+`Invalid Event ID!`+"```");
-        }
-        else 
-        {
-            reminder = new Reminder(args[0], (new Date(args[1] + "-05:00")).getTime());
-            
-            if (await database.createReminder(reminder) === true)
-            {
-                 message.channel.send("```"+`Created a reminder!`+"```");
-            }
+        case `${prefix}help`:
+            message.channel.send("Available commands: " + `${helpArray}`);
+            break;
+        
+        case `${prefix}site`:
+            message.channel.send("https://forgetmebot.herokuapp.com");
+            break;
+        
+        // event manager
+        case `${prefix}event`:
+            let currentEvent = checkTempEvent(message.author.id, message.guild.id, tempEventsArray);
+        
+            if (currentEvent === null && args[0] !== "create" && args[0] !== "edit" && args[0] !== "delete" && args[0] !== "list")
+                message.channel.send("```"+"Use command \"!event create\" or \"!event edit [event id]\" first"+"```");
             else
             {
-                 message.channel.send("```"+`Failure: to create a reminder!`+"```");
-            }
-        }
-    }
+                switch (args[0])
+                {
 
-    // list reminders
-    if (cmd === `${prefix}ListReminder`)
-    {
-        const remArray = await database.listReminder();
-        let result = "";
+                case "create":      // create mode
+                    if (currentEvent !== null)
+                        message.channel.send("```"+"Failure: There is an unsaved event. Use \"!event confirm\" or \"!event cancel\""+"```");
 
-        if (remArray === null)
-            message.channel.send("```"+`No Reminder.`+"```");
-        else 
-        {
-             for (let element of remArray)
-            {
-                result += element.toString();
-                result += '\n';
-            }
-            message.channel.send("```"+`${result}`+"```");
-        }
-    }
+                    else 
+                    {
+                        currentEvent = new Event();
+                        currentEvent.userId = message.author.id;
+                        currentEvent.serverId = message.guild.id;
 
-    // delete Reminder
-    if (cmd === `${prefix}DeleteReminder`)
-    {
-        if (args[0] === undefined || isNaN(args[0]))
-            message.channel.send(invalid);
-        else if (await database.deleteReminder(args[0]) === true)
-        {            
-            message.channel.send("```"+`Deleted a reminder!`+"```");  
-        }
-        else 
-        {
-            message.channel.send("```"+`Invalid Reminder ID!`+"```"); 
-        }
-    }
-    
-    if(cmd === `${prefix}AdvertiseEvent`){
-        let eventID = args[0];
-        let eventName;
-        let messageID;
-        let serverID;
-  
-        eventName = (await database.getEvent(Number(eventID))).name; 
+                        tempEventsArray.push(currentEvent); 
+                    }
+                    break;
+
+                case "edit":        // edit mode
+                    if (currentEvent !== null)
+                        message.channel.send("```"+"Failure: There is an unsaved event. Use \"!event confirm\" or \"!event cancel\""+"```");
+                
+                    else if (isNaN(args[1]))
+                    {
+                        message.channel.send(invalid);
+                    }
+                    else 
+                    {
+                        currentEvent = await database.getEvent(args[1]);
+                        console.log(currentEvent);
+                        if (currentEvent === null)
+                        {
+                            message.channel.send("```"+`Failure: There is no such event ID ${args[1]}`+"```");
+                        }
+                        else 
+                        {
+                            tempEventsArray.push(currentEvent);  
+                            currentEvent.userId = message.author.id;
+                        }
+
+                    }
+                    break;
+                
+                case "list":    // list mode
+                    const eventArray = await database.listEvent();
+                    let result = "";
+
+                    if (eventArray === null)
+                        message.channel.send("```"+`No Events.`+"```");
+                    else 
+                    {
+                        for (let element of eventArray)
+                        {
+                            result += element.toString();
+                            result += '\n';
+                        }
+                        message.channel.send("```"+`${result}`+"```");
+                    }
+                    break;
+
+                case "delete":      // delete mode
+                    if (isNaN(args[1]))
+                        message.channel.send(invalid);
+                    else if (await database.deleteEvent(args[1]) === true)
+                    {
+                        message.channel.send("```Deleted an event!```");
+                    }
+                    else 
+                    {
+                        message.channel.send("```The event ID is invalid!```");
+                    }
+                    break;
+
+                case "name":        
+                    currentEvent.name = args.slice(1).join(' ');   // assign name
+                    break;
+
+                case "description":     
+                    currentEvent.description = args.slice(1).join(' ');    // assign description
+                    break;
+
+                case "start":
+                    currentEvent.startTime = (new Date(args[1] + "-05:00")).getTime(); // estern time
+                    break;
+
+                case "end":
+                    currentEvent.endTime = (new Date(args[1] + "-05:00")).getTime();   // estern time
+                    break;                
+
+                case "url":
+                    currentEvent.url = (args[1]);   // assign url
+                    break;
+
+                case "permission":
+                    if (!isNaN(args[1]))
+                    {
+                        currentEvent.permission = (Number(args[1]));   // assign permission
+                    }
+                    break;
+
+                case "review":
+                    message.channel.send("```"+currentEvent.toString()+"```");
+                    break;
+
+                case "confirm":
+                    // event must have a name
+                    if (currentEvent.name === undefined)
+                    {
+                        message.channel.send("```Event must have a name```");
+                    }
+                    else 
+                    {      
+
+                        currentEvent.fillBlank();       // fill in empty properties
+                        if (await database.editEvent(currentEvent) === false)
+                        {
+                            message.channel.send("```Failure in submitting event```");
+                            break;
+                        }
+                        else 
+                        {
+                            message.channel.send("```Submitted an event!```");
+                        }
+                     
+                    }
+                    
+                case "cancel":
+                    // remove the temporary event entry
+                    tempEventsArray.splice(tempEventsArray.indexOf(currentEvent), 1);
+                    console.log(tempEventsArray);
+                    break;
+
+                default:
+                    break;
+                }
         
-        message.channel.send("```Click the emoji below to subscribe to the event: \n" + eventName + "```").then(value => {
-            messageID = value.id;
-            value.react('🤔')
-            serverID = message.guild.id
+            }
+            break;
+
+        // create reminder
+        case `${prefix}CreateReminder`:
+            let reminder;
+
+            if (args[0] === undefined || args[1] === undefined || isNaN(args[0]) ) 
+            {
+                message.channel.send(invalid);
+            }
+            else if (await database.getEvent(args[0]) === null)
+            {
+                message.channel.send("```"+`Invalid Event ID!`+"```");
+            }
+            else 
+            {
+                reminder = new Reminder(args[0], (new Date(args[1] + "-05:00")).getTime());
             
-            database.createAdvert(new Advertisement(messageID, eventID, serverID));
-        });
-        
-    }
-
-    // list subscriptions
-    if (cmd === `${prefix}ListSubscription`)
-    {
-        const subArray = await database.listSub();
-        let result = "";
-
-        if (subArray === null)
-            message.channel.send("```"+`No Subscriptions.`+"```");
-        else 
-        {
-            result = "Subscriptions:\n";
-             for (let element of subArray)
-            {
-                result += element.toString();
-                result += '\n';
+                if (await database.createReminder(reminder) === true)
+                {
+                     message.channel.send("```"+`Created a reminder!`+"```");
+                }
+                else
+                {
+                     message.channel.send("```"+`Failure: to create a reminder!`+"```");
+                }
             }
-            message.channel.send("```"+`${result}`+"```");
-        }
+            break;
+
+        // list reminders
+        case `${prefix}ListReminder`:
+            const remArray = await database.listReminder();
+            let result = "";
+
+            if (remArray === null)
+                message.channel.send("```"+`No Reminder.`+"```");
+            else 
+            {
+                 for (let element of remArray)
+                {
+                    result += element.toString();
+                    result += '\n';
+                }
+                message.channel.send("```"+`${result}`+"```");
+            }
+            break;
+
+        // delete Reminder
+        case `${prefix}DeleteReminder`:
+            if (args[0] === undefined || isNaN(args[0]))
+                message.channel.send(invalid);
+            else if (await database.deleteReminder(args[0]) === true)
+            {            
+                message.channel.send("```"+`Deleted a reminder!`+"```");  
+            }
+            else 
+            {
+                message.channel.send("```"+`Invalid Reminder ID!`+"```"); 
+            }
+            break;
+
+        // advertise event
+        case `${prefix}AdvertiseEvent`:
+            let eventID = args[0];
+            let eventName;
+            let messageID;
+            let serverID;
+  
+            eventName = (await database.getEvent(Number(eventID))).name; 
+        
+            message.channel.send("```Click the emoji below to subscribe to the event: \n" + eventName + "```").then(value => {
+                messageID = value.id;
+                value.react('🤔')
+                serverID = message.guild.id
+            
+                database.createAdvert(new Advertisement(messageID, eventID, serverID));
+            });
+            break;
+
+        // list subscriptions
+        case `${prefix}ListSubscription`:
+            const subArray = await database.listSub();
+            let result = "";
+
+            if (subArray === null)
+                message.channel.send("```"+`No Subscriptions.`+"```");
+            else 
+            {
+                result = "Subscriptions:\n";
+                 for (let element of subArray)
+                {
+                    result += element.toString();
+                    result += '\n';
+                }
+                message.channel.send("```"+`${result}`+"```");
+            }
+            break;
+
+        default:
+            break;
     }
 
 });
