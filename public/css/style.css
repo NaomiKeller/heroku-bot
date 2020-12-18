@@ -366,6 +366,7 @@ table tr td {
   border: 1px solid white;
   padding: .5em 1em .5em 1em;
   text-align: center;
+  max-width: 6em;
 }
 
 table th {
