@@ -229,6 +229,14 @@ class Database
             succeed = false;
         else 
         {
+            // begin transaction
+            query = `BEGIN;`;
+            await this.pool.query(query, (err, res) => {
+                if(err)             
+                    throw err;
+
+            });  
+
             // delete relative advertisements
             query = `DELETE FROM ADVERTISEMENT 
                         WHERE advert_eventid = ${eventId};`;
@@ -256,9 +264,18 @@ class Database
 
             });  
 
+            // delete event
             query = `DELETE FROM EVENT 
                         WHERE EVENT_ID = ${eventId};`;
 
+            await this.pool.query(query, (err, res) => {
+                if(err)             
+                    throw err;
+
+            });  
+
+            // commit transaction
+            query = `COMMIT;`;
             await this.pool.query(query, (err, res) => {
                 if(err)             
                     throw err;
