@@ -1,12 +1,7 @@
 const Discord = require('discord.js');
 const config = require("./config.json");
-const { Pool } = require ('pg');    
-const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-        rejectUnauthorized: false
-    }
-});
+   
+
 // bot user id = 754442070596386967
 
 const { Database, Event, Reminder, Advertisement, Subscription} = require('./database.js');
@@ -51,10 +46,9 @@ client.on('ready', () => {
     let remContrl = new Worker("./reminderCtrl.js");    // reminder control thread
     let selfPing = new Worker("./selfPing.js");         // self http access thread
 
-    //This should be opened as soon as the bot is ready! Do not close the connection to the pool later. :)
-    pool.connect();
 });
 
+//////////////////////////////////////////////////////////////////////////////////////
 
 client.on("message", async message => {
     
@@ -82,9 +76,8 @@ client.on("message", async message => {
         return message.channel.send("https://forgetmebot.herokuapp.com");
     }
     
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+    
     // event editor:
-    // 
     if (cmd === `${prefix}event`) {
 
         let currentEvent = checkTempEvent(message.author.id, message.guild.id, tempEventsArray);
@@ -231,11 +224,7 @@ client.on("message", async message => {
         }
 
     }
-
- 
-    // event ends
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    
     // create reminder
     if (cmd === `${prefix}CreateReminder`)
     {
@@ -297,7 +286,7 @@ client.on("message", async message => {
             message.channel.send("```"+`Invalid Reminder ID!`+"```"); 
         }
     }
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
     // list subscriptions
     if (cmd === `${prefix}ListSubscription`)
     {
@@ -318,8 +307,8 @@ client.on("message", async message => {
         }
     }
 
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+});
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
 
 
 // add subscription
