@@ -67,14 +67,13 @@ client.on("message", async message => {
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
+    let result = "";
     let helpArray = ["!blip", " !site", " !ListEvent", " !event help"]; // List of available commands
     // going to add event command case that includes brief overview of event management commands
 
     // commands analyzing
     switch (cmd)
     {
-        let result = "";
-
 
         case `${prefix}blip`:
             message.channel.send("```blap```");
