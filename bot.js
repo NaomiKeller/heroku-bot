@@ -73,6 +73,9 @@ client.on("message", async message => {
     // commands analyzing
     switch (cmd)
     {
+        let result = "";
+
+
         case `${prefix}blip`:
             message.channel.send("```blap```");
             break;
@@ -136,8 +139,7 @@ client.on("message", async message => {
                     break;
                 
                 case "list":    // list mode
-                    const eventArray = await database.listEvent();
-                    let result = "";
+                    const eventArray = await database.listEvent();         
 
                     if (eventArray === null)
                         message.channel.send("```"+`No Events.`+"```");
@@ -260,8 +262,7 @@ client.on("message", async message => {
 
         // list reminders
         case `${prefix}ListReminder`:
-            const remArray = await database.listReminder();
-            let result = "";
+            const remArray = await database.listReminder();            
 
             if (remArray === null)
                 message.channel.send("```"+`No Reminder.`+"```");
@@ -311,7 +312,7 @@ client.on("message", async message => {
         // list subscriptions
         case `${prefix}ListSubscription`:
             const subArray = await database.listSub();
-            let result = "";
+            
 
             if (subArray === null)
                 message.channel.send("```"+`No Subscriptions.`+"```");
