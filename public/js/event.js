@@ -236,7 +236,7 @@ function displayCal()
             for (curWeek = 0; curWeek < weeks; curWeek++)
             {
                 
-                html += "<tr style = \"height:120px;font-size:12px;\">";        // row starts
+                html += "<tr style = \"height:120px;font-size:14px;\">";        // row starts
 
                 for (let i = 0; i < 7; i++)
                 {
