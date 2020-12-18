@@ -2,33 +2,12 @@
 const Discord = require('discord.js');
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 
-
-
 client.login(process.env.TOKEN);
 
 client.on('ready', () => {
     
 	remControl();
     
-});
-
-
-client.on("message", async message => {
-    if (message.author.bot) return;
-    if (message.channel.type === "dm") return;
-
-
- 
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
- 
-   
-
-    if (cmd === `!channel`) {
-		console.log(message.channel.id);
-        return message.channel.send(message.channel.id);
-    }
 });
 
 const { Database, Event, Reminder, Advertisement, Subscription} = require('./database.js');
