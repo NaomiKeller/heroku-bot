@@ -390,3 +390,47 @@ table p {
   padding: 5px 0 5px 0;
   font-size: 28px;
 }
+
+/* about page */
+
+.credit {
+  margin-left: -2.5em;
+}
+
+.borderFix {
+  margin-bottom: 3em; margin-top: 3em;
+}
+
+.colWider {
+  width: 300px;
+  margin: 0 -.5em 0 -.5em;
+}
+
+/* contact page */
+
+.contactCols {
+  text-align: center;
+}
+
+.contactText {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.contactRow {
+  margin-top: 3.5em; margin-left: -2em;
+}
+
+.contactRow a {
+  color: white;
+  text-decoration: none;
+}
+
+.imgHover {
+  transform: scale(1.0);
+  transition: transform 0.7s;
+}
+
+.imgHover:hover {
+  transform: scale(1.2);
+}
