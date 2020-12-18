@@ -48,9 +48,8 @@ client.on('ready', () => {
     console.log('I am ready!');
     client.user.setActivity("Don't forget!"); // "Playing <>" status message for bot
 
-    // other threads
     let remContrl = new Worker("./reminderCtrl.js");    // reminder control thread
-    let selfPing = new Worker("./selfPing.js");
+    let selfPing = new Worker("./selfPing.js");         // self http access thread
 
     //This should be opened as soon as the bot is ready! Do not close the connection to the pool later. :)
     pool.connect();
@@ -58,6 +57,7 @@ client.on('ready', () => {
 
 
 client.on("message", async message => {
+    
     if (message.author.bot) 
         return;
     if (message.channel.type === "dm") 
@@ -70,10 +70,10 @@ client.on("message", async message => {
     let args = messageArray.slice(1);
     let helpArray = ["!blip", " !site", " !ListEvent", " !event help"]; // List of available commands
     // going to add event command case that includes brief overview of event management commands
+
     if (cmd === `${prefix}blip`) {
         return message.channel.send("```blap```");
     }
-
     if (cmd === `${prefix}help`) {
         return message.channel.send("Available commands: " + `${helpArray}`);
     }
@@ -236,7 +236,6 @@ client.on("message", async message => {
     // event ends
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // reminder functions
     // create reminder
     if (cmd === `${prefix}CreateReminder`)
     {
@@ -323,122 +322,7 @@ client.on("message", async message => {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    //testing database features below...
-
-    //Here, I created a couple of test tables because I did not know what program to use to access our database (Will ask)
-    if (cmd === `${prefix}cTestDatabase`){
-
-        let q = 'CREATE TABLE TEST_EVENT (EVENT_ID SERIAL NOT NULL PRIMARY KEY, EVENT_NAME VARCHAR(100) NOT NULL);'
-        q += ' CREATE TABLE TEST_USER (USER_TAG TEXT PRIMARY KEY); CREATE TABLE TEST_SUBSCRIPTION (EVENT_ID INTEGER REFERENCES TEST_EVENT(EVENT_ID), USER_TAG TEXT REFERENCES TEST_USER(USER_TAG), PRIMARY KEY (EVENT_ID, USER_TAG));'
-        q += ' CREATE TABLE TEST_ADVERTISEMENT (EVENT_ID INTEGER REFERENCES TEST_EVENT(EVENT_ID), ADVERT_SERVER TEXT NOT NULL, ADVERT_MESSAGE TEXT, PRIMARY KEY (EVENT_ID));'
-        
-        pool.query(q, (err, res) => {
-            //does this work? (yes)
-            if(err) {
-                throw err;
-            }
-            else{
-                message.channel.send("```Test Tables created```");
-            }
-        });
-    }
-
-    //This is a very very preliminary "create event" type of function.
-    //We will eventually need more information in events, but this was just for testing.
-    //There were some issues, hence all the text that is sent. Works now.
-
-    //TODO: Pack this up into its clean method, validate input in terms of name (and other variables, as necessary),
-    //Maybe hand over information to a database object we create?
-    if (cmd === `${prefix}CreateEvent`){
-        let name = args[0];
-
-        message.channel.send(name);
-        message.channel.send("```Pre-attempt```");
-        
-        message.channel.send("```Attempting...```");
-
-        pool.query(`INSERT INTO TEST_EVENT (EVENT_NAME) VALUES (\'${name}\');`, (err, res) => {
-            if(err) {
-                throw err;
-            }
-            else{
-                message.channel.send("```No error creating```");
-            }
-        });
-
-    }
-
-    //This was also made for my testing purposes, just to make sure that the surrogate primary key was working, mostly.
-    //Was basically just the old database code fitted to my test tables.
-    if(cmd === `${prefix}ListEvents`){
-
-        pool.query('SELECT * FROM TEST_EVENT;', (err, res) => {
-            if(err) {
-                throw err;
-            }
-          for (let row of res.rows) {
-            message.channel.send(JSON.stringify(row));
-          }
-          
-        });
-    }
-
-    //This creates an advertisement for an event in the TEST_ADVERTISEMENT table.
-    //This also creates the initial reaction for said event.
-    if(cmd === `${prefix}AdvertiseEvent`){
-        let eventID = args[0];
-        let eventName;
-        let messageID;
-        let serverID;
-        
-        /*
-        //originally, I planned to break all of this up. However, there's some kind of scope issue? I might be able to resolve this if I knew more javascript, but alas...
-        pool.query(`SELECT EVENT_NAME FROM TEST_EVENT WHERE EVENT_ID = ${Number(eventID)};`, (err, res) => {
-            if(err) throw err;
-            eventName = Object.values(res.rows[0])[0];
-
-            //This sends our initial advertisement message (which should eventually be a lot more!), and then does a bunch of stuff when it has been sent.
-            message.channel.send(eventName).then(value => {
-                messageID = value.id;
-                value.react('🤔')
-                serverID = message.guild.id
-   
-                pool.query(`INSERT INTO TEST_ADVERTISEMENT VALUES (${eventID}, \'${serverID}\', \'${messageID}\');`, (err, res) => {
-                    if(err) throw err;
-                });
-            });
-        });
-        */
-       
-        //second version       
-        eventName = (await database.getEvent(Number(eventID))).name; 
-        
-        message.channel.send("```Click the emoji below to subscribe to the event: \n" + eventName + "```").then(value => {
-            messageID = value.id;
-            value.react('🤔')
-            serverID = message.guild.id
-            
-            database.createAdvert(new Advertisement(messageID, eventID, serverID));
-        });
-        
-    }
-
-    //Used to debug the TEST_ADVERTISEMENT table.
-    if(cmd === `${prefix}ShowAdverts`){
-
-        pool.query('SELECT * FROM TEST_ADVERTISEMENT;', (err, res) => {
-            if(err) {
-                throw err;
-            }
-            for (let row of res.rows) {
-                message.channel.send("```"+JSON.stringify(row)+"```");
-            }
-          
-        });
-    }
-   
-});
-
+// add subscription
 client.on('messageReactionAdd', async (reaction, user) => {
     
     let advert;
@@ -476,7 +360,7 @@ client.on('messageReactionRemove', async (reaction, user) => {
     }
 
     console.log("trigger remove handler");
-    //This determines whether a bot is making the call, and whether the correct emoji is being used. (We can change that later)
+
     if(!(user.bot) && (reaction.emoji.name == '🤔')){
         
         // get advert first
