@@ -287,6 +287,24 @@ client.on("message", async message => {
         }
     }
     
+    if(cmd === `${prefix}AdvertiseEvent`){
+        let eventID = args[0];
+        let eventName;
+        let messageID;
+        let serverID;
+  
+        eventName = (await database.getEvent(Number(eventID))).name; 
+        
+        message.channel.send("```Click the emoji below to subscribe to the event: \n" + eventName + "```").then(value => {
+            messageID = value.id;
+            value.react('🤔')
+            serverID = message.guild.id
+            
+            database.createAdvert(new Advertisement(messageID, eventID, serverID));
+        });
+        
+    }
+
     // list subscriptions
     if (cmd === `${prefix}ListSubscription`)
     {
