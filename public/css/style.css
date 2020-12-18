@@ -205,14 +205,19 @@ margin-left: 0;
 
 .boxContainer:hover {
   transform: scale(1.3);
-  /*background-color: #4CA495;*/
-  background: radial-gradient(circle, #0F8174 0%, #4CA495 100%);
+  /*background-color: #4CA495;
+  background: radial-gradient(circle, #0F8174 0%, #4CA495 100%);*/
+  background: linear-gradient(270deg, #24a589, #19967b, #097973);
+  background-size: 600% 600%;
+  -webkit-animation: AnimationName 2.5s ease infinite;
+  -moz-animation: AnimationName 2.5s ease infinite;
+  animation: AnimationName 2.5s ease infinite;
   text-shadow: 1px 1px 2px rgb(66, 66, 66);
   cursor: pointer;
 }
 
 .headerContainer {
-  background: linear-gradient(270deg, #2e744e, #37b375, #097973);
+  background: linear-gradient(270deg, #10885a, #28c476, #097973);
   background-size: 600% 600%;
   -webkit-animation: AnimationName 12s ease infinite;
   -moz-animation: AnimationName 12s ease infinite;
@@ -433,4 +438,40 @@ table p {
 
 .imgHover:hover {
   transform: scale(1.2);
+}
+
+/* header back to dash on hover */
+
+.headerContainer:hover {
+  background: linear-gradient(270deg, #10885a, #28c476, #097973);
+  background-size: 600% 600%;
+  -webkit-animation: AnimationName 2.5s ease infinite;
+  -moz-animation: AnimationName 2.5s ease infinite;
+  animation: AnimationName 2.5s ease infinite;
+}
+
+.headerLink {
+  text-decoration: none;
+  color: white;
+}
+
+.headerLink:hover {
+  text-decoration: none;
+  color: white;
+}
+
+div#hLink h2#a {
+  display: inline;
+}
+
+div#hLink:hover h2#a {
+  display: none;
+}
+
+div#hLink h2#b {
+  display: none;
+}
+
+div#hLink:hover h2#b {
+  display: inline;
 }
