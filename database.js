@@ -108,8 +108,7 @@ class Advertisement
 
 }
 
-// Database class
-// 
+// Database class 
 class Database
 {
     constructor()
@@ -130,7 +129,7 @@ class Database
     }
 
     // edit an event (create or modify)
-    // parameter 1: event object
+    // parameter 1: event object (if the event has an valid ID, it will enter the modfiying mode. Otherwise it will enter the creating mode)
     // return: true for success, false for error
     async editEvent(event)
     {
@@ -156,14 +155,14 @@ class Database
                         WHERE EVENT_ID = ${event.id};`;
         
             }
-            console.log(query);
+            
             await this.pool.query(query, (err, res) => {
                 if(err) 
                     throw err; 
             });
-    
+            succeed = true;
         }
-        succeed = true;
+        
         return succeed;
     }
 
@@ -378,8 +377,7 @@ class Database
             
             let query = `INSERT INTO Advertisement (advert_messageid, advert_eventid, advert_serverid) 
                       VALUES (\'${newAdvert.messageId}\', ${newAdvert.eventId}, \'${newAdvert.serverId}\');`;
-            
-            console.log(query);
+                       
             await this.pool.query(query, (err, res) => {
                 if(err) 
                     throw(err);   
@@ -411,27 +409,6 @@ class Database
         } 
     };
 
-    async listAdvert()
-    {
-        let result;
-        let advertArray = [];
-        let temp;
-        let query = 'SELECT * FROM ADVERTISEMENT;';
- 
-        result = await this.pool.query(query);
-
-        if (result.rows.length === 0)
-            return null;
-
-        for (let i of result.rows)
-        {
-            temp = new Advertisement(i.advert_messageid, Number(i.advert_eventid), i.advert_serverid);
-            advertArray.push(temp);
-        }
-
-        return advertArray;
-    };
-
 
 
     // create a subscription in the database
@@ -452,8 +429,7 @@ class Database
             {
                 query = `INSERT INTO SUBSCRIPTION (sub_userId, sub_eventId) 
                       VALUES (\'${newSub.userId}\', ${newSub.eventId} );`;
-            
-                console.log(query);
+                           
                 await this.pool.query(query, (err, res) => {
                     if(err) 
                         throw err;
@@ -467,12 +443,14 @@ class Database
             
         }
         else
-        {
             return false;
-        } 
+ 
     }
 
-
+    // delete a subscription in the database
+    // parameter 1: event ID.
+    // parameter 2: user ID
+    // return: true for success and false for error
     async deleteSub(eventId, userId)
     {
         let succeed;
@@ -486,7 +464,7 @@ class Database
         {
             query = `DELETE FROM SUBSCRIPTION 
                         WHERE sub_eventId = ${eventId} AND sub_userId = \'${userId}\';`;
-            console.log(query);
+
             await this.pool.query(query, (err, res) => {
                 if(err) 
                     throw err;           
@@ -496,6 +474,9 @@ class Database
         return succeed;
     }
 
+    // list subscriptions from the database
+    // parameter 1: event ID. (if the event ID is provided, the function only returns one subscription entry. Otherwise, it returns an array of subscriptions)
+    // return: a subscription object or a subscription array.
     async listSub(eventId = 0)
     {
         let result;
