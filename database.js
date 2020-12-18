@@ -350,7 +350,7 @@ class Database
         else 
         {
             result = result.rows[0];
-            temp = new Reminder(result.rem_eventid, Number(result.rem_time), Number(result.rem_id));
+            reminder = new Reminder(result.rem_eventid, Number(result.rem_time), Number(result.rem_id));
 
             return reminder;
         }

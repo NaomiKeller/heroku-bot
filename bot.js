@@ -293,19 +293,24 @@ client.on("message", async message => {
         // advertise event
         case `${prefix}AdvertiseEvent`:
             let eventID = args[0];
-            let eventName;
+            let event;
             let messageID;
             let serverID;
-  
-            eventName = (await database.getEvent(Number(eventID))).name; 
-        
-            message.channel.send("```Click the emoji below to subscribe to the event: \n" + eventName + "```").then(value => {
-                messageID = value.id;
-                value.react('🤔')
-                serverID = message.guild.id
             
-                database.createAdvert(new Advertisement(messageID, eventID, serverID));
-            });
+            event = await database.getEvent(Number(eventID));
+            if (isNaN(eventID) || event === null)
+                message.channel.send("```"+`Invalid Event ID!`+"```");
+            else 
+            {
+                message.channel.send("```Click the emoji below to subscribe to the event: \n" + event.name + "```").then(value => {
+                    messageID = value.id;
+                    value.react('🤔')
+                    serverID = message.guild.id
+            
+                    database.createAdvert(new Advertisement(messageID, eventID, serverID));
+                });
+            
+            }
             break;
 
         // list subscriptions
