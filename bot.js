@@ -48,7 +48,8 @@ client.on('ready', () => {
     client.user.setActivity("Don't forget!"); // "Playing <>" status message for bot
 
     let remContrl = new Worker("./reminderCtrl.js");    // reminder control thread
-    let selfPing = new Worker("./selfPing.js");         // self http access thread
+    // removed self ping so heroku doesn't shut off
+    //let selfPing = new Worker("./selfPing.js");         // self http access thread
 
 });
 

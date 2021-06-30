@@ -1,3 +1,5 @@
+// Removing self ping so that my Heroku account doesn't max out every month
+/*
 // function timer
 const timer = ms => new Promise(res => setTimeout(res, ms));
 
@@ -23,5 +25,5 @@ async function selfPing()
 }
 
 selfPing();
-
+*/
 
